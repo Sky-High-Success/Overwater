@@ -316,6 +316,68 @@ function list_package_detail_validity_save( $post_id ) {
 	}
 }
 
+
+
+// Package Other Travel Dates box
+add_action( 'add_meta_boxes', 'list_package_other_travel_dates' );
+function list_package_other_travel_dates() {
+	add_meta_box(
+	'list_package8_other_travel_dates',
+	__( 'For Other Travel Dates', 'myplugin_textdomain' ),
+	'list_package_other_travel_dates_content',
+	'travel_package',
+	'normal',
+	'high'
+			);
+
+}
+
+function list_package_other_travel_dates_content( $post ) {
+
+	wp_nonce_field( 'travel_package_meta_box8', 'travel_package_meta_box_nonce8' );
+	
+	$list_package_other_travel_dates_honeymoon = get_post_meta($post->ID, 'list_package_other_travel_dates_honeymoon', true);
+	$list_package_other_travel_dates_holiday = get_post_meta($post->ID, 'list_package_other_travel_dates_holiday', true);
+
+	echo '<div class="travel_admin_checkbox" ><label class="travel_admin_label" for="list_package_notes_added_value">Honeymoon: </label>';
+	echo '<input type="text" id="list_package_other_travel_dates_honeymoon" name="list_package_other_travel_dates_honeymoon" size="50" placeholder="Enter URL of Honeymoon Travel Button" value="';
+	echo $list_package_other_travel_dates_honeymoon;
+	echo '"></div>';
+	
+	echo '<div class="travel_admin_checkbox" ><label class="travel_admin_label" for="list_package_notes_added_value">Holiday: </label>';
+	echo '<input type="text" id="list_package_other_travel_dates_holiday" name="list_package_other_travel_dates_holiday" size="50" placeholder="Enter URL of Holiday Travel Button" value="';
+	echo $list_package_other_travel_dates_holiday;
+	echo '"></div>';
+	
+
+}
+
+add_action( 'save_post', 'list_package_other_travel_dates_save' );
+function list_package_other_travel_dates_save( $post_id ) {
+
+	if ( ! isset( $_POST['travel_package_meta_box_nonce6'] ) ) {
+		return;
+	}
+	if ( ! wp_verify_nonce( $_POST['travel_package_meta_box_nonce6'], 'travel_package_meta_box6' ) ) {
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if(isset($_POST["list_package_other_travel_dates_honeymoon"])){
+		$list_package_other_travel_dates_honeymoon = $_POST['list_package_other_travel_dates_honeymoon'];
+		update_post_meta($post_id, 'list_package_other_travel_dates_honeymoon', $list_package_other_travel_dates_honeymoon);
+	}
+	
+	if(isset($_POST["list_package_other_travel_dates_holiday"])){
+		$list_package_other_travel_dates_holiday = $_POST['list_package_other_travel_dates_holiday'];
+		update_post_meta($post_id, 'list_package_other_travel_dates_holiday', $list_package_other_travel_dates_holiday);
+	}
+}
+
+
+
 // Package Exclusive Deal box
 add_action( 'add_meta_boxes', 'list_package_notes' );
 function list_package_notes() {

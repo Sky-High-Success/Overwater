@@ -42,8 +42,10 @@
 		//error_log("bb".$package_information['package_cover_photo_url']);
 		
 		$list_package_notes = get_post_meta($post->ID, 'list_package_notes', true);
+		
+		$list_package_notes_added_value = get_post_meta($post->ID, 'list_package_notes_added_value', true);
 
-
+		$list_package_notes_exclusive_sale = get_post_meta($post->ID, 'list_package_notes_exclusive_sale', true);
 ?>
 
   <div class="sectiontravel row">
@@ -76,7 +78,7 @@
 	  				</div>
 				 </div>
 	
-  				<h4>
+  				<h4 class="sticker-front">
   				<?php 
   				if($list_package_notes == "exclusive_sale"){
   					echo "Exclusive Sale";
@@ -90,9 +92,21 @@
 						
   				<div class="sticky anim750">
 					<div class="back circle_wrapper anim750">
-						<div class="circle anim750"></div>
+						<div class="circle anim750"> </div>
 					</div>
 				</div>
+				
+				<h4 class="sticker-back">
+  				<?php 
+  				if($list_package_notes == "exclusive_sale"){
+  					echo "Save <br>".$list_package_notes_exclusive_sale."%";
+  				}
+  				
+  				if($list_package_notes == "added_value"){	
+  					echo "Over $".$list_package_notes_added_value;
+  				}
+  				?>
+  				</h4>
 						
 			</div>
 			<?php }

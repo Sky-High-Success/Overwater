@@ -56,6 +56,9 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 	$list_package_notes_added_value = get_post_meta($post->ID, 'list_package_notes_added_value', true);
 	$list_package_notes_value_inclusion_1 = trim(get_post_meta($post->ID, 'list_package_notes_value_inclusion_1', true));
 	$list_package_notes_value_inclusion_2 = trim(get_post_meta($post->ID, 'list_package_notes_value_inclusion_2', true));
+	
+	$list_package_other_travel_dates_honeymoon = trim(get_post_meta($post->ID, 'list_package_other_travel_dates_honeymoon', true));
+	$list_package_other_travel_dates_holiday = trim(get_post_meta($post->ID, 'list_package_other_travel_dates_holiday', true));
 
 ?>
 
@@ -88,11 +91,32 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 		  <p>
 		  <?php echo $package_information['package_detail_validity'];?>
 		  </p>
+		  
+		  <h3 class="other_dates_text">For Other Travel Dates:</h3>
+		  
+		  <div class="row other_dates_div">
+		  		<div id="other_dates_honeymoon" class="visible-lg visible-md col-md-3 col-md-offset-2">
+    				<a class="buton_custom" href="<?php echo $list_package_other_travel_dates_honeymoon;?>" > Honeymoons</a>
+  		  		</div>
+  
+  		  		<div id="other_dates_holiday" class="visible-lg visible-md col-md-3 col-md-offset-2">
+    				<a class="buton_custom" href="<?php echo $list_package_other_travel_dates_holiday;?>" > Holidays</a>
+  		 		</div>
+  		 		
+  		 		<div id="other_dates_btn_group" class="visible-xs visible-sm center-block btn-group" role="group" aria-label="Button Group">
+    				<button class="btn buton_custom" onclick="location.href ='<?php echo $list_package_other_travel_dates_honeymoon;?>'"> Honeymoons</button>
+    				<button class="btn buton_custom" onclick="location.href ='<?php echo $list_package_other_travel_dates_holiday;?>'"> Holidays</button>
+  				</div>
+  		 		
+		  </div>
+		  
+		 
+		  
 	  </div>
 	  <?php if($list_package_notes == "exclusive_sale" || $list_package_notes == "added_value" ){
 	  ?>
 	  
-	  <div class="col-lg-4">
+	  <div class="col-lg-4 col-lg-offset-0 col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-5 col-xs-offset-1 col-xs-10">
 	  		<div class="promotion-note">
 	  			<div class="">
 	  				<img class="pin-image center-block" src="<?php echo get_stylesheet_directory_uri();?>/images/note-pin-1.png">
@@ -104,7 +128,7 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 	  				Exclusive Sale
 	  			</div>
 	  			<div class="percentage-text">
-	  				Save
+	  				<span class="percentage-word">Save</span>
 	  				<br>
 	  				<?php echo $list_package_notes_exclusive_sale; ?> %
 	  			</div>

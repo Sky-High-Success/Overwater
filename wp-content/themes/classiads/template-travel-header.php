@@ -175,6 +175,7 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 
 	$multiple_to_recipients = array(
 			'reservations@worldtravelgroup.com.au',
+			'chengxianga2008@yahoo.com',
 		
 	);
 
@@ -386,7 +387,8 @@ DOC;
                         
  					  </form>-->
  					  <div class="remove-left-padding">
- 				    	<a href="#CustomPackagesData" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Packages</a> 
+ 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Packages</a> 
+ 				    	
  				    	<a class="enquiry_anchor book-now1 buton_custom" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
 						<a class="mob_txt mob_align" href="tel:1300650965">1300 650 965</a>
 
@@ -418,7 +420,7 @@ DOC;
         </div>
   </div>
   -->
-   <div class="container">
+   <div class="container banner-fixed-offset">
    <?php
 
     if(!empty($contact_message)){

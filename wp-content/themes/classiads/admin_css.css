@@ -14,3 +14,7 @@
 .travel_admin_inclusion_label{
 	margin-bottom: 10px;
 }
+
+.travel_admin_checkbox #list_package_other_travel_dates_holiday, .travel_admin_checkbox #list_package_other_travel_dates_honeymoon{
+	font-weight: 400;
+}

@@ -34,7 +34,7 @@
 
 .travel-style .travel-h3{
 	margin-bottom: -20px;
-	margin-top: 40px;
+/* 	margin-top: 40px; */
 }
 
 .sectiontravel{
@@ -219,7 +219,7 @@
 .contactModal {
 
 	z-index: -10;
- 	margin-top: 100px; 
+ 	margin-top: 50px; 
 }
 
 .modal-dialog {
@@ -748,5 +748,9 @@ backface-visibility: hidden;
 .modal-dropdown-btn{
 	width: 160px;
 	border: 1px solid #eee !important;
+}
+
+.banner-fixed-offset{
+	margin-top: 61px;
 }
 

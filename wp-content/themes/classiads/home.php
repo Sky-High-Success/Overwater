@@ -40,9 +40,9 @@ echo do_shortcode('[layerslider id="2"]');
 
                   <div class="row">
 
-                    <div class="frame4" ><center><iframe id="wtg" width="100%" scrolling="No" height="50" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div>
+                    <div class="frame4" ><center><iframe id="wtg" width="100%" scrolling="No" height="50" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
 
-                 <div class="col-lg-12 col-md-12">
+      <!--          <div class="col-lg-12 col-md-12">
 
                                      <form action="<?php echo get_home_url(null,"package-search"); ?>" method="get">                 
 
@@ -136,7 +136,7 @@ echo do_shortcode('[layerslider id="2"]');
 
  					  </form> 
 
-              				  </div>
+              				  </div> -->   
 
                 </div>
 
@@ -150,9 +150,9 @@ echo do_shortcode('[layerslider id="2"]');
 
   </div>
 
-<div class="wrap">
+<div id="package_wrap" class="wrap">
 <a name="CustomPackagesData"></a>
-<h3 class="home-travel-h3">Travel Packages</h3>
+<h3 id="package_text_anchor" class="home-travel-h3">Travel Packages</h3>
 
 <div class="box">
 
