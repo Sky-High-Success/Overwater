@@ -23,7 +23,7 @@
       			      </p>
       				</div>
      			    <div id="bottom_logo" class="visible-xs visible-sm center-block bottom-logo-block">
-        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/WTGLogo-Large1.jpg"); ?>" alt="" width="250px" /></a>
+        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/13.png"); ?>" alt="" width="250px" /></a>
       				</div>
       				
       				<div id="bottom_text_des" class="visible-md visible-lg col-md-8">
@@ -34,7 +34,7 @@
       			      </p>
       				</div>
      			    <div id="bottom_logo" class="visible-md visible-lg">
-        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/WTGLogo-Large1.jpg"); ?>" alt="" width="250px" /></a>
+        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/13.png"); ?>" alt="" width="250px" /></a>
       				</div>
       				
       				
@@ -307,12 +307,12 @@
         <div class="container">
             <div class="row">
                <div class="hidden-xs">
-                	<p>Copyright © 2015 <strong> <a href="#">World Travel Group</a></strong> ·Powered by <strong><a href="#"> Sky High Success</a></strong>·<strong><a href="<?php echo get_home_url(null,"/terms-and-conditions"); ?>">T&amp;C</a></strong> · <strong><a href="<?php echo get_home_url(null,"/privacy-policy"); ?>">Privacy Policy</a></strong>  · <strong><a href="<?php echo get_home_url(null,"/special-conditions"); ?>">Special Conditions</a></strong></p>
+                	<p>Copyright © 2015 <strong> <a href="#">Overwater Bungalows</a></strong> ·Powered by <strong><a href="#"> Sky High Success</a></strong>·<strong><a href="<?php echo get_home_url(null,"/terms-and-conditions"); ?>">T&amp;C</a></strong> · <strong><a href="<?php echo get_home_url(null,"/privacy-policy"); ?>">Privacy Policy</a></strong>  · <strong><a href="<?php echo get_home_url(null,"/special-conditions"); ?>">Special Conditions</a></strong></p>
             
                 </div>
                 <div class="visible-xs col-xs-12">
                     <div>
-                    	<p>Copyright © 2015 <strong> <a href="#">World Travel Group</a></strong> · <strong><a href="<?php echo get_home_url(null,"/terms-and-conditions"); ?>">T&amp;C</a></strong>  </p> 
+                    	<p>Copyright © 2015 <strong> <a href="#">Overwater Bungalows</a></strong> · <strong><a href="<?php echo get_home_url(null,"/terms-and-conditions"); ?>">T&amp;C</a></strong>  </p> 
                     </div>
 
                     <div class="clearfix">

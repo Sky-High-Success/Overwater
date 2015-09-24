@@ -330,7 +330,7 @@ DOC;
             <div class="row">
                 <div class="col-md-4">
 					<div class="visible-lg visible-md center-block logo-group-block">
-						<a href="<?php echo get_home_url();?>"><img src="<?php bloginfo('template_url'); ?>/images/logo.jpg" alt="logo"/></a>
+						<a href="<?php echo get_home_url();?>"><img src="<?php bloginfo('template_url'); ?>/images/sitelogo.jpg" alt="logo"/></a>
 					</div>
                 </div>
                 <div class="col-md-8 header-p right">
