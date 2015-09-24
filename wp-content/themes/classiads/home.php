@@ -194,35 +194,6 @@ echo do_shortcode('[layerslider id="2"]');
 
 </div>
 
-<div class="box">
-
-<div class="boxInner"><a href="<?php echo get_term_link( "thailand", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-thailand.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="boxInner"><a href="<?php echo get_term_link( "bali", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-bali1-copy.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="boxInner"><a href="<?php echo get_term_link( "mauritius", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-mauritius.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
 
 <div class="box">
 
@@ -244,15 +215,7 @@ echo do_shortcode('[layerslider id="2"]');
 
 </div>
 
-<div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "vietnam", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-vietnam.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
 
 <div class="box">
 
@@ -273,44 +236,5 @@ echo do_shortcode('[layerslider id="2"]');
 </div>
 
 </div>
-
-<div class="box">
-
-<div class="boxInner"><a href="<?php echo get_term_link( "seychelles", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-seychelles.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="boxInner"><a href="<?php echo get_term_link( "caribbean", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-caribbean-copy.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-
-
-
-<div class="box">
-
-<div class="boxInner"><a href="/taxonomy/qld-islands/"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-qld-islands.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-
-
 
 <?php include_once "template-travel-footer.php";?>
