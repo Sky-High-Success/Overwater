@@ -29,19 +29,19 @@ echo do_shortcode('[layerslider id="2"]');
 ?>
  
 
- <div id="templatemo_Search_Box" class="container_wapper hidden-sm hidden-xs" style="background:#fff !important;">
-
-        <div class="container">
-
+  <div id="templatemo_Search_Box" class="">
+    
             <div class="row">
 
-                <div class="col-md-12 header-p right">
+                <div class="col-md-12 col-sm-12 col-xs-12 header-p right">
 
 
                   <div class="row">
 
-                    <div class="frame4" ><center><iframe id="wtg" width="100%" scrolling="No" height="50" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
-
+                    <div class="visible-lg visible-md frame4" ><center><iframe id="wtg" width="970" scrolling="No" height="80" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
+                  
+                    <div class="visible-sm visible-xs frame4" ><center><iframe id="wtg" width="360" scrolling="No" height="290" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
+                    
       <!--          <div class="col-lg-12 col-md-12">
 
                                      <form action="<?php echo get_home_url(null,"package-search"); ?>" method="get">                 
@@ -140,15 +140,11 @@ echo do_shortcode('[layerslider id="2"]');
 
                 </div>
 
-               
-
-                
-
             </div>
 
         </div>
 
-  </div>
+</div>
 
 <div id="package_wrap" class="wrap">
 <a name="CustomPackagesData"></a>
