@@ -17,24 +17,20 @@
    				  <div id="bottom_description" class="row">
       				<div id="bottom_text_des" class="visible-xs visible-sm col-md-8">
       				  <p>
-        			  With our vast experience in travel and valuable partnerships with Airlines, Hotels and Tour Operators, we offer you only the best of holiday packages.
-      				  <br>
-         			  We want your honeymoon, anniversary or romantic holiday to be remembered and talked about for a long time, so let us share in your joy and you won’t be disappointed.
-      			      </p>
+        			  At Overwaterbungalows.com.au we have long recognized the desire for many of our international travelers to stay in an overwater bungalows. When it comes to a dream tropical getaway it doesn’t get any better than dangling your toes into dazzling blue water from the deck of your very own overwater bungalow or maybe having a personal outdoor pool overlooking the crystal clear waters of these magnificent lagoons. From the Pacific to the Indian Ocean, we have enchanted many of our clients as they experience the magic &amp; luxury of our over water destinations.
+BEST PRICE GUARANTEE: Our world class, international hotels and resorts are of the highest standard and our long-term relationships with airlines, tour operators and resorts ensure you receive the best price. </p>
       				</div>
      			    <div id="bottom_logo" class="visible-xs visible-sm center-block bottom-logo-block">
-        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/13.png"); ?>" alt="" width="250px" /></a>
+        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/WTGLogo-Large1.jpg"); ?>" alt="" width="250px" /></a>
       				</div>
       				
       				<div id="bottom_text_des" class="visible-md visible-lg col-md-8">
       				  <p>
-        			  With our vast experience in travel and valuable partnerships with Airlines, Hotels and Tour Operators, we offer you only the best of holiday packages.
-      				  <br>
-         			  We want your honeymoon, anniversary or romantic holiday to be remembered and talked about for a long time, so let us share in your joy and you won’t be disappointed.
-      			      </p>
+        			  At Overwaterbungalows.com.au we have long recognized the desire for many of our international travelers to stay in an overwater bungalows. When it comes to a dream tropical getaway it doesn’t get any better than dangling your toes into dazzling blue water from the deck of your very own overwater bungalow or maybe having a personal outdoor pool overlooking the crystal clear waters of these magnificent lagoons. From the Pacific to the Indian Ocean, we have enchanted many of our clients as they experience the magic &amp; luxury of our over water destinations.
+BEST PRICE GUARANTEE: Our world class, international hotels and resorts are of the highest standard and our long-term relationships with airlines, tour operators and resorts ensure you receive the best price.  </p>
       				</div>
      			    <div id="bottom_logo" class="visible-md visible-lg">
-        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/13.png"); ?>" alt="" width="250px" /></a>
+        				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/WTGLogo-Large1.jpg"); ?>" alt="" width="250px" /></a>
       				</div>
       				
       				

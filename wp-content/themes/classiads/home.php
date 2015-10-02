@@ -24,7 +24,7 @@
 
 <?php
 
-echo do_shortcode('[layerslider id="2"]');
+echo do_shortcode('[layerslider id="294"]');
 
 ?>
  
@@ -37,10 +37,12 @@ echo do_shortcode('[layerslider id="2"]');
 
 
                   <div class="row">
-
-                    <div class="visible-lg visible-md frame4" ><center><iframe id="wtg" width="970" scrolling="No" height="80" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
+<div class="prosenjitdiv">  
+                     <a id="SliderPackagesbtn" class="getquote_anchor quote buton_custom" href="#package_text_anchor">Packages</a>
+                    </div>
+<!--                    <div class="visible-lg visible-md frame4" ><center><iframe id="wtg" width="970" scrolling="No" height="80" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
                   
-                    <div class="visible-sm visible-xs frame4" ><center><iframe id="wtg" width="360" scrolling="No" height="290" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
+                    <div class="visible-sm visible-xs frame4" ><center><iframe id="wtg" width="360" scrolling="No" height="290" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> -->
                     
       <!--          <div class="col-lg-12 col-md-12">
 
@@ -232,5 +234,16 @@ echo do_shortcode('[layerslider id="2"]');
 </div>
 
 </div>
-
+<style>
+.prosenjitdiv a {
+    color: #fff;
+    background-color: #0086ac !important;
+    font-family:arial;
+}
+.prosenjitdiv {
+    display: block;
+    padding-top: 59px;
+    text-align: center;
+}
+</style>
 <?php include_once "template-travel-footer.php";?>

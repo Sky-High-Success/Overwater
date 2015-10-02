@@ -243,7 +243,7 @@ DOC;
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>World Travel Group</title>
+    <title>Overwater Bungalows</title>
 
     <meta name="description" content="We want your honeymoon, anniversary or holiday to be remembered and talked about for a long time, so let us share in your joy and you won’t be disappointed. " />
     <meta name="author" content="World Travel Group">
@@ -387,7 +387,7 @@ DOC;
                         
  					  </form>-->
  					  <div class="remove-left-padding">
- 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Packages</a> 
+ 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan your trip</a> 
  				    	
  				    	<a class="enquiry_anchor book-now1 buton_custom" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
 						<a class="mob_txt mob_align" href="tel:1300650965">1300 650 965</a>
