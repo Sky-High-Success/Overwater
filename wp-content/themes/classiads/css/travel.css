@@ -754,3 +754,55 @@ backface-visibility: hidden;
 	margin-top: 61px;
 }
 
+.plan-trip-dropdown >a.buton_custom{
+    margin-right: 5%;
+ 
+}
+
+.plan-trip-dropdown .dropdown-menu{
+   border-radius: 0px;
+  
+}
+
+.plan-trip-dropdown >a:hover, .plan-trip-dropdown >a:focus{
+	color: #fff;
+}
+
+.buton_custom{
+	display: inline-block;
+	line-height: 16px !important;
+	border: 1px solid transparent;
+	border-radius: 0px;
+	color: #fff;
+	background: #0086ac none repeat scroll 0 0;
+	font-family: arial;
+	padding: 14px 30px;
+}
+
+ul.trip{
+  background: #0086ac;
+  width: 168px;
+ 
+/*   margin-top: 2px; */
+/*   min-width: 171px; */
+
+/*   padding: 0; */
+}
+
+ul.trip li:hover {
+    background: #61cced;
+}
+
+ul.trip li a{
+	text-align: left;
+}
+
+ul.trip li a:hover {
+    background: #61cced;
+/*     color:#000 !important; */
+}
+
+.phone-txt{
+	margin-right: 20px;
+}
+

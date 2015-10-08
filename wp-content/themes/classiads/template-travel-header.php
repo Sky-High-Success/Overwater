@@ -254,52 +254,8 @@ DOC;
     
    <!-- //// <link rel="shortcut icon" href="<?php echo get_template_directory_uri();?>/images/icon/favicon.ico" type="" /> -->
 <style>
-/*        .tripplan{
-            display:none;
-        }*/
-ul.trip{
-  background: #0086ac none repeat scroll 0 0;
-  float: left;
-  display:none;
-  
-  margin-top: 2px;
-  min-width: 171px;
-  position: absolute;
-  text-align: left;
-  padding: 0;
-}
-ul.trip li {
-  background: #0086ac none repeat scroll 0 0;
-  text-decoration: none;
-  width: 100%;
-  display: block;
-  text-align: left;
-  padding-left: 7px;
-}
-ul.trip li:hover {
-    background: #61cced;
-    text-decoration: none;
-}
-ul.trip li a:hover {
-    background: #61cced;
-    text-decoration: none;
-    color:#000 !important;
-}
 
-ul.trip li a:focus{
-    color:#000 !important;
-    background: #61cced;
-} 
-ul.abc{
-    float: left;
-    position: relative;
-    list-style: none;
-    padding-left: 35%;
-}   
-/*ul.abc li:hover ul.trip{
-    display: block;
-}*/
-    </style>
+</style>
     
     
     
@@ -437,26 +393,25 @@ ul.abc{
                         </div>
                         
  					  </form>-->
- 					  <div class="remove-left-padding">
-<!-- 				    	<a href="<?php //echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan your trip</a> -->
- 				    	<ul class="abc">
-                                                  <li class="dropdown">
-                                              <a class="hidden-sm hidden-xs" href="<?php //echo get_home_url();?>" class="getquote_anchor quote buton_custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="SliderPackagesbtn">
-                                                  Plan your trip 
-                                                  </a> 
-                                                  <ul class="trip dropdown-menu">
-                                                <li><a class="hidden-sm hidden-xs"  href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps">Holiday</a></li>
-                                                <li><a class="hidden-sm hidden-xs" href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps">Honeymoon</a></li>
-                                              </ul>
-                                                  
-                                              
-                                             
-                                                  </li>
-                                              </ul>
- 				    	<a class="enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
-						<a class="mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a>
+ 					 <div class="row remove-left-padding">
+<!-- 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan Your Trip</a> -->
+ 				    	<div class="plan-trip-dropdown btn-group">
+                                                 
+                           <a href="javascript:;" class="hidden-sm hidden-xs btn getquote_anchor quote buton_custom dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                Plan your trip
+                                <span class="caret"></span>
+                           </a> 
+                           <ul class="trip dropdown-menu">
+                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=4&screen=scnWizardSteps">Honeymoon</a></li>
+                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=3&screen=scnWizardSteps">Holiday</a></li>
+                                
+                           </ul>
+                                                 
+                        </div>
+ 				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
+						<a class="phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a>
 
- 				      </div>
+ 				     </div>
                    
  				
  					
