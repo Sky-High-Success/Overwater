@@ -253,7 +253,56 @@ DOC;
     <!-- Favicon-->
     
    <!-- //// <link rel="shortcut icon" href="<?php echo get_template_directory_uri();?>/images/icon/favicon.ico" type="" /> -->
+<style>
+/*        .tripplan{
+            display:none;
+        }*/
+ul.trip{
+  background: #0086ac none repeat scroll 0 0;
+  float: left;
+  display:none;
+  
+  margin-top: 2px;
+  min-width: 171px;
+  position: absolute;
+  text-align: left;
+  padding: 0;
+}
+ul.trip li {
+  background: #0086ac none repeat scroll 0 0;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding-left: 7px;
+}
+ul.trip li:hover {
+    background: #61cced;
+    text-decoration: none;
+}
+ul.trip li a:hover {
+    background: #61cced;
+    text-decoration: none;
+    color:#000 !important;
+}
 
+ul.trip li a:focus{
+    color:#000 !important;
+    background: #61cced;
+} 
+ul.abc{
+    float: left;
+    position: relative;
+    list-style: none;
+    padding-left: 35%;
+}   
+/*ul.abc li:hover ul.trip{
+    display: block;
+}*/
+    </style>
+    
+    
+    
     <?php wp_head(); ?>
     
 
@@ -319,17 +368,19 @@ DOC;
             <ul class="nav nav-pills nav-stacked menu-mobile">
                 <li><a id="mobile_menu_phone" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li>
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
+                <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps"><strong>Holiday</strong></a></li>
+                <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps"><strong>Honeymoon</strong></a></li>
                 <li><a id="enquiry-button-1" href="<?php echo get_home_url(null,"package-enquiry"); ?>"><strong>ENQUIRY</strong></a></li>
                 
             </ul>
         </div>
   </div>
 
-  <div id="templatemo_banner_top" class="container_wapper hidden-sm hidden-xs" style="background:#fff !important;">
+  <div id="templatemo_banner_top" class="container_wapper " style="background:#fff !important;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-					<div class="visible-lg visible-md center-block logo-group-block">
+					<div class="visible-lg visible-md center-block visible-xs visible-sm logo-group-block">
 						<a href="<?php echo get_home_url();?>"><img src="<?php bloginfo('template_url'); ?>/images/sitelogo.jpg" alt="logo"/></a>
 					</div>
                 </div>
@@ -387,10 +438,23 @@ DOC;
                         
  					  </form>-->
  					  <div class="remove-left-padding">
- 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan your trip</a> 
- 				    	
- 				    	<a class="enquiry_anchor book-now1 buton_custom" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
-						<a class="mob_txt mob_align" href="tel:1300650965">1300 650 965</a>
+<!-- 				    	<a href="<?php //echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan your trip</a> -->
+ 				    	<ul class="abc">
+                                                  <li class="dropdown">
+                                              <a class="hidden-sm hidden-xs" href="<?php //echo get_home_url();?>" class="getquote_anchor quote buton_custom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="SliderPackagesbtn">
+                                                  Plan your trip 
+                                                  </a> 
+                                                  <ul class="trip dropdown-menu">
+                                                <li><a class="hidden-sm hidden-xs"  href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps">Holiday</a></li>
+                                                <li><a class="hidden-sm hidden-xs" href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps">Honeymoon</a></li>
+                                              </ul>
+                                                  
+                                              
+                                             
+                                                  </li>
+                                              </ul>
+ 				    	<a class="enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
+						<a class="mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a>
 
  				      </div>
                    

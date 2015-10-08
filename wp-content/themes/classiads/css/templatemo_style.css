@@ -513,3 +513,9 @@ body {
 @media (min-width: 1200px ) {
 }
 
+@media (max-width:768px){
+
+.bottom-logo-block{
+ text-align: center;
+}
+}
