@@ -154,7 +154,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "maldives", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/maldives.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "maldives-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/maldives.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -164,7 +164,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "tahiti", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-tahiti-copy.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "tahiti-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-tahiti-copy.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -174,7 +174,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "fiji", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-fiji.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "fiji-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-fiji.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -184,7 +184,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "cook-islands", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-cook-islands-copy.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "cook-islands-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-cook-islands-copy.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -195,7 +195,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "malaysia", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-malaysia.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "malaysia-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-malaysia.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -205,7 +205,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "vanuatu", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-vanuatu.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "vanuatu-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-vanuatu.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -217,7 +217,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "samoa", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-samoa.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "samoa-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-samoa.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
@@ -227,7 +227,7 @@ echo do_shortcode('[layerslider id="294"]');
 
 <div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "philippines", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-philippines.jpg"); ?>" alt="" /></a>
+<div class="boxInner"><a href="<?php echo get_term_link( "philippines-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-philippines.jpg"); ?>" alt="" /></a>
 
 <div class="titleBox">MORE INFO</div>
 
