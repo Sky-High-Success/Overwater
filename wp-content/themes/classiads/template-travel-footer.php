@@ -266,6 +266,19 @@
   	          </div>
   	          
   	          <div class="form-group">
+  	            <div class="row-fluid">
+  	            <div class="col-md-8">
+  	            	
+  	                  
+  	               <div class="g-recaptcha" data-sitekey="6Leedw4TAAAAAFkI6h52NDEoa9iAbHGeA1bbLeB3" data-callback='recaptcha_callback'></div>
+  	          
+  	            </div>
+  	            </div>
+  	                 
+  	                   
+  	          </div>
+  	          
+  	          <div class="form-group">
   	             <input id="<?php echo $modal_type[$i];?>_package_hidden" type="hidden" name="package" value="General Enquiry">
   	             <input id="contact-method-hidden" type="hidden" name="contact-method" value="Email">
   	             <input id="travel-occasion-hidden" type="hidden" name="travel-occasion" value="Romantic Getaway">
@@ -364,8 +377,8 @@
               		  $("#bookingModal").css("z-index","1042");
               	  });
 
-              	  $("#enquiryForm").validate(); 
-              	  $("#bookingForm").validate();
+              	  var enquiry_validator = $("#enquiryForm").validate(); 
+          	      var booking_validator = $("#bookingForm").validate();
 
               	  $('#enquiryModal').on('show.bs.modal', function (e) {
               		 // package_quote = $(e.relatedTarget).data("package_quote");
@@ -390,7 +403,26 @@
               		  <?php }?>
               	  });
 
-                });
+              	  $("#enquiryForm button[type=submit]").on("click", function(event){
+
+              		 enquiry_validator.form();
+
+              		 if (grecaptcha.getResponse() == "") {
+         			    var errors;
+         			    /* Build up errors object, name of input and error message: */
+         			    errors = { "g-recaptcha-response" : "You have to go through CAPTCHA check" };
+         			    /* Show errors on the form */
+         			    enquiry_validator.showErrors(errors);
+         			    event.preventDefault();            
+         			 }
+                  	 
+              	  });
+
+             	  window.recaptcha_callback = function(){
+       			    $(".g-recaptcha div label").remove();
+       		      };
+
+           });
    </script>
 
    

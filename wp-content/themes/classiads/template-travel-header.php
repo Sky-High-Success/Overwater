@@ -77,6 +77,7 @@
 	
 	}
 	
+	
 	//wp_localize_script('custom_script', 'package_arr', get_all_packages_meta());
 	wp_enqueue_script( 'custom_script' );
 	
@@ -261,8 +262,8 @@ DOC;
     
     <?php wp_head(); ?>
     
-
-    
+	<script src='https://www.google.com/recaptcha/api.js' async></script>
+   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

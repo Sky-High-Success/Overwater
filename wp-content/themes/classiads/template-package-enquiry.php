@@ -240,8 +240,21 @@
   	            <div class="col-md-7">
   	            	<label>Enter your message here</label>
   	                  
-  	                <textarea class="form-control" placeholder="Please state the locations (Maldives, Tahiti, Vanuatu etc) and/or packages you are interested in. We've got many more properties and packages on offer at each location." name="Please state the locations (Maldives, Tahiti, Vanuatu etc) and/or packages you are interested in. We've got many more properties and packages on offer at each location."  rows="6" cols="6"></textarea>
+  	                <textarea class="form-control" placeholder="Please state the locations (Maldives, Tahiti, Vanuatu etc) and/or packages you are interested in. We've got many more properties and packages on offer at each location." name="message"  rows="6" cols="6"></textarea>
  	              
+  	            </div>
+  	            </div>
+  	                 
+  	                   
+  	          </div>
+  	          
+  	          <div class="form-group">
+  	            <div class="row-fluid">
+  	            <div class="col-md-8">
+  	            	
+  	                  
+  	               <div class="g-recaptcha" data-sitekey="6Leedw4TAAAAAFkI6h52NDEoa9iAbHGeA1bbLeB3" data-callback='recaptcha_callback'></div>
+  	          
   	            </div>
   	            </div>
   	                 
@@ -293,7 +306,23 @@
 		  <?php if(!empty($package_information['package_name'])){?>
 		  	$("#package_hidden").val("<?php echo $package_information['package_name']." / ".$package_information['package_pricing'];?>");
 		  <?php } ?>
-		  $("#contactForm").validate(); 
+		  
+		  var contact_validator = $("#contactForm").validate(); 
+
+	      $("#contactForm button[type=submit]").on("click", function(event){
+
+	       		contact_validator.form();
+
+	       		if (grecaptcha.getResponse() == "") {
+	  			    var errors;
+	  			    /* Build up errors object, name of input and error message: */
+	  			    errors = { "g-recaptcha-response" : "You have to go through CAPTCHA check" };
+	  			    /* Show errors on the form */
+	  			    contact_validator.showErrors(errors);
+	  			    event.preventDefault();            
+	  			}
+	           	 
+	      });
 		  
 	  });
 </script>
