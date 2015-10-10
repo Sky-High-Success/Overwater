@@ -403,8 +403,8 @@ DOC;
                                 <span class="caret"></span>
                            </a> 
                            <ul class="trip dropdown-menu">
-                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=4&screen=scnWizardSteps">Honeymoon</a></li>
-                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=3&screen=scnWizardSteps">Holiday</a></li>
+                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps">Honeymoon</a></li>
+                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps">Holiday</a></li>
                                 
                            </ul>
                                                  
