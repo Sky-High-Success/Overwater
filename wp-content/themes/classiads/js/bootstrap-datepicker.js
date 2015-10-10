@@ -603,7 +603,7 @@
 			var width = this.component ? this.component.outerWidth(true) : this.element.outerWidth(false);
 			
 			var left = offset.left - appendOffset.left,
-				top = offset.top - appendOffset.top + 100;
+				top = offset.top - appendOffset.top + 60;
 
 			var isInModal = this.element.parents('.modal').length;
 			if(isInModal) {
