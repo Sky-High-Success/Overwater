@@ -806,3 +806,17 @@ ul.trip li a:hover {
 	margin-right: 20px;
 }
 
+
+a i{
+	color: inherit;
+}
+
+.ad-detail-content p a{
+	white-space: nowrap;
+}
+
+.ad-detail-content p a:hover{
+	color: #2a6496;
+}
+
+

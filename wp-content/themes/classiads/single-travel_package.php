@@ -75,13 +75,13 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 	  <div class="col-lg-12">
 	  <?php }?>
     	  
-		  <div class="visible-lg visible-md col-lg-4 col-md-5 no-left-padding">
+<!--  	  <div class="visible-lg visible-md col-lg-4 col-md-5 no-left-padding">
 		    <a class="enquiry_anchor" href="#" data-toggle="modal" data-package_quote="specific" data-target="#enquiryModal"><img src="<?php echo get_stylesheet_directory_uri()."/images/enquire-now-300x75.png"; ?>" alt="enquire now" /></a>
 		  </div>
 		
 		  <div class="visible-xs visible-sm col-sm-6 col-xs-8">
 		    <a class="enquiry_anchor" id="enquiry-button-2" data-package_quote="specific" href="<?php echo get_home_url(null,"package-enquiry"); ?>" ><img src="<?php echo get_stylesheet_directory_uri()."/images/enquire-now-300x75.png"; ?>" alt="enquire now" /></a>
-		  </div>
+		  </div> -->
 		  <div class="clearfix"></div>
 		  <h3>INCLUDES:</h3>
 		  <p>
@@ -94,7 +94,13 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 		  
 		  <h3 class="other_dates_text">For Other Travel Dates:</h3>
 		  
-		  <div class="row other_dates_div">
+		   
+		  <p> For other travel dates please contact us on <a href="tel:+61295690811">
+		  	<i class="fa fa-phone"></i>+61 2 95690811</a>  / 
+		  	<a href="tel:1300650965"><i class="fa fa-phone"></i>1300 650 965</a> 
+		  	or click on the <a href="#page_bottom_button_group">Enquiry</a> button below. </p>
+		  
+	<!-- 	  <div class="row other_dates_div">
 		  		<div id="other_dates_honeymoon" class="visible-lg visible-md col-md-3 col-md-offset-2">
     				<a class="buton_custom" href="<?php echo $list_package_other_travel_dates_honeymoon;?>" > Honeymoons</a>
   		  		</div>
@@ -108,7 +114,7 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
     				<button class="btn buton_custom" onclick="location.href ='<?php echo $list_package_other_travel_dates_holiday;?>'"> Holidays</button>
   				</div>
   		 		
-		  </div>
+		  </div> -->
 		  
 		 
 		  
@@ -192,7 +198,7 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 
 </div>
 </div>
-<div class="bottom-button-style row">
+<div id="page_bottom_button_group" class="bottom-button-style row">
   <div id="bottom_enquiry_button" class="visible-lg visible-md col-md-3 col-md-offset-2">
     <a class="fa-envelope enquiry_anchor" href="#" data-toggle="modal" data-package_quote="specific" data-target="#enquiryModal" > Enquiry</a>
   </div>

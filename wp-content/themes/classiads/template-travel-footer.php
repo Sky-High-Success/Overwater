@@ -230,11 +230,11 @@
   	            <div class="col-md-8" >
   	              <div class="dropdown" id="travel-occasion-div">
   					<button class="btn btn-default dropdown-toggle modal-dropdown-btn" type="button" id="travel-occasion" data-toggle="dropdown" aria-expanded="true">
-    					<span class="result">Romantic Getaway</span>
+    					<span class="result">Holiday</span>
     					<span class="caret"></span>
  					</button>
   					<ul class="dropdown-menu" role="menu" aria-labelledby="travel-occasion">
-    					<li role="presentation"><a role="menuitem" tabindex="-1" >Romantic Getaway</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" >Holiday</a></li>
     					<li role="presentation"><a role="menuitem" tabindex="-1" >Honeymoon</a></li>
     					<li role="presentation"><a role="menuitem" tabindex="-1" >Other</a></li>
   					</ul>
