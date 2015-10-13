@@ -95,7 +95,7 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 		  <h3 class="other_dates_text">For Other Travel Dates:</h3>
 		  
 		   
-		  <p> For other travel dates please contact us on <a href="tel:+61295690811">
+			  <p> Please contact us on <a href="tel:+61295690811">
 		  	<i class="fa fa-phone"></i>+61 2 95690811</a>  / 
 		  	<a href="tel:1300650965"><i class="fa fa-phone"></i>1300 650 965</a> 
 		  	or click on the <a href="#page_bottom_button_group">Enquiry</a> button below. </p>
