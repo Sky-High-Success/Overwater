@@ -38,7 +38,26 @@ echo do_shortcode('[layerslider id="294"]');
 
                   <div class="row">
 <div class="prosenjitdiv">  
-                     <a id="SliderPackagesbtn" class="getquote_anchor quote buton_custom" href="#package_text_anchor">Packages</a>
+
+                     <div class="plan-trip-dropdown btn-group">
+                                                 
+                          
+                           <a href="javascript:;" class="button button--nanuk button--border-thin button--round-s getquote_anchor quote buton_custom button_effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+							<span>P</span><span>l</span><span>a</span><span>n</span><span>&nbsp;</span>
+							<span>y</span><span>o</span><span>u</span><span>r</span><span>&nbsp;</span>
+							<span>t</span><span>r</span><span>i</span><span>p</span>
+						   </a>
+                           
+         
+                           <ul class="trip dropdown-menu">
+                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps">Honeymoon</a></li>
+                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps">Holiday</a></li>
+                                
+                           </ul> 
+                                                 
+                     </div>
+
+<!--                     <a id="SliderPackagesbtn" class="getquote_anchor quote buton_custom" href="#package_text_anchor">Packages</a> -->
                     </div>
 <!--                    <div class="visible-lg visible-md frame4" ><center><iframe id="wtg" width="970" scrolling="No" height="80" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
                   

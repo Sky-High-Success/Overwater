@@ -818,5 +818,53 @@ a i{
 .ad-detail-content p a:hover{
 	color: #2a6496;
 }
+/*-------button effect----------*/
+.quote.button_effect{
+	background-color: #bf0086 !important;
+    border-style: groove;
+    box-shadow: 0 0 8px #fff inset;
+    font-family: "Oleo Script",cursive;
+    font-size: 26px !important;
+    line-height: 10px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: -30px;
+    padding: 0 15px;
+    margin-bottom: 0px;
+    width: 220px;
+}
 
+.prosenjitdiv li a{
+	background-color: #fff !important;
+    color: #bf0086 !important;
+    font-family: Roboto;
+    font-size: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
 
+.prosenjitdiv li a:hover{
+	background-color: #bf0086 !important;
+	color: #fff !important;
+}
+
+ul.trip{
+	background-color: #fff !important;
+	width: 220px;
+}
+
+@media (max-width: 500px){
+	.quote.button_effect{
+	  font-size: 20px !important;
+    	line-height: 0 !important;
+   	 	margin-top: 0;
+   	 padding: 0 15px;
+   	 width: 180px !important;
+	
+	}
+	
+	ul.trip{
+	background-color: #fff !important;
+	width: 180px;
+}
+}

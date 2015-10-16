@@ -18,13 +18,16 @@
 	
 	wp_enqueue_style( 'select-style', get_template_directory_uri() . '/css/bootstrap-select.min.css', array(bootstrap3-style), '1.0.0' );
 
-	wp_enqueue_style ( 'google-font-style', 'http://fonts.googleapis.com/css?family=Indie+Flower|Rock+Salt|Open+Sans+Condensed:300|Roboto|Great+Vibes', array (
+	wp_enqueue_style ( 'google-font-style', 'http://fonts.googleapis.com/css?family=Indie+Flower|Rock+Salt|Open+Sans+Condensed:300|Roboto|Great+Vibes|Oleo+Script', array (
 	), '1.0.0' );
 	
 	//Template
 	wp_enqueue_style( 'travel-style', get_template_directory_uri() . '/css/travel.css', array(), '1.0.0' );
 
 	wp_enqueue_style( 'update-travel-style', get_stylesheet_directory_uri() . '/update-travel.css', array(), '1.0.0' );
+	
+	wp_enqueue_style( 'button-style', get_template_directory_uri() . '/css/buttons.css', array(), '1.0.0' );
+	
 	
 	
 	wp_enqueue_style( 'datepicker-style', get_template_directory_uri() . '/css/datepicker3.css', array(), '1.0.0' );
@@ -396,19 +399,9 @@ DOC;
  					  </form>-->
  					 <div class="row remove-left-padding">
 <!-- 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan Your Trip</a> -->
- 				    	<div class="plan-trip-dropdown btn-group">
-                                                 
-                           <a href="javascript:;" class="hidden-sm hidden-xs btn getquote_anchor quote buton_custom dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                Plan your trip
-                                <span class="caret"></span>
-                           </a> 
-                           <ul class="trip dropdown-menu">
-                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps">Honeymoon</a></li>
-                                <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps">Holiday</a></li>
-                                
-                           </ul>
-                                                 
-                        </div>
+ 				    	 <a href="#package_text_anchor" class="getquote_anchor quote buton_custom hidden-sm hidden-xs"  id="SliderPackagesbtn">
+                               Packages
+                         </a>
  				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
 						<a class="phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a>
 
