@@ -123,7 +123,8 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
 	  ?>
 	  
 	  <div class="col-lg-4 col-lg-offset-0 col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-5 col-xs-offset-1 col-xs-10">
-	  		<div class="promotion-note">
+	  		<div class="promotion-note-scroll"></div>
+	  		<div class="promotion-note hidden">
 	  			<div class="">
 	  				<img class="pin-image center-block" src="<?php echo get_stylesheet_directory_uri();?>/images/note-pin-1.png">
 	  			</div>

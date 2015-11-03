@@ -365,6 +365,13 @@
    <script type="text/javascript">
                 jQuery(document).ready(function($){
 
+                	$(".promotion-note-scroll").waypoint(function(direction) {
+                        $(".promotion-note").removeClass("hidden");
+                  	  $(".promotion-note").addClass("animated zoomInDown");
+                    }, {
+                       offset: '200'
+                    });
+
                   $('.date-input-top').val("");
               	  
               	  $(".enquiry_anchor").click(function(){

@@ -34,12 +34,18 @@
 	
 	wp_enqueue_style( 'fontawesome-style', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '1.0.0' );
 	
+	//Template
+	wp_enqueue_style( 'animate-style', get_stylesheet_directory_uri() . '/css/animate.min.css', array('bootstrap3-style'), '1.0.0' );
 	
 	//Template
 	wp_enqueue_style( 'templatemo-style', get_template_directory_uri() . '/css/templatemo_style.css', array('bootstrap3-style'), '1.0.0' );
 
 	// Loads JavaScript file with functionality specific to classiads.
 	wp_enqueue_script( 'bootstrap3-js', get_template_directory_uri() . '/js/bootstrap3.min.js', array( 'jquery' ), '2014-07-18', true );
+	
+	// Loads JavaScript file with functionality specific to classiads.
+	wp_enqueue_script( 'waypoint-js', get_stylesheet_directory_uri() . '/js/jquery.waypoints.min.js', array( 'jquery' ), '2014-07-18', true );
+	
 	
 	// Loads JavaScript file with functionality specific to classiads.
 	wp_enqueue_script( 'select-js', get_template_directory_uri() . '/js/bootstrap-select.min.js', array( 'bootstrap3-js' ), '2014-07-18', true );
