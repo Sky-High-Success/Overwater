@@ -2,6 +2,7 @@
 
 define( 'GD_VIP', '184.168.47.225' );
 define( 'GD_RESELLER', 1 );
+define( 'GD_ASAP_KEY', 'd34e889422eb150dec4202aea916d827' );
 
 // Newrelic tracking
 if ( function_exists( 'newrelic_set_appname' ) ) {
