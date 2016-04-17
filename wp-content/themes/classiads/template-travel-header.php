@@ -240,7 +240,8 @@ DOC;
 			}
 
 
-			//wp_redirect( home_url() ); exit;
+			wp_redirect( get_home_url(null, "thank-you") ); 
+			exit;
 
 }
 
@@ -272,6 +273,17 @@ DOC;
     <?php wp_head(); ?>
     
 	<script src='https://www.google.com/recaptcha/api.js' async></script>
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-6222281-5', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -279,9 +291,13 @@ DOC;
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript">
+		(function(a,e,c,f,g,b,d){var h={ak:"958318293",cl:"GbOfCP_HxGUQ1Y37yAM"};a[c]=a[c]||function(){(a[c].q=a[c].q||[]).push(arguments)};a[f]||(a[f]=h.ak);b=e.createElement(g);b.async=1;b.src="//www.gstatic.com/wcm/loader.js";d=e.getElementsByTagName(g)[0];d.parentNode.insertBefore(b,d);a._googWcmGet=function(b,d,e){a[c](2,b,h,d,null,new Date,e)}})(window,document,"_googWcmImpl","_googWcmAk","script");
+	</script>
 
   </head>
-  <body class="travel-style">
+  <body class="travel-style" onload="_googWcmGet('google-forwarding-number', '1300-650-965')">
   <div id="templatemo_mobile_menu_wap" class="col-xs-12 visible-sm visible-xs">
         <p id="mobile_menu_btn"> <span class="glyphicon glyphicon-align-justify"></span></p>
         <div id="mobile_menu" style="display: none;">
@@ -332,7 +348,7 @@ DOC;
  			</div>
         
             <ul class="nav nav-pills nav-stacked menu-mobile">
-              <!--  <li><a id="mobile_menu_phone" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li> -->  
+              <!--  <li><a id="mobile_menu_phone" class="google-forwarding-number" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li> -->  
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
                 <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps"><strong>Holiday</strong></a></li>
                 <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps"><strong>Honeymoon</strong></a></li>
@@ -409,7 +425,7 @@ DOC;
                                Packages
                          </a>
  				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
-				<!--  	<a class="phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a> -->	
+				<!--  	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a> -->	
 
  				     </div>
                    

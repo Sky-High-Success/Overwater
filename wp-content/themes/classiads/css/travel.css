@@ -167,7 +167,7 @@
 }
 
 #bottom_text_des p{
-	color: #888888;
+	color: #333;
 	font-family: Lato;
 	font-size: 12px;
 	line-height: 24px;
@@ -292,7 +292,7 @@ div.box-notification a:hover {
 
 .in-sec p {
 /* 	width: 1000px; */
-	color: #555555;
+	color: #222;
 }
 
 .in-sec p br {;
@@ -866,5 +866,11 @@ ul.trip{
 	ul.trip{
 	background-color: #fff !important;
 	width: 180px;
+	}
 }
+
+
+.travel-style h2, .travel-style h2 a, .travel-style h2 span{
+	color: #111;
 }
+
