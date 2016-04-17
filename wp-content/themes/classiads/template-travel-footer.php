@@ -28,13 +28,12 @@
       				</div>  -->  
       				
       				<div id="bottom_text_des" class="visible-md visible-lg col-md-12">
-      				  <p>
-        			  At <a href="http://overwaterbungalows.com.au/">Overwaterbungalows.com.au</a> we have long recognized the desire for many of our international travelers to stay in an overwater bungalows. When it comes to a dream tropical getaway it doesn’t get any better than dangling your toes into dazzling blue water from the deck of your very own overwater bungalow or maybe having a personal outdoor pool overlooking the crystal clear waters of these magnificent lagoons. From the Pacific to the Indian Ocean, we have enchanted many of our clients as they experience the magic &amp; luxury of our over water destinations.
-                                <br />
-                                  BEST PRICE GUARANTEE: Our world class, international hotels and resorts are of the highest standard and our long-term relationships with airlines, tour operators and resorts ensure you receive the best price.
-      				<br /><br />
-                                Book your one of our exclusive overwater Bungalow packages today.
-                                </p>
+      				<?php 
+  
+  						$footer_content = get_option("footer_content");
+  
+  						echo $footer_content;
+  					?>     				
                     </div>
      		<!--    <div id="bottom_logo" class="visible-md visible-lg">
         				<a href="#" target="blank"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/09/WTGLogo-Large1.jpg"); ?>" alt="" width="250px" /></a>
