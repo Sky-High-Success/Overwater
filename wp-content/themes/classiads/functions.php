@@ -1269,3 +1269,5 @@ function remove_admin_bar() {
 	  show_admin_bar(false);
 	}
 }
+
+include_once "custom_settings.php";
