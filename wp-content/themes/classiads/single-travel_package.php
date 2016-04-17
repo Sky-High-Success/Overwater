@@ -192,8 +192,19 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
       }
     
   ?>
+  <div>
+    <h3>*Conditions apply:</h3>
+	<?php 
+	  
+	  $conditions_apply_content = get_option("conditions_apply_content");
+	  
+	  echo $conditions_apply_content;
   
-  <?php require_once "terms-conditions-content.php";?>
+  	  //require_once "terms-conditions-content.php";?>
+  
+  </div>
+  
+ 
   
 </div>
 
