@@ -332,7 +332,7 @@ DOC;
  			</div>
         
             <ul class="nav nav-pills nav-stacked menu-mobile">
-                <li><a id="mobile_menu_phone" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li>
+              <!--  <li><a id="mobile_menu_phone" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li> -->  
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
                 <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps"><strong>Holiday</strong></a></li>
                 <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps"><strong>Honeymoon</strong></a></li>
@@ -409,7 +409,7 @@ DOC;
                                Packages
                          </a>
  				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
-						<a class="phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a>
+				<!--  	<a class="phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a> -->	
 
  				     </div>
                    
