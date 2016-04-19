@@ -107,10 +107,7 @@ function list_package_excerpt_content( $post ) {
 	wp_nonce_field( 'travel_package_meta_box2', 'travel_package_meta_box_nonce2' );
 	$list_package_excerpt = get_post_meta($post->ID, 'package_excerpt', true);
 
-	echo '<label for="list_package_excerpt"></label>';
-	echo '<textarea id="list_package_excerpt" name="list_package_excerpt" rows="10" cols="100" placeholder="Enter package description here" >';
-	echo $list_package_excerpt;
-	echo '</textarea>';
+	wp_editor( $list_package_excerpt, "list_package_excerpt" );
 
 }
 
@@ -244,10 +241,7 @@ function list_package_detail_include_content( $post ) {
 	wp_nonce_field( 'travel_package_meta_box5', 'travel_package_meta_box_nonce5' );
 	$list_package_detail_include = get_post_meta($post->ID, 'package_detail_include', true);
 
-	echo '<label for="list_package_detail_include"></label>';
-	echo '<textarea id="list_package_detail_include" name="list_package_detail_include" rows="10" cols="100" placeholder="Enter Package Include Detail here" >';
-	echo $list_package_detail_include;
-	echo '</textarea>';
+	wp_editor( $list_package_detail_include, "list_package_detail_include" );
 
 }
 
@@ -290,11 +284,7 @@ function list_package_detail_validity_content( $post ) {
 	wp_nonce_field( 'travel_package_meta_box6', 'travel_package_meta_box_nonce6' );
 	$list_package_detail_validity = get_post_meta($post->ID, 'package_detail_validity', true);
 
-	echo '<label for="list_package_detail_validity"></label>';
-	echo '<textarea id="list_package_detail_validity" name="list_package_detail_validity" rows="10" cols="100" placeholder="Enter Package Validity Detail here" >';
-	echo $list_package_detail_validity;
-	echo '</textarea>';
-
+	wp_editor( $list_package_detail_validity, "list_package_detail_validity" );
 }
 
 add_action( 'save_post', 'list_package_detail_validity_save' );
