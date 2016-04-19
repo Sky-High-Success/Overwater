@@ -38,9 +38,9 @@
       <div class="left-col">
        <a href="" class="logo"><img src="http://0a7.47f.myftpupload.com/wp-content/uploads/2015/06/WTGLogo-Large1.jpg"<?php echo get_template_directory_uri();?>" width="191" height="80" alt=""></a>   
       <h1>Thank You</h1>
-       <p>Thank you for choosing to sign up to <a href="http://worldtravelgroup.com.au" class="link">WorldTravelGroup.com.au</a> We’ve sent you an email with all the details on your membership including your $50 voucher.</p>
+       <p>Thank you for choosing to sign up to <a href="http://overwaterbungalows.com.au/" class="link">Overwaterbungalows.com.au</a> We’ve sent you an email with all the details on your membership including your $50 voucher.</p>
       
-      <p class="sign-up"><strong><a href="http://worldtravelgroup.com.au/">Click here to check out our latest travel packages.</a></strong></p>
+      <p class="sign-up"><strong><a href="http://overwaterbungalows.com.au/">Click here to check out our latest travel packages.</a></strong></p>
       </div> 
     </div>
     <div class="col-lg-5 col-md-5">

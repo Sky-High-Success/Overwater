@@ -184,7 +184,7 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 	);
 
 	$multiple_to_recipients = array(
-			'reservations@worldtravelgroup.com.au',
+			'reservations@overwaterbungalows.com.au',
 			'chengxianga2008@yahoo.com',
 		
 	);
@@ -258,7 +258,7 @@ DOC;
 
     <meta name="description" content="We want your honeymoon, anniversary or holiday to be remembered and talked about for a long time, so let us share in your joy and you won’t be disappointed. " />
     <meta name="author" content="World Travel Group">
-    <meta name="contact" content="reservations@worldtravelgroup.com.au" />
+    <meta name="contact" content="reservations@overwaterbungalows.com.au" />
     <meta name="copyright" content="Copyright (c)2015 World Travel Group. All Rights Reserved." />
     <meta name="keywords" content="world, travel, honeymoon, love, package, cheap, deal" />
     <!-- Favicon-->

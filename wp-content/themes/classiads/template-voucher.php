@@ -113,7 +113,7 @@ window._fbq.push(['track', '6019261201008', {'value':'0.00','currency':'USD'}]);
        <p class="logo-title">Travel Deals You’ll Fall in Love With!</p>
        <h1>Are you looking for the <span>ultimate getaway</span>?</h1>
        <p>Want to save up to 75% on your next holiday?</p>
-       <p>Welcome to <a href=""><strong>WorldTravelGroup.com.au</strong></a>  where every destination is a luxury escape. </p>
+       <p>Welcome to <a href=""><strong>Overwaterbungalows.com.au</strong></a>  where every destination is a luxury escape. </p>
        <p>Our extensive range of travel packages won't break the bank, they'll make memories. </p>
        <p>To celebrate our launch, we are offering new members a $50 voucher to spend on any of our already discounted packages.</p>
        <p class="sign-up"><strong>Signup to the right to Claim Your Voucher Today!</strong></p>
