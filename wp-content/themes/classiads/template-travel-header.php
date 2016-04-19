@@ -95,7 +95,7 @@
 
 <?php
 
-if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce')) {
+if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce') && $_POST['phone'] != "123456") {
 
 	$is_honeymoon = false;
 	$is_flight = false;
@@ -114,7 +114,9 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 	$post_time_to_call = esc_attr(strip_tags($_POST['time-to-call']));
 	$post_travel_occasion = esc_attr(strip_tags($_POST['travel-occasion']));
 	
-	
+	if(!empty($post_date_depart) && empty(strtotime($post_date_depart))){
+		exit;
+	}
 
 	$post_newsletter = esc_attr(strip_tags($_POST['newsletter']));
 
