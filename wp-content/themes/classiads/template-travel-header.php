@@ -114,9 +114,6 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 	$post_time_to_call = esc_attr(strip_tags($_POST['time-to-call']));
 	$post_travel_occasion = esc_attr(strip_tags($_POST['travel-occasion']));
 	
-// 	if(!empty($post_date_depart) && empty(strtotime($post_date_depart))){
-// 		exit;
-// 	}
 
 	$post_newsletter = esc_attr(strip_tags($_POST['newsletter']));
 
@@ -134,9 +131,15 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 		$is_newsletter = true;
 		$is_newsletter_human = "yes";
 	}
-
+	
 	if(!empty($post_date_depart)) {
-		$departure_date = date('Y-m-d', strtotime(esc_attr(strip_tags($_POST['date-depart']))));
+	
+		$date_depart_timestamp = strtotime($post_date_depart);
+	
+		if(empty($date_depart_timestamp)){
+			exit;
+		}
+		$departure_date = date('Y-m-d', $date_depart_timestamp);
 	}
 
 	$current_date = date('Y-m-d', current_time( 'timestamp'));
