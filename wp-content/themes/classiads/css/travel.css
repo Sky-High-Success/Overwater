@@ -874,3 +874,7 @@ ul.trip{
 	color: #111;
 }
 
+a.enquiry_anchor.buton_custom{
+	background: inherit !important;
+	color: #0086ac !important;
+}

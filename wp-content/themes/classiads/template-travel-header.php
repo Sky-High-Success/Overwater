@@ -353,7 +353,7 @@ DOC;
  			</div>
         
             <ul class="nav nav-pills nav-stacked menu-mobile">
-              <!--  <li><a id="mobile_menu_phone" class="google-forwarding-number" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li> -->  
+                <li><a id="mobile_menu_phone" class="google-forwarding-number" href="tel:1300650965"> <strong class="fa-phone"> 1300 650 965</strong></a></li>
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
                 <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps"><strong>Holiday</strong></a></li>
                 <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps"><strong>Honeymoon</strong></a></li>
@@ -426,11 +426,11 @@ DOC;
  					  </form>-->
  					 <div class="row remove-left-padding">
 <!-- 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan Your Trip</a> -->
- 				    	 <a href="#package_text_anchor" class="getquote_anchor quote buton_custom hidden-sm hidden-xs"  id="SliderPackagesbtn">
+<!-- 				    	<a href="#package_text_anchor" class="getquote_anchor quote buton_custom hidden-sm hidden-xs"  id="SliderPackagesbtn">
                                Packages
-                         </a>
+                            </a> -->
  				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
-				<!--  	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a> -->	
+				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300650965">1300 650 965</a>
 
  				     </div>
                    

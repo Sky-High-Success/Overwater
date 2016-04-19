@@ -311,7 +311,7 @@
         <div class="container">
             <div class="row-fluid">
                <div>
-              <!-- <a class="google-forwarding-number center-block" href="tel:1300 650 965"> <strong> Call us: 1300 650 965</strong></a>  -->  	
+              		<a class="google-forwarding-number center-block" href="tel:1300 650 965"> <strong> Call us: 1300 650 965</strong></a>
                </div>
             </div>
         </div>
@@ -322,7 +322,7 @@
         <div class="container">
             <div class="row">
                <div class="hidden-xs">
-                	<p>Copyright © 2016 <strong> <a href="#">Overwater Bungalows</a></strong> ·Powered by <strong><a href="#"> Overwater Bungalows</a></strong>·<strong><a href="<?php echo get_home_url(null,"/terms-and-conditions"); ?>">T&amp;C</a></strong> · <strong><a href="<?php echo get_home_url(null,"/privacy-policy"); ?>">Privacy Policy</a></strong>  · <strong><a href="<?php echo get_home_url(null,"/special-conditions"); ?>">Special Conditions</a></strong></p>
+                	<p>Copyright © 2016 <strong> <a href="#">Overwater Bungalows</a></strong> ·Powered by <strong><a href="#"> Overwater Bungalows</a></strong>·<strong><a href="<?php echo get_home_url(null,"/terms-and-conditions"); ?>">T&amp;C</a></strong> · <strong><a href="<?php echo get_home_url(null,"/privacy-policy"); ?>">Privacy Policy</a></strong> <!--  · <strong><a href="<?php echo get_home_url(null,"/special-conditions"); ?>">Special Conditions</a></strong>--> </p>
             
                 </div>
                 <div class="visible-xs col-xs-12">
@@ -331,7 +331,7 @@
                     </div>
 
                     <div class="clearfix">
-                    	<p> <strong><a href="<?php echo get_home_url(null,"/privacy-policy"); ?>">Privacy Policy</a></strong>  · <strong><a href="<?php echo get_home_url(null,"/special-conditions"); ?>">Special Conditions</a></strong></p>                  	
+                    	<p> <strong><a href="<?php echo get_home_url(null,"/privacy-policy"); ?>">Privacy Policy</a></strong> <!-- · <strong><a href="<?php echo get_home_url(null,"/special-conditions"); ?>">Special Conditions</a></strong>  --> </p>                  	
                     </div>
                 </div>
             </div>
