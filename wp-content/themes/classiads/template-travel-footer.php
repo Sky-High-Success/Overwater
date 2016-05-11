@@ -311,7 +311,7 @@
         <div class="container">
             <div class="row-fluid">
                <div>
-              		<a class="google-forwarding-number center-block" href="tel:1300 650 965"> <strong> Call us: 1300 650 965</strong></a>
+              		<a class="google-forwarding-number center-block" href="tel:1300 256 067"> <strong> Call us: 1300 256 067</strong></a>
                </div>
             </div>
         </div>
