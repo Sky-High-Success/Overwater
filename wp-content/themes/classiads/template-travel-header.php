@@ -355,8 +355,8 @@ DOC;
             <ul class="nav nav-pills nav-stacked menu-mobile">
                 <li><a id="mobile_menu_phone" class="google-forwarding-number" href="tel:1300256067"> <strong class="fa-phone"> 1300 256 067</strong></a></li>
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
-                <li><a href="http://worldtravelgroup.reslogic.com/?pl=6&screen=scnWizardSteps"><strong>Holiday</strong></a></li>
-                <li><a href="http://worldtravelgroup.reslogic.com/?pl=7&screen=scnWizardSteps"><strong>Honeymoon</strong></a></li>
+                <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6"><strong>Holiday</strong></a></li>
+                <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7"><strong>Honeymoon</strong></a></li>
                 <li><a id="enquiry-button-1" href="<?php echo get_home_url(null,"package-enquiry"); ?>"><strong>ENQUIRY</strong></a></li>
                 
             </ul>
