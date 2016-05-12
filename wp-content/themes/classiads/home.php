@@ -50,8 +50,8 @@ echo do_shortcode('[layerslider id="294"]');
                            
          
                            <ul class="trip dropdown-menu">
-                                <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6">Honeymoon</a></li>
-                                <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7">Holiday</a></li>
+                                <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6">Holiday</a></li>
+                                <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7">Honeymoon</a></li>
                                 
                            </ul> 
                                                  
