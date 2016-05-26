@@ -153,7 +153,7 @@
   	          <div class="form-group">
   	            <div class="row-fluid">
   	            <div class="col-md-4">
-  	              <label>Departure Date</label>
+  	              <label>Arrival Date</label>
   	            </div>
   	            <div class="col-md-8">
   	              <input class="form-control" placeholder="yyyy-mm-dd" data-provide="datepicker" name="date-depart" data-date-format="yyyy-mm-dd" data-date-start-date="-1d"  data-date-orientation='bottom' type="text">
@@ -161,7 +161,7 @@
   	            </div>
   	          </div>
   	          
-  	           <div class="form-group">
+  	     <!--    <div class="form-group">
   	            <div class="row-fluid">
   	            <div class="col-md-4">
   	              <label>City Departing from</label>
@@ -170,7 +170,7 @@
   	              <input class="form-control" placeholder="Where are you" name="city-depart" type="text">
   	            </div>
   	            </div>
-  	          </div>
+  	          </div>  -->   
   	          
   	          <div class="form-group">
   	            <div class="row-fluid">
@@ -207,14 +207,15 @@
   	            <div class="col-md-8" >
   	              <div class="dropdown" id="spend-div">
   					<button class="btn btn-default dropdown-toggle modal-dropdown-btn" type="button" id="spend" data-toggle="dropdown" aria-expanded="true">
-    					<span class="result">$5000 - $10000</span>
+    					<span class="result">$5,000 - $7,500</span>
     					<span class="caret"></span>
  					</button>
   					<ul class="dropdown-menu" role="menu" aria-labelledby="spend">
-    					<li role="presentation"><a role="menuitem" tabindex="-1" >Under $3000</a></li>
-    					<li role="presentation"><a role="menuitem" tabindex="-1" >$3000 - $5000</a></li>
-    					<li role="presentation"><a role="menuitem" tabindex="-1" >$5000 - $10000</a></li>
-    					<li role="presentation"><a role="menuitem" tabindex="-1" >$10000 Above</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" >Under $3,000</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" >$3,000 - $5,000</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" >$5,000 - $7,500</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" >$7,500 - $10,000</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" >$10,000 Above</a></li>
   					</ul>
 				  </div>
   	            </div>
@@ -242,14 +243,14 @@
   	            </div>
   	          </div>
   	          
-  	          <div class="form-group">
+  	  <!--      <div class="form-group">
   	            <div class="row-fluid">
   	            <div class="col-md-7">
   	              <label>Flights required? <input type="checkbox" name="flight" value="flightChecked"></label>
   	              
   	            </div>
   	            </div>
-  	          </div>
+  	          </div>  -->   
   	              
   	          <div class="form-group">
   	            <div class="row-fluid">

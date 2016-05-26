@@ -197,8 +197,7 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 	$content_here = <<<DOC
   First Name: {$enquiry_information["first_name"]}
   Last Name: {$enquiry_information["last_name"]}
-  City Depart: {$enquiry_information["city_depart"]}
-  Departure Date: {$enquiry_information["departure_date"]}
+  Arrival Date: {$enquiry_information["departure_date"]}
   Email: {$enquiry_information["email"]}
   Phone: {$enquiry_information["phone"]}
   Contact me via: {$enquiry_information["contact_method"]}
@@ -208,7 +207,6 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
   Number of nights stay: {$enquiry_information["number_of_nights"]}
   Maximum Spend AUD $: {$enquiry_information["spend"]}
   Travel Occasion: {$enquiry_information["travel_occasion"]} 
-  Flights required: $is_flight_human
   Deals subscription checked: $is_newsletter_human
   Message:
 -------------------------

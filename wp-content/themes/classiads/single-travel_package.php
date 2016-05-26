@@ -192,6 +192,7 @@ echo do_shortcode('[layerslider id="'.$package_information['package_layer_slider
       }
     
   ?>
+  
   <div>
     <h3>*Conditions apply:</h3>
 	<?php 
