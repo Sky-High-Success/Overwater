@@ -369,7 +369,31 @@ DOC;
 						<a href="<?php echo get_home_url();?>"><img src="<?php bloginfo('template_url'); ?>/images/sitelogo.jpg" alt="logo"/></a>
 					</div>
                 </div>
-                <div class="col-md-8 header-p right">
+                <div class="col-md-4">
+                	<div class="prosenjitdiv">  
+
+                     <div class="plan-trip-dropdown btn-group">
+                                                 
+                          
+                           <a href="javascript:;" class="button button--nanuk button--border-thin button--round-s getquote_anchor quote buton_custom button_effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+							<span>P</span><span>l</span><span>a</span><span>n</span><span>&nbsp;</span>
+							<span>y</span><span>o</span><span>u</span><span>r</span><span>&nbsp;</span>
+							<span>t</span><span>r</span><span>i</span><span>p</span>
+						   </a>
+                           
+         
+                           <ul class="trip dropdown-menu">
+                                <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6">Holiday</a></li>
+                                <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7">Honeymoon</a></li>
+                                
+                           </ul> 
+                                                 
+                     </div>
+
+                    </div>
+                
+                </div>
+                <div class="col-md-4 header-p right">
                   <div class="row">
                     
                       <div class="col-lg-1 col-md-1">
