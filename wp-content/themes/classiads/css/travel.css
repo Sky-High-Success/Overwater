@@ -372,6 +372,7 @@ div.box-notification a:hover {
 
 .logo-group-block{
 	width: 300px;
+	margin-top: 10px;
 }
 
 .bottom-logo-block{
@@ -877,4 +878,12 @@ ul.trip{
 a.enquiry_anchor.buton_custom{
 	background: inherit !important;
 	color: #0086ac !important;
+}
+
+#templatemo_banner_top .prosenjitdiv{
+	padding-top: 40px;
+}
+
+#templatemo_banner_top ul a{
+	font-size: 20px;
 }
