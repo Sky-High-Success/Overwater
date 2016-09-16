@@ -494,8 +494,18 @@
 
        		  	 update_href();
 
+       		     var credit_payment_validator = $("#payment_form").validate({
+       		    	  errorPlacement: function(error, element) {
+       		    	    error.insertAfter( element.parent(".input-group"));
+       		    	  }      		    	       	       		     
+       		     });
+
        		     $("#pin-payment").on("click", function(){
-           		     window.open(gateway_href);
+       		    	 var result = credit_payment_validator.form();
+					 if(result){
+						 window.open(gateway_href);
+					 }
+           		     
        		     });
 
          });

@@ -1,33 +1,33 @@
 <div class="creditcard_well">
-  						<form>
+  						<form id="payment_form">
 						  <div class="form-group">
 						    <label for="credit_card_first_name">First Name</label>
-						    <input type="text" class="form-control" id="credit_card_first_name">
+						    <input type="text" class="form-control" id="credit_card_first_name" name="credit_card_first_name">
 						  </div>
 						  <div class="form-group">
 						    <label for="credit_card_last_name">Last Name</label>
-						    <input type="text" class="form-control" id="credit_card_last_name">
+						    <input type="text" class="form-control" id="credit_card_last_name" name="credit_card_last_name">
 						  </div>
 						  <div class="form-group">
 						    <label for="credit_card_phone">Phone</label>
-						    <input type="phone" class="form-control" id="credit_card_phone" >
+						    <input type="phone" class="form-control" id="credit_card_phone" name="credit_card_phone">
 						  </div>
 						  <div class="form-group">
 						    <label for="credit_card_email">Email Address</label>
-						    <input type="email" class="form-control" id="credit_card_email" >
+						    <input type="email" class="form-control" id="credit_card_email" name="credit_card_email">
 						  </div>
 						  <div class="form-group">
 						    <label for="credit_card_invoice_no">Invoice No.</label>
 						    <div class="input-group">
 						    	<span class="input-group-addon">#</span>
-						    	<input type="text" class="form-control" id="credit_card_invoice_no">
+						    	<input type="text" class="form-control" id="credit_card_invoice_no"  data-rule-required="true" name="credit_card_invoice_no">
 						    </div>						    
 						  </div>
 						  <div class="form-group">
 						    <label for="credit_card_aud_amount">AUD amount</label>
 						    <div class="input-group">
 						    	<span class="input-group-addon">$</span>
-						    	<input type="text" class="form-control" id="credit_card_aud_amount">
+						    	<input type="text" class="form-control" id="credit_card_aud_amount"  data-rule-required="true" name="credit_card_aud_amount">
 						    </div>					    
 						  </div>
 						  <script src="https://cdn.pin.net.au/pin.v2.js"></script> 
