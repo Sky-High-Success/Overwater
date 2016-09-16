@@ -108,7 +108,7 @@ function wp_cache_delete( $key, $group = '' ) {
 		unset( $alloptions[ "_site_transient_$key" ] );
 		unset( $alloptions[ "_site_transient_timeout_$key" ] );
 		$wp_object_cache->set( 'alloptions', $alloptions, 'options' );
-		
+
 		return $wp_object_cache->delete( "_site_transient_$key", 'site-options' );
 	}
 
@@ -159,16 +159,16 @@ function __prune_transients() {
 				AND b.option_value < $time");
 		}
 
-		
+
 		$wpdb->suppress_errors( $flag );
 	}
 }
 
 function wp_cache_get( $key, $group = '', $force = false ) {
 	global $wp_object_cache, $wpdb;
-	
-	if ( 'transient' == $group ) {		
-		$alloptions = $wp_object_cache->get( 'alloptions', 'options' );		
+
+	if ( 'transient' == $group ) {
+		$alloptions = $wp_object_cache->get( 'alloptions', 'options' );
 		if ( isset( $alloptions["_transient_$key" ] ) && isset( $alloptions["_transient_timeout_$key" ] ) && $alloptions["_transient_timeout_$key" ] > time() ) {
 			return maybe_unserialize( $alloptions["_transient_$key" ] );
 		}
@@ -304,7 +304,7 @@ function __save_transient( $transient, $value, $expire, $site = false ) {
 	if ( $expire == 0 ) {
 		$expire = 24 * 60 * 60;
 	}
-	
+
 	// Save to object cache
 	$wp_object_cache->set( $transient, $value, 'options', $expire );
 	$wp_object_cache->set( $transient_timeout, time() + $expire, 'options', $expire );
@@ -314,7 +314,7 @@ function __save_transient( $transient, $value, $expire, $site = false ) {
 	$alloptions[ $transient ] = $value;
 	$alloptions[ $transient_timeout ] = time() + $expire;
 	$wp_object_cache->set( 'alloptions', $alloptions, 'options' );
-	
+
 	// Use the normal update option logic
 	global $wpdb;
 	if ( !empty( $wpdb ) && $wpdb instanceof wpdb ) {
@@ -327,13 +327,13 @@ function __save_transient( $transient, $value, $expire, $site = false ) {
 					$transient, maybe_serialize( $value ), 'no' ) );
 		} else {
 			$wpdb->query( $wpdb->prepare( "INSERT INTO `{$wpdb->options}` (`option_name`, `option_value`, `autoload`) VALUES (%s, UNIX_TIMESTAMP( NOW() ) + %d, %s) ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`), `autoload` = VALUES(`autoload`)",
-					$transient_timeout, $expire, 'yes' ) );			
+					$transient_timeout, $expire, 'yes' ) );
 			$wpdb->query( $wpdb->prepare( "INSERT INTO `{$wpdb->options}` (`option_name`, `option_value`, `autoload`) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE `option_name` = VALUES(`option_name`), `option_value` = VALUES(`option_value`), `autoload` = VALUES(`autoload`)",
 					$transient, maybe_serialize( $value ), 'no' ) );
 		}
 		$wpdb->suppress_errors( $flag );
 	}
-	
+
 	return true;
 }
 
@@ -517,7 +517,7 @@ class WP_Object_Cache {
 		} else if ( in_array($group, $this->no_mc_groups) ) {
 			$this->cache[$key] = $value = false;
 		} else {
-			$value = apc_fetch( $key );
+			$value = @apc_fetch( $key );
 			if ( is_object( $value ) && 'ArrayObject' == get_class( $value ) )
 				$value = $value->getArrayCopy();
 			if ( NULL === $value )
@@ -539,7 +539,7 @@ class WP_Object_Cache {
 	function key( $key, $group ) {
 		if ( empty( $group ) )
 			$group = 'default';
-		
+
 		if ( false !== array_search( $group, $this->global_groups ) )
 			$prefix = $this->global_prefix;
 		else

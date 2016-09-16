@@ -68,10 +68,10 @@ elseif ( class_exists( 'Yoast_WooCommerce_SEO' ) ) {
 
 <div class="wrap wpseo_table_page">
 
-	<h2 id="wpseo-title"><?php
+	<h1 id="wpseo-title"><?php
 		/* translators: %1$s expands to Yoast SEO */
 		printf( __( '%1$s Extensions', 'wordpress-seo' ), 'Yoast SEO' );
-		?></h2>
+		?></h1>
 
 	<h2 class="nav-tab-wrapper" id="wpseo-tabs">
 		<a class="nav-tab" id="extensions-tab" href="#top#extensions"><?php _e( 'Extensions', 'wordpress-seo' ); ?></a>
@@ -93,9 +93,9 @@ elseif ( class_exists( 'Yoast_WooCommerce_SEO' ) ) {
 
 					<p>
 						<?php if ( $extension->installed ) : ?>
-							<button class="button-primary installed">Installed</button>
+							<button class="button button-primary installed">Installed</button>
 						<?php else : ?>
-							<a target="_blank" href="<?php echo esc_url( $extension->url . $utm ); ?>" class="button-primary">
+							<a target="_blank" href="<?php echo esc_url( $extension->url . $utm ); ?>" class="button button-primary">
 								<?php _e( 'Get this extension', 'wordpress-seo' ); ?>
 							</a>
 						<?php endif; ?>
