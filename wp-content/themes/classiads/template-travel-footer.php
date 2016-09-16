@@ -317,45 +317,7 @@
             </div>
             <div class="row">
             	<div class="collapse col-md-6 col-md-offset-3" id="creditcard_collapse">
-  					<div class="creditcard_well">
-  						<form>
-						  <div class="form-group">
-						    <label for="credit_card_first_name">First Name</label>
-						    <input type="text" class="form-control" id="credit_card_first_name">
-						  </div>
-						  <div class="form-group">
-						    <label for="credit_card_last_name">Last Name</label>
-						    <input type="text" class="form-control" id="credit_card_last_name">
-						  </div>
-						  <div class="form-group">
-						    <label for="credit_card_phone">Phone</label>
-						    <input type="phone" class="form-control" id="credit_card_phone" >
-						  </div>
-						  <div class="form-group">
-						    <label for="credit_card_email">Email Address</label>
-						    <input type="email" class="form-control" id="credit_card_email" >
-						  </div>
-						  <div class="form-group">
-						    <label for="credit_card_invoice_no">Invoice No.</label>
-						    <div class="input-group">
-						    	<span class="input-group-addon">#</span>
-						    	<input type="text" class="form-control" id="credit_card_invoice_no">
-						    </div>						    
-						  </div>
-						  <div class="form-group">
-						    <label for="credit_card_aud_amount">AUD amount</label>
-						    <div class="input-group">
-						    	<span class="input-group-addon">$</span>
-						    	<input type="text" class="form-control" id="credit_card_aud_amount">
-						    </div>					    
-						  </div>
-						  <script src="https://cdn.pin.net.au/pin.v2.js"></script> 
-						  <a id="pin-payment" class="pin-payment-button" href="javascript:;">
-							<img src="<?php echo get_template_directory_uri() . "/images/pay-button.png"; ?>" alt="Pay Now" width="86" height="38">
-						  </a>
-						  
-						</form>
-  					</div>
+  					<?php include_once "payment_snippet.php";?>
 				</div>
             </div>
      </div>
