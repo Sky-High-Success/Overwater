@@ -1362,6 +1362,7 @@ travel {
    overflow: hidden;
    margin: 10px;
    margin-left: -10px;
+   padding-left: 15px;
 }
 .box {
    float: left;
@@ -1901,13 +1902,40 @@ svg#bigTriangleColor {
 	}
 }
 
-	.col-2 .columntravel:first-child .icon {
-		margin: 0 auto 50px;
-	}
 
-	.col-2 .columntravel:nth-child(2) .icon {
-		margin: 50px auto 0;
+#package_wrap .box {
+	padding-bottom: 20%;
+}
+
+@media (max-width: 650px) {
+	#package_wrap .box {
+		padding-bottom: 40% !important;
 	}
 }
 
+@media (max-width: 480px) {
+	#package_wrap .box {
+		padding-bottom: 80% !important;
+	}
+}
 
+.boxInner .card_content {
+  background-color: rgba(255,255,255,0.5);
+  padding: 5px;
+  position: absolute;
+  bottom: -200px;
+  
+  transition: all 0.5s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.boxInner .card_content h3 {
+  font-size: 24px;
+  margin-bottom: 7px;
+}
+
+.boxInner:hover .card_content {
+  background-color: rgba(255,255,255,0.9);
+  bottom: 0;
+}
