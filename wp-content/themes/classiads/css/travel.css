@@ -373,6 +373,7 @@ div.box-notification a:hover {
 .logo-group-block{
 	width: 300px;
 	margin-top: 10px;
+	text-align: center;
 }
 
 .bottom-logo-block{
@@ -882,6 +883,7 @@ a.enquiry_anchor.buton_custom{
 
 #templatemo_banner_top .prosenjitdiv{
 	padding-top: 40px;
+	text-align: center;
 }
 
 #templatemo_banner_top ul a{

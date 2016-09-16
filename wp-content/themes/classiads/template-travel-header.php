@@ -451,9 +451,9 @@ DOC;
 <!-- 				    	<a href="#package_text_anchor" class="getquote_anchor quote buton_custom hidden-sm hidden-xs"  id="SliderPackagesbtn">
                                Packages
                             </a> -->
- 				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs" href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general">Enquire</a>  
-				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs" href="tel:1300256067">1300 256 067</a>
-
+ 				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs header_enquiry " href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general"><i class="fa fa-hand-o-right"></i> ENQUIRE</a>  
+				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs header_phone " href="tel:1300256067">1300 256 067</a>
+				     	
  				     </div>
                    
  				

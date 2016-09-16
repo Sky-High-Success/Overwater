@@ -1947,3 +1947,91 @@ svg#bigTriangleColor {
 		background-color: rgba(255,255,255,0.9);
 	}
 } 
+
+.credit_card_wrapper{
+}
+
+.credit_card_image{
+	width: 140px;
+	margin-bottom: 5px;
+}
+
+#creditcard_collapse .creditcard_well{
+	background-color: #fff;
+    border-color: #ddd;
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    border-style: solid;
+    padding: 45px 15px 15px;
+    position: relative;
+}
+
+#creditcard_collapse .creditcard_well:after{
+	color: #959595;
+    content: "Credit Card";
+    font-size: 12px;
+    font-weight: 700;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+
+#templatemo_banner_top a.header_enquiry{
+	font-size: 20px !important;
+	line-height: 0px !important;
+	margin-top: 18px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#templatemo_banner_top a.header_phone{
+	font-size: 18px !important;
+	line-height: 0px !important;
+	vertical-align: middle;
+	margin-top: 18px;
+	padding-top: 20px;
+}
+
+#templatemo_banner_top.container_wapper {
+	height: 76px !important;
+}
+
+@media (min-width: 992px) {
+	#templatemo_banner_top .container{
+		border-bottom: 1px solid #89D7F6;
+	}	
+	
+}
+
+@media (max-width: 992px) {
+	#templatemo_banner_top.container_wapper{
+		height: 145px !important;
+	}
+	
+	.banner-fixed-offset{
+		margin-top: 150px;
+	}
+
+}
+
+@media (max-width: 500px) {
+	#templatemo_banner_top .prosenjitdiv{
+		padding-top: 10px;
+	}	
+	
+	#templatemo_banner_top.container_wapper{
+		height: 120px !important;
+	}
+	
+	.banner-fixed-offset{
+		margin-top: 121px;
+	}
+	
+}
+

@@ -13,7 +13,7 @@
 	    		</div>
 	    		
 	    		<div class="clearfix"></div>
-
+	    		
    				  <div id="bottom_description" class="row">
       				<div id="bottom_text_des" class="visible-xs visible-sm col-md-12">
       				<?php 
@@ -41,7 +41,6 @@
       				
       				
    				  </div> 
-
 	    		
 	    	</div>
 
@@ -307,7 +306,61 @@
 <?php 	
   } 
 ?>
-	
+   
+   <div class="credit_card_wrapper">
+   	 <div class="container">
+            <div class="row">
+            	<a role="button" data-toggle="collapse" href="#creditcard_collapse" aria-expanded="false" aria-controls="creditcard_collapse">
+            		<img class="credit_card_image center-block" src="<?php echo get_template_directory_uri() . "/images/visa_mastercard.gif"; ?>" alt="" />
+  				</a>
+				
+            </div>
+            <div class="row">
+            	<div class="collapse col-md-6 col-md-offset-3" id="creditcard_collapse">
+  					<div class="creditcard_well">
+  						<form>
+						  <div class="form-group">
+						    <label for="credit_card_first_name">First Name</label>
+						    <input type="text" class="form-control" id="credit_card_first_name">
+						  </div>
+						  <div class="form-group">
+						    <label for="credit_card_last_name">Last Name</label>
+						    <input type="text" class="form-control" id="credit_card_last_name">
+						  </div>
+						  <div class="form-group">
+						    <label for="credit_card_phone">Phone</label>
+						    <input type="phone" class="form-control" id="credit_card_phone" >
+						  </div>
+						  <div class="form-group">
+						    <label for="credit_card_email">Email Address</label>
+						    <input type="email" class="form-control" id="credit_card_email" >
+						  </div>
+						  <div class="form-group">
+						    <label for="credit_card_invoice_no">Invoice No.</label>
+						    <div class="input-group">
+						    	<span class="input-group-addon">#</span>
+						    	<input type="text" class="form-control" id="credit_card_invoice_no">
+						    </div>						    
+						  </div>
+						  <div class="form-group">
+						    <label for="credit_card_aud_amount">AUD amount</label>
+						    <div class="input-group">
+						    	<span class="input-group-addon">$</span>
+						    	<input type="text" class="form-control" id="credit_card_aud_amount">
+						    </div>					    
+						  </div>
+						  <script src="https://cdn.pin.net.au/pin.v2.js"></script> 
+						  <a id="pin-payment" class="pin-payment-button" href="https://pay.pin.net.au/qtic">
+							<img src="<?php echo get_template_directory_uri() . "/images/pay-button.png"; ?>" alt="Pay Now" width="86" height="38">
+						  </a>
+						  
+						</form>
+  					</div>
+				</div>
+            </div>
+     </div>
+   </div>
+   
    <div id="call-us-bottom" class="visible-xs container_wapper">
         <div class="container">
             <div class="row-fluid">
@@ -363,7 +416,7 @@
    </script>
    
    <script type="text/javascript">
-                jQuery(document).ready(function($){
+            jQuery(document).ready(function($){
 
                 	$(".promotion-note-scroll").waypoint(function(direction) {
                         $(".promotion-note").removeClass("hidden");
@@ -429,7 +482,53 @@
        			    $(".g-recaptcha div label").remove();
        		      };
 
-           });
+       		      var get_param = function(){
+
+       		    	var param = {};
+           		    if( $("#credit_card_invoice_no").val() != ""){
+           		    	$.extend(param, {"description": $("#credit_card_invoice_no").val() });
+               		}
+           		 	if( $("#credit_card_aud_amount").val() != ""){
+        		    	$.extend(param, {"amount": $("#credit_card_aud_amount").val() });
+            		}
+	           		if( $("#credit_card_email").val() != ""){
+	     		    	$.extend(param, {"email": $("#credit_card_email").val() });
+	         		}
+
+           		 	var str = jQuery.param( param );
+           		 	return str;
+           		  };
+
+           		  var update_href = function(){
+
+           			var param = get_param();
+               		if(param != ""){
+               		    var href_str = "https://pay.pin.net.au/qtic?";
+               		    href_str += param;
+               			$("#pin-payment").attr("href", href_str);
+               		}else{
+               			var href_str = "https://pay.pin.net.au/qtic";
+               			$("#pin-payment").attr("href", href_str);
+               		}
+               		  
+           		  }  
+
+           		 $("#credit_card_email").on("blur", function(){
+       		    	update_href();               		
+           		 });
+           		  
+
+       		     $("#credit_card_invoice_no").on("blur", function(){
+       		    	update_href();               		
+           		 });
+
+       		  	 $("#credit_card_aud_amount").on("blur", function(){
+       		  		update_href();
+         		 });
+
+       		  	 update_href();   
+
+         });
    </script>
 
    
