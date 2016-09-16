@@ -1903,21 +1903,6 @@ svg#bigTriangleColor {
 }
 
 
-#package_wrap .box {
-	padding-bottom: 20%;
-}
-
-@media (max-width: 650px) {
-	#package_wrap .box {
-		padding-bottom: 40% !important;
-	}
-}
-
-@media (max-width: 480px) {
-	#package_wrap .box {
-		padding-bottom: 80% !important;
-	}
-}
 
 .boxInner .card_content {
   background-color: rgba(255,255,255,0.5);
@@ -1939,3 +1924,26 @@ svg#bigTriangleColor {
   background-color: rgba(255,255,255,0.9);
   bottom: 0;
 }
+
+#package_wrap .box {
+	padding-bottom: 20%;
+}
+
+@media (max-width: 650px) {
+	#package_wrap .box {
+		padding-bottom: 40% !important;
+	}
+}
+
+@media (max-width: 480px) {
+	#package_wrap .box {
+		padding-bottom: 80% !important;
+	}
+}
+
+@media (max-width: 992px){
+	.boxInner .card_content {
+		bottom: 0px;
+		background-color: rgba(255,255,255,0.9);
+	}
+} 
