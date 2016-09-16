@@ -27,22 +27,22 @@
 echo do_shortcode('[layerslider id="294"]');
 
 ?>
- 
-
-  <div id="templatemo_Search_Box" class="">
-    
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12 col-xs-12 header-p right">
 
 
-                  <div class="row">
+<div id="templatemo_Search_Box" class="">
 
-<!--                    <div class="visible-lg visible-md frame4" ><center><iframe id="wtg" width="970" scrolling="No" height="80" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
+	<div class="row">
+
+		<div class="col-md-12 col-sm-12 col-xs-12 header-p right">
+
+
+			<div class="row">
+
+				<!--                    <div class="visible-lg visible-md frame4" ><center><iframe id="wtg" width="970" scrolling="No" height="80" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> 
                   
                     <div class="visible-sm visible-xs frame4" ><center><iframe id="wtg" width="360" scrolling="No" height="290" frameborder="0" z-index:0="" style="padding:0px;"    src="http://worldtravelgroup.reslogic.com/?pl=555&tpl=TQW_IFRAME&iframe"></iframe></center></div> -->
-                    
-      <!--          <div class="col-lg-12 col-md-12">
+
+				<!--          <div class="col-lg-12 col-md-12">
 
                                      <form action="<?php echo get_home_url(null,"package-search"); ?>" method="get">                 
 
@@ -136,112 +136,152 @@ echo do_shortcode('[layerslider id="294"]');
 
  					  </form> 
 
-              				  </div> -->   
+              				  </div> -->
 
-                </div>
+			</div>
 
-            </div>
+		</div>
 
-        </div>
+	</div>
 
 </div>
 
 <div id="package_wrap" class="wrap">
-<a name="CustomPackagesData"></a>
-<h3 id="package_text_anchor" class="home-travel-h3">Travel Packages</h3>
+	<a name="CustomPackagesData"></a>
+	<h3 id="package_text_anchor" class="home-travel-h3">Travel Packages</h3>
 
-<div class="box">
+	<div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "maldives-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/maldives.jpg"); ?>" alt="" /></a>
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "maldives-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/maldives_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>MALDIVES</h3>
+				</div>
+			</a>
 
-<div class="titleBox">MORE INFO</div>
+		</div>
 
-</div>
+	</div>
 
-</div>
+	<div class="box">
 
-<div class="box">
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "tahiti-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/tahiti_300.jpg'; ?>" alt="" />
 
-<div class="boxInner"><a href="<?php echo get_term_link( "tahiti-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-tahiti-copy.jpg"); ?>" alt="" /></a>
+				<div class="card_content">
+					<h3>TAHITI</h3>
+				</div>
 
-<div class="titleBox">MORE INFO</div>
+			</a>
 
-</div>
+		</div>
 
-</div>
+	</div>
 
-<div class="box">
+	<div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "fiji-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-fiji.jpg"); ?>" alt="" /></a>
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "fiji-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/fiji_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>FIJI</h3>
+				</div>
+			</a>
 
-<div class="titleBox">MORE INFO</div>
+		</div>
 
-</div>
+	</div>
 
-</div>
+	<div class="box">
 
-<div class="box">
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "malaysia-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/malaysia_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>MALAYSIA</h3>
+				</div>
+			</a>
 
-<div class="boxInner"><a href="<?php echo get_term_link( "cook-islands-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-cook-islands-copy.jpg"); ?>" alt="" /></a>
+		</div>
 
-<div class="titleBox">MORE INFO</div>
+	</div>
 
-</div>
+	<div class="box">
 
-</div>
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "vanuatu-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/vanuatu_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>VANUATU</h3>
+				</div>
+			</a>
 
+		</div>
 
-<div class="box">
+	</div>
 
-<div class="boxInner"><a href="<?php echo get_term_link( "malaysia-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-malaysia.jpg"); ?>" alt="" /></a>
+	<div class="box">
 
-<div class="titleBox">MORE INFO</div>
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "samoa-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/samoa_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>SAMOA</h3>
+				</div>
+			</a>
 
-</div>
+		</div>
 
-</div>
+	</div>
 
-<div class="box">
+	<div class="box">
 
-<div class="boxInner"><a href="<?php echo get_term_link( "vanuatu-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-vanuatu.jpg"); ?>" alt="" /></a>
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "philippines-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/philippines_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>PHILIPPINES</h3>
+				</div>
+			</a>
 
-<div class="titleBox">MORE INFO</div>
+		</div>
 
-</div>
+	</div>
 
-</div>
+	<div class="box">
 
+		<div class="boxInner">
+			<a href="<?php echo get_term_link( "cook-islands-overwater", "package_taxonomy" );?>">
+				<img src="<?php echo get_template_directory_uri() . '/images/cover/other_islands_300.jpg'; ?>" alt="" />
+				
+				<div class="card_content">
+					<h3>OTHER ISLANDS</h3>
+				</div>
+			</a>
 
+		</div>
 
-<div class="box">
+	</div>
 
-<div class="boxInner"><a href="<?php echo get_term_link( "samoa-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-samoa.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="boxInner"><a href="<?php echo get_term_link( "philippines-overwater", "package_taxonomy" );?>"><img src="<?php echo get_home_url(null,"wp-content/uploads/2015/06/package-philippines.jpg"); ?>" alt="" /></a>
-
-<div class="titleBox">MORE INFO</div>
-
-</div>
-
-</div>
-<style>
+	<style>
 .prosenjitdiv a {
-    color: #fff;
-    background-color: #0086ac !important;
-    font-family:arial;
+	color: #fff;
+	background-color: #0086ac !important;
+	font-family: arial;
 }
+
 .prosenjitdiv {
-    display: block;
-    padding-top: 59px;
-    text-align: center;
+	display: block;
+	padding-top: 59px;
+	text-align: center;
 }
 </style>
 <?php include_once "template-travel-footer.php";?>
