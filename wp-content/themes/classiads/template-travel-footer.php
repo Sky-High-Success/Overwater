@@ -350,7 +350,7 @@
 						    </div>					    
 						  </div>
 						  <script src="https://cdn.pin.net.au/pin.v2.js"></script> 
-						  <a id="pin-payment" class="pin-payment-button" href="https://pay.pin.net.au/qtic">
+						  <a id="pin-payment" class="pin-payment-button" href="javascript:;">
 							<img src="<?php echo get_template_directory_uri() . "/images/pay-button.png"; ?>" alt="Pay Now" width="86" height="38">
 						  </a>
 						  
@@ -482,6 +482,8 @@
        			    $(".g-recaptcha div label").remove();
        		      };
 
+       		      var gateway_href = "https://pay.pin.net.au/qtic";
+
        		      var get_param = function(){
 
        		    	var param = {};
@@ -505,10 +507,12 @@
                		if(param != ""){
                		    var href_str = "https://pay.pin.net.au/qtic?";
                		    href_str += param;
-               			$("#pin-payment").attr("href", href_str);
+               			//$("#pin-payment").attr("href", href_str);
+               		    gateway_href = href_str;
                		}else{
                			var href_str = "https://pay.pin.net.au/qtic";
-               			$("#pin-payment").attr("href", href_str);
+               			//$("#pin-payment").attr("href", href_str);
+               			gateway_href = href_str;
                		}
                		  
            		  }  
@@ -526,7 +530,11 @@
        		  		update_href();
          		 });
 
-       		  	 update_href();   
+       		  	 update_href();
+
+       		     $("#pin-payment").on("click", function(){
+           		     window.open(gateway_href);
+       		     });
 
          });
    </script>
