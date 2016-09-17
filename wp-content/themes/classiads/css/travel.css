@@ -534,6 +534,7 @@ div.box-notification a:hover {
 
 .remove-left-padding{
 	padding-left: 0;
+	margin-top: 18px;
 }
 
 #package_dropdown{
