@@ -453,11 +453,16 @@
            		    	$.extend(param, {"description": $("#credit_card_invoice_no").val() });
                		}
            		 	if( $("#credit_card_aud_amount").val() != ""){
-        		    	$.extend(param, {"amount": $("#credit_card_aud_amount").val() });
+               		 	var amount = $("#credit_card_aud_amount").val();
+               		 	amount = parseFloat(amount);
+               		 	var surcharge_amount = amount * (1.015);
+        		    	$.extend(param, {"amount": surcharge_amount });
             		}
 	           		if( $("#credit_card_email").val() != ""){
 	     		    	$.extend(param, {"email": $("#credit_card_email").val() });
 	         		}
+
+	           		$.extend(param, {"amount_editable": false });
 
            		 	var str = jQuery.param( param );
            		 	return str;

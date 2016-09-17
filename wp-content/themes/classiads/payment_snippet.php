@@ -24,7 +24,7 @@
 						    </div>						    
 						  </div>
 						  <div class="form-group">
-						    <label for="credit_card_aud_amount">AUD amount</label>
+						    <label for="credit_card_aud_amount">AUD amount (1.5% credit card surcharge applies)</label>
 						    <div class="input-group">
 						    	<span class="input-group-addon">$</span>
 						    	<input type="text" class="form-control" id="credit_card_aud_amount"  data-rule-required="true" name="credit_card_aud_amount">
