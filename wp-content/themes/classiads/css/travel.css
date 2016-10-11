@@ -873,6 +873,7 @@ ul.trip{
 }
 
 @media (max-width: 768px){
+	
 	.modal-right{
 		border-right: 0px solid #fff;
 	}
