@@ -238,7 +238,7 @@
   	              
   	          <div class="form-group">
   	            <div class="row-fluid">
-  	            <div class="col-md-7">
+  	            <div class="col-md-10">
   	            	<label>Enter your message here</label>
   	                  
   	                <textarea class="form-control" placeholder="Please state the locations (Maldives, Tahiti, Vanuatu etc) and/or packages you are interested in. We've got many more properties and packages on offer at each location." name="message"  rows="6" cols="6"></textarea>

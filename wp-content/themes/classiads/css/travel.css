@@ -871,6 +871,12 @@ ul.trip{
 	}
 }
 
+@media (max-width: 768px){
+	.modal-right{
+		border-right: 0px solid #fff;
+	}
+}
+
 
 .travel-style h2, .travel-style h2 a, .travel-style h2 span{
 	color: #111;
