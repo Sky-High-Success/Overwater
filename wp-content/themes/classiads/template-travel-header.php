@@ -355,8 +355,9 @@ DOC;
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
                 <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6"><strong>Holiday</strong></a></li>
                 <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7"><strong>Honeymoon</strong></a></li>
+                <?php if(!$hide_enquiry){?> 
                 <li><a id="enquiry-button-1" href="<?php echo get_home_url(null,"package-enquiry"); ?>"><strong>ENQUIRY</strong></a></li>
-                
+                <?php } ?>
             </ul>
         </div>
   </div>
@@ -451,7 +452,10 @@ DOC;
 <!-- 				    	<a href="#package_text_anchor" class="getquote_anchor quote buton_custom hidden-sm hidden-xs"  id="SliderPackagesbtn">
                                Packages
                             </a> -->
+                            
+                      <?php if(!$hide_enquiry){?> 
  				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs header_enquiry " href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general"><i class="fa fa-hand-o-right"></i> ENQUIRE</a>  
+ 				      <?php } ?>
 				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs header_phone " href="tel:1300256067">1300 256 067</a>
 				     	
  				     </div>

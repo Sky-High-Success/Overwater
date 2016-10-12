@@ -11,6 +11,8 @@
 
 ?>
 
+<?php $hide_enquiry = true; ?>
+
 <?php include_once "template-travel-header.php";?>
 
 <?php while ( have_posts() ) : the_post();
@@ -175,7 +177,7 @@
   	              <label>Promo code<br>(if applicable)</label>
   	            </div>
   	            <div class="col-md-8">
-  	              <input class="form-control" placeholder="Promo code" name="promo-code" type="text">
+  	              <input class="form-control" placeholder="Promo code" name="promo-code" type="text" value="ido400" readonly>
   	            </div>
   	            </div>
   	          </div>

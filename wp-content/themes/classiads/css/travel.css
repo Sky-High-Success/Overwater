@@ -427,8 +427,9 @@ div.box-notification a:hover {
 
 .contact-heading{
 	padding-bottom: 10px;
-	border-bottom: 2px solid #fd4158;
-	color: #fd4158;
+/* 	border-bottom: 2px solid #fd4158; */
+	color: rgb(25,172,217);
+	font-weight: 600;
 	width: 300px;
 	
 }
