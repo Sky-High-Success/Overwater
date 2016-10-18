@@ -426,7 +426,7 @@ div.box-notification a:hover {
 }
 
 .contact-heading{
-	padding-bottom: 10px;
+/* 	padding-bottom: 10px; */
 /* 	border-bottom: 2px solid #fd4158; */
 	color: rgb(25,172,217);
 	font-weight: 600;
@@ -906,4 +906,32 @@ a.enquiry_anchor.buton_custom{
 
 #payment_form .form-group .field_header{
 	color: #333;
+}
+
+#contactForm h2{
+	font-size: 20px;
+    margin-top: 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+}
+
+#contactForm .background-title{
+	background-image: url("../images/enquiry_bg.jpg");
+	margin-left: -50px;
+    margin-right: -50px;
+/* 	background-clip: content-box; */
+/* 	opacity: 0.5; */
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 10px;
+}
+
+.contact-heading{
+	margin-top: 10px;
+	background-color: rgb(25, 172, 217);
+	color: #fff;
+	line-height: 1.5em;
+	margin-top: 0px;
+	margin-bottom: 5px;
 }

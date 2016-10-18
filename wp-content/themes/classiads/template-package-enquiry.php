@@ -48,8 +48,10 @@
 ?>
 
 <form id="contactForm" class="form-horizontal" action="" method="post">
-  	<h1 class="contact-heading center-block"><?php echo ucwords("$form_type form");?></h1>
-  	
+	<div class="background-title">
+	  	<h1 class="contact-heading center-block"><?php echo ucwords("$form_type form");?></h1>
+	  	<h2> BEST PRICE GUARENTEE: Book with us and receive an additional $400 credit on your honeymoon</h2>
+	</div>
   	<div class="row">
   	    <div class="col-md-6 modal-right">
   	           <div class="form-group">
