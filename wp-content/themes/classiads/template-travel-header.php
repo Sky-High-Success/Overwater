@@ -190,6 +190,7 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 
 	$multiple_to_recipients = array(
 			'reservations@overwaterbungalows.com.au',
+			'gogetem1969@yahoo.com.au',
 			'chengxianga2008@yahoo.com',
 		
 	);
