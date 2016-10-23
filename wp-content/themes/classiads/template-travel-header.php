@@ -218,6 +218,8 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
   Category: {$enquiry_information["category"]}
 DOC;
 
+    error_log($content_here);
+
 	$mail_subject = ucwords($enquiry_category)." - Package: ".$enquiry_information["package"]." - Date: ".$current_date;
 
 			wp_mail($multiple_to_recipients, $mail_subject, $content_here);
