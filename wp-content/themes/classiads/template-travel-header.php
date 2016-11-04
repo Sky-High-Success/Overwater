@@ -261,10 +261,10 @@ DOC;
     <title>Overwater Bungalows</title>
 
     <meta name="description" content="We want your honeymoon, anniversary or holiday to be remembered and talked about for a long time, so let us share in your joy and you won’t be disappointed. " />
-    <meta name="author" content="World Travel Group">
+    <meta name="author" content="">
     <meta name="contact" content="reservations@overwaterbungalows.com.au" />
-    <meta name="copyright" content="Copyright (c)2015 World Travel Group. All Rights Reserved." />
-    <meta name="keywords" content="world, travel, honeymoon, love, package, cheap, deal" />
+    <meta name="copyright" content="Copyright (c)<?php echo date("Y"); ?> Overwater Bungalows. All Rights Reserved." />
+    <meta name="keywords" content="overwater, bungalow, honeymoon, love, package, cheap, deal" />
     <!-- Favicon-->
     
    <!-- //// <link rel="shortcut icon" href="<?php echo get_template_directory_uri();?>/images/icon/favicon.ico" type="" /> -->
