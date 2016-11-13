@@ -354,8 +354,8 @@ DOC;
             <ul class="nav nav-pills nav-stacked menu-mobile">
                 <li><a id="mobile_menu_phone" class="google-forwarding-number" href="tel:1300256067"> <strong class="fa-phone"> 1300 256 067</strong></a></li>
                 <li><a href="<?php echo get_home_url();?>"><strong>Home Page </strong></a></li>
-                <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6"><strong>Holiday</strong></a></li>
-                <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7"><strong>Honeymoon</strong></a></li>
+                <!--  <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6"><strong>Holiday</strong></a></li>
+                <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7"><strong>Honeymoon</strong></a></li> -->
                 <?php if(!$hide_enquiry){?> 
                 <li><a id="enquiry-button-1" href="<?php echo get_home_url(null,"package-enquiry"); ?>"><strong>ENQUIRY</strong></a></li>
                 <?php } ?>
@@ -376,19 +376,21 @@ DOC;
 
                      <div class="plan-trip-dropdown btn-group">
                                                  
-                          
-                           <a href="javascript:;" class="button button--nanuk button--border-thin button--round-s getquote_anchor quote buton_custom button_effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-							<span>P</span><span>l</span><span>a</span><span>n</span><span>&nbsp;</span>
-							<span>y</span><span>o</span><span>u</span><span>r</span><span>&nbsp;</span>
-							<span>t</span><span>r</span><span>i</span><span>p</span>
+                           <!--  <a href="javascript:;" class="button button--nanuk button--border-thin button--round-s getquote_anchor quote buton_custom button_effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > -->
+							
+                           <a href="#package_wrap_anchor" class="button button--nanuk button--border-thin button--round-s getquote_anchor quote buton_custom button_effect" >
+							<span>Y</span><span>o</span><span>u</span><span>r</span><span>&nbsp;</span>
+							<span>O</span><span>v</span><span>e</span><span>r</span><span>w</span><span>a</span><span>t</span><span>e</span><span>r</span><span>&nbsp;</span>
+							<span>S</span><span>p</span><span>e</span><span>c</span><span>i</span><span>a</span><span>l</span><span>i</span><span>s</span><span>t</span><span>s</span>
 						   </a>
                            
-         
+         					<!--  
                            <ul class="trip dropdown-menu">
                                 <li><a href="http://holidays.overwaterbungalows.com.au/?pl=6">Holiday</a></li>
                                 <li><a href="http://honeymoon.overwaterbungalows.com.au/?pl=7">Honeymoon</a></li>
                                 
                            </ul> 
+                           -->
                                                  
                      </div>
 
@@ -448,7 +450,7 @@ DOC;
                         </div>
                         
  					  </form>-->
- 					 <div class="row remove-left-padding">
+ 					 <div class="row remove-left-padding margin-left-adjust">
 <!-- 				    	<a href="<?php echo get_home_url();?>#package_text_anchor" class="getquote_anchor quote buton_custom"  id="SliderPackagesbtn">Plan Your Trip</a> -->
 <!-- 				    	<a href="#package_text_anchor" class="getquote_anchor quote buton_custom hidden-sm hidden-xs"  id="SliderPackagesbtn">
                                Packages

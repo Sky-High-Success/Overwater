@@ -835,7 +835,7 @@ a i{
     margin-top: -30px;
     padding: 0 15px;
     margin-bottom: 0px;
-    width: 220px;
+    width: 320px;
 }
 
 .prosenjitdiv li a{
@@ -863,7 +863,7 @@ ul.trip{
     	line-height: 0 !important;
    	 	margin-top: 0;
    	 padding: 0 15px;
-   	 width: 180px !important;
+   	 width: 260px !important;
 	
 	}
 	
@@ -934,4 +934,21 @@ a.enquiry_anchor.buton_custom{
 	line-height: 1.5em;
 	margin-top: 0px;
 	margin-bottom: 5px;
+}
+
+#package_wrap_anchor{
+	 display: hidden;
+	 margin-top: -60px;
+	 height: 60px;
+}
+
+@media (max-width: 990px){
+	#package_wrap_anchor{
+	 margin-top: -160px;
+	 height: 160px;
+	}
+}
+
+.margin-left-adjust{
+	margin-left: 40px;
 }

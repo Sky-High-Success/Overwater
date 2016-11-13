@@ -145,6 +145,7 @@ echo do_shortcode('[layerslider id="294"]');
 	</div>
 
 </div>
+<div id="package_wrap_anchor"></div>
 
 <div id="package_wrap" class="wrap">
 	<a name="CustomPackagesData"></a>
