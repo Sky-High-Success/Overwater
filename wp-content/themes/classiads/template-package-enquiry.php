@@ -179,7 +179,7 @@
   	              <label>Promo code<br>(if applicable)</label>
   	            </div>
   	            <div class="col-md-8">
-  	              <input class="form-control" placeholder="Promo code" name="promo-code" type="text" value="ido400" readonly>
+  	              <input class="form-control" placeholder="Promo code" name="promo-code" type="text" value="MW400" readonly>
   	            </div>
   	            </div>
   	          </div>
