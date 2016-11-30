@@ -1,7 +1,9 @@
 <?php
 $result = '';
-$button =  MB()->getClass("button"); //new maxButton(); 
-$mbadmin = MB()->getClass("admin"); //maxButtonsAdmin::getInstance(); 
+$button =  MB()->getClass("button");  
+$mbadmin = MB()->getClass("admin"); 
+$collections = MB()->getClass('collections'); 
+$collection = MB()->getClass('collection'); 
 
 $view = (isset($_GET["view"])) ? sanitize_text_field($_GET["view"]) : "all"; 
 
@@ -83,7 +85,12 @@ if (isset($_GET['message']) && $_GET['message'] == '1delete') {
 	$result = __('Deleted 1 button.', 'maxbuttons');
 }
 
-$args = array();
+$args = array(
+	"orderby" => "id", 
+	"order" => "DESC", 
+	
+);
+
 if (isset($_GET["orderby"])) 
 	$args["orderby"] = sanitize_text_field($_GET["orderby"]); 
 if (isset($_GET["order"])) 
@@ -97,7 +104,8 @@ if (isset($_GET["paged"]) && $_GET["paged"] != '')
 
 if ($view == 'trash') 
 	$args["status"] = "trash"; 
-	
+
+
 $published_buttons = $mbadmin->getButtons($args);
 
 $published_buttons_count = $mbadmin->getButtonCount(array());
@@ -106,9 +114,7 @@ $trashed_buttons_count = $mbadmin->getButtonCount(array("status" => "trash"));
 $args["view"] = $view; 
 
 $page_args = $args; 
-
-//include_once("admin_header.php"); 
-//$mbadmin->get_footer(); 
+ 
 
 ?>
 
@@ -128,28 +134,22 @@ $page_args = $args;
 	});
 </script>
 
-<div id="maxbuttons">
-	<div class="wrap">
+<?php 
+$page_title = __("Overview","maxbuttons"); 
+$action = "<a class='page-title-action add-new-h2' href='" . admin_url() . "admin.php?page=maxbuttons-controller&action=edit'>" . __('Add New', 'maxbuttons') . "</a>";
+$mbadmin->get_header(array("title" => $page_title, "title_action" => $action));
+ ?>
  
-		
-		<h1 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h1>
-		
-		<div class="logo">
-			<?php do_action("mb-display-logo"); ?> 
-
-		</div>
-		
-		<div class="clear"></div>
-		<div class="main">
-			<?php do_action('mb-display-tabs'); ?> 
-
 			<div class="form-actions">
-				<a class="button-primary" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=button"><?php _e('Add New', 'maxbuttons') ?></a>
+				<a class="button-primary" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=edit"><?php _e('Add New', 'maxbuttons') ?></a>
 			</div>
 
 			<?php if ($result != '') { ?>
 				<div class="mb-notice mb-message"><?php echo $result ?></div>
-			<?php } ?>
+			<?php } 
+	
+				do_action('mb-display-reviewoffer');		
+			?>
 
 
 			<p class="status">
@@ -177,6 +177,8 @@ $page_args = $args;
 			</p>
 			<?php
 			do_action("mb-display-meta"); 
+			
+
 			?>
 	
 
@@ -207,27 +209,41 @@ $page_args = $args;
 
 			$link_order = (! isset($_GET["order"]) || $_GET["order"] == "DESC") ? "ASC" : 'DESC';
 								
-			$sort_url = add_query_arg(array(
+			$name_sort_url = add_query_arg(array(
 				"orderby" => "name",
 				"order" => $link_order
+				));	
+			$id_sort_url = add_query_arg(array(
+				"orderby" => "id",
+				"order" => $link_order
 				));		
+			
+			$sort_arrow = ( strtolower($args["order"]) == 'desc') ? 'dashicons-arrow-down' : 'dashicons-arrow-up' 								
 ?>
 			
 				<div class="button-list preview-buttons">		
 				
 					<div class="heading"> 
 						<span class='col col_check'><input type="checkbox" name="bulk-action-all" id="bulk-action-all" /></span>
-						<span class='col col_button'><?php _e('Button', 'maxbuttons') ?></span>
-						<span class="col col_name manage-column column-name sortable <?php echo strtolower($link_order) ?>">
-							<a href="<?php echo $sort_url ?>">
-							<span><?php _e('Name and Description', 'maxbuttons') ?></span>							
-							<span class="sorting-indicator"></span>
+						<span class='col col_button'>
+							<a href="<?php echo $id_sort_url ?>">
+							<?php _e('Button', 'maxbuttons') ?>	
+							<?php if ($args["orderby"] == 'id')
+								 echo "<span class='dashicons $sort_arrow'></span>";
+							?>
 							</a>
 						</span>
-						<span class='col col_shortcode'><?php _e('Shortcode', 'maxbuttons') ?></span>
+						<span class="col col_name manage-column column-name sortable <?php echo strtolower($link_order) ?>">
+							<a href="<?php echo $name_sort_url ?>">
+							<span><?php _e('Name and Description', 'maxbuttons') ?></span>		
+							<?php if ($args["orderby"] == 'name')
+								 echo "<span class='dashicons $sort_arrow'></span>";
+							?>					
  
-													
-					</div>
+							</a>
+						</span>
+						<span class='col col_shortcode'><?php _e('Shortcode', 'maxbuttons') ?></span>						
+					</div> <!-- heading --> 
 					<?php foreach ($published_buttons as $b): 
 						$id = $b["id"]; 
 						if($view == 'trash') 
@@ -235,6 +251,7 @@ $page_args = $args;
 						else 
 							$button->set($id);
 						
+						$inCollections = $collections::isButtonInCollection($id); 
 					?> 
 						<div class='button-row'>
 						<span class="col col_check"><input type="checkbox" name="button-id[]" id="button-id-<?php echo $id ?>" value="<?php echo $id ?>" /></span>
@@ -260,7 +277,25 @@ $page_args = $args;
 								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 								<?php endif; ?> 	
 								</div>
+								
+								<?php if ($inCollections): 
+									$number = count($inCollections); 
 									
+								?> 
+									<div class='collection_notice'>
+					<?php echo _n('In collection:', 'In collections:', $number,'maxbuttons')  ?>
+										<?php foreach($inCollections as $col_id)
+										{
+											$meta = $collection->get_meta($col_id, 'collection_name'); 
+											$name = isset($meta['collection_name']) ? $meta['collection_name'] : false; 
+											if ($name)
+												echo "<span class='name'>$name</span> "; 
+										}	
+										?>
+									</div>
+								
+								<?php endif; 
+								?>
 						</span>
 						<span class="col col_name"><a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $id ?>"><?php echo $button->getName() ?></a>
 									<br />
@@ -272,17 +307,17 @@ $page_args = $args;
 					<?php endforeach; // buttons ?>	 
 		
 
-				</div>
+				</div> <!-- button-list --> 
 			</form>
 			
 	<div class="tablenav bottom"> 		
  			<?php do_action("mb-display-pagination", $page_args); ?> 
 	</div>
 					
-		</div>
+ 
 	</div>
 	<div class="ad-wrap">
 		<?php do_action("mb-display-ads"); ?> 
 	</div>
-
-</div> 
+	
+<?php $mbadmin->get_footer(); ?> 

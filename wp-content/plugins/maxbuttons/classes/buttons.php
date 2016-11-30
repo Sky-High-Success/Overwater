@@ -1,6 +1,7 @@
 <?php 
 
-// Buttons class - handles paging issues and sanity check for individual buttons 
+/**  Buttons class - handles paging issues and sanity check for individual buttons 
+*/
 class maxButtons 
 {
 	protected static $loadedButtons = array(); // loaded button in current scope  
@@ -10,15 +11,25 @@ class maxButtons
 	*/
 	protected static $documentArray = array();  // given out document ID's  
 	
-	static function init()
+	// override to give out next document id. This is useful when buttons are set but not displayed directly. 
+	protected static $doNext = false;
+	protected static $current_doc_id = null; 
+	protected static $current_button_id = null; 
+	
+	protected static $instance = null; 
+	
+	
+	public static function getInstance()
 	{
-	
-	
+		if (is_null(self::$instance)) 
+			self::$instance = new maxButtons(); 
+		
+		return self::$instance; 	
 	}
-
-
+ 
 	static function buttonLoad($args)
 	{
+
 		$button_id = $args["button_id"]; 
 		self::$loadedButtons[] = $button_id; 
 		$document_id = self::getDocumentID(array("button_id" => $button_id)); 
@@ -26,28 +37,42 @@ class maxButtons
 
 	}
 	
+	static function forceNextID() 
+	{
+		self::$doNext = true;
+		self::$current_doc_id = null;
+		self::$current_button_id = null; 
+	}
+	
 	static function getDocumentID($args)
 	{
 		$button_id = $args["button_id"]; 
-		foreach(self::$documentArray as $index => $ids) 
+ 	
+		if (! is_null(self::$current_doc_id) && self::$current_button_id == $button_id ) 
+			return self::$current_doc_id;
+ 
+		
+		if (self::$doNext == false)
 		{
-			foreach($ids as $doc_button_id => $doc_vars)
+			foreach(self::$documentArray as $index => $ids) 
 			{
-				if ($doc_button_id == $button_id) 
-				{	
-					if (! $doc_vars["done"]) 	
-						return $doc_vars["document_id"]; 
+				foreach($ids as $doc_button_id => $doc_vars)
+				{
+					if ($doc_button_id == $button_id) 
+					{	
+						if (! $doc_vars["done"]) 	
+							return $doc_vars["document_id"]; 
+					}
+			
 				}
 			
 			}
-			
-		}
-			
+		}	
 		// if not found in documentarray make a new one 
 		$loaded = self::$loadedButtons; 
 		end($loaded); 
 		$i = 0; 
- 
+		 
 		foreach($loaded as $btn_id) 
 		{
 			if ($btn_id == $button_id)
@@ -60,9 +85,11 @@ class maxButtons
 			$document_id = $button_id; 
 		else
 			$document_id = $button_id . "_" . $i; 
-		return $document_id; 
-		
  
+		self::$doNext = false;
+		self::$current_doc_id = $document_id;
+		self::$current_button_id = $button_id; 
+		return $document_id; 
 	
 	}
 
@@ -86,6 +113,4 @@ class maxButtons
 		
 	}
 
-
-
-}
+} // class

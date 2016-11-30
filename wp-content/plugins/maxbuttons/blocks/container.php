@@ -1,8 +1,10 @@
 <?php
-
+defined('ABSPATH') or die('No direct access permitted');
 $blockClass["container"] = "containerBlock"; 
-$blockOrder[7][] = "container";
+$blockOrder[70][] = "container";
  
+use MaxButtons\maxBlocks  as maxBlocks;
+use MaxButtons\maxField   as maxField;
 
 class containerBlock extends maxBlock 
 {
@@ -79,6 +81,7 @@ class containerBlock extends maxBlock
 
 			if ($css[$csspart][$csspseudo]["align"] != '')
 			{ 	
+
 				$stat = explode(":", $css[$csspart][$csspseudo]["align"]); 
 				$css[$csspart][$csspseudo][ $stat[0] ] = $stat[1];
 		 	}
@@ -103,70 +106,112 @@ class containerBlock extends maxBlock
 			$$field = (isset($data[$field])) ? $data[$field] : $default;
 			${$field  . "_default"} = $default; 
 			
-			global $maxbuttons_container_alignments; 
+ 
 		}
-		 
+		 $maxbuttons_container_alignments = array(
+	'' => '',
+	'display: inline-block' => 'display: inline-block',
+	'float: left' => 'float: left',
+	'float: right' => 'float: right'
+);
+
+		$icon_url = MB()->get_plugin_url() . 'images/icons/' ; 	
  
 ?>		
-	<div class="option-container">
+	<div class="option-container mb_tab">
 				<div class="title"><?php _e('Container', 'maxbuttons') ?></div>
 				<div class="inside">
-					<div class="option-design">
-						<div class="label"><?php _e('Use Container', 'maxbuttons') ?></div>
-						<div class="input"><input type="checkbox" id="container_enabled" name="container_enabled" value="1" <?php checked($container_enabled,1) ?>></div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Wrap with Center Div', 'maxbuttons') ?></div>
-					<div class="input"><input type="checkbox" id="container_center_div_wrap" name="container_center_div_wrap" value="1" <?php checked($container_center_div_wrap,1) ?>></div>
-						<div class="default">&lt;div align="center"&gt;</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Width', 'maxbuttons') ?></div>
-						<div class="input"><input class="tiny-nopad" type="text" id="container_width" name="container_width" value="<?php echo maxButtonsUtils::strip_px($container_width) ?>" />px</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Margin Top', 'maxbuttons') ?></div>
-						<div class="input"><input class="tiny-nopad" type="text" id="container_margin_top" name="container_margin_top" value="<?php echo maxButtonsUtils::strip_px($container_margin_top) ?>" />px</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Margin Right', 'maxbuttons') ?></div>
-						<div class="input"><input class="tiny-nopad" type="text" id="container_margin_right" name="container_margin_right" value="<?php echo maxButtonsUtils::strip_px($container_margin_right) ?>" />px</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Margin Bottom', 'maxbuttons') ?></div>
-						<div class="input"><input class="tiny-nopad" type="text" id="container_margin_bottom" name="container_margin_bottom" value="<?php echo maxButtonsUtils::strip_px($container_margin_bottom) ?>" />px</div>
-						<div class="clear"></div>
-					</div>
+				<?php
+				/*$fspacer = new maxField('spacer'); 
+				$fspacer->label = __('Use Container', 'maxbuttons'); 
+				$fspacer->name = '';  
+				$fspacer->output('start'); 
+					*/
+				$u_container = new maxField('switch'); 
+				$u_container->label = __('Use Container', 'maxbuttons'); 
+				$u_container->name = 'container_enabled'; 
+				$u_container->id = $u_container->name; 
+				$u_container->value = 1; 
+ 
+				$u_container->checked = checked( maxBlocks::getValue('container_enabled'), 1, false); 
+				$u_container->output('start', 'end');
 
-					<div class="option-design">
-						<div class="label"><?php _e('Margin Left', 'maxbuttons') ?></div>
-						<div class="input"><input class="tiny-nopad" type="text" id="container_margin_left" name="container_margin_left" value="<?php echo maxButtonsUtils::strip_px($container_margin_left) ?>" />px</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Alignment', 'maxbuttons') ?></div>
-						<div class="input">
-							<select id="container_alignment" name="container_alignment">
-							<?php
-							foreach ($maxbuttons_container_alignments as $name => $value) {
-								echo '<option value="' . $value . '" ' . selected($container_alignment, $value) . '>' . $name . '</option>';
-							}
-							?>
-							</select>
-						</div>
-						<div class="clear"></div>
-					</div>
+				$fspacer = new maxField('spacer'); 
+				//$fspacer
+				$fspacer->name = '';  
+				$fspacer->output('start'); 
+								
+				$wrap_cont = new maxField('switch'); 
+				$wrap_cont->name = 'container_center_div_wrap'; 
+				$wrap_cont->id = $wrap_cont->name;
+				$wrap_cont->value = 1; 
+				$wrap_cont->checked = checked( maxBlocks::getValue('container_center_div_wrap'), 1, false); 
+				$wrap_cont->label = __('Center the container', 'maxbuttons'); 
+				$wrap_cont->output('','end'); 
+
+				$container_width = new maxField('number'); 
+				$container_width->name = 'container_width'; 
+				$container_width->id = $container_width->name;
+				$container_width->min = 0; 
+				$container_width->value = maxUtils::strip_px( maxBlocks::getValue('container_width') ); 
+				$container_width->label = __('Width', 'maxbuttons');
+				$container_width->inputclass = 'small';
+				$container_width->output('start','end'); 
+				
+			 		// Margin - trouble
+			 		$ptop = new maxField('number'); 
+			 		$ptop->label = __('Margin', 'maxbuttons'); 
+			 		$ptop->id = 'container_margin_top';
+			 		$ptop->name = $ptop->id; 
+ 					$ptop->min = 0; 
+			 		$ptop->inputclass = 'tiny';
+			 		$ptop->before_input = '<img src="' . $icon_url . 'p_top.png" title="' . __("Margin Top","maxbuttons") . '" >'; 
+			 		$ptop->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_top')); 
+			 		
+			 		$ptop->output('start'); 
+
+			 		
+			 		$pright = new maxField('number'); 
+			 		$pright->id = 'container_margin_right';
+			 		$pright->name = $pright->id; 
+ 					$pright->min = 0;
+			 		$pright->inputclass = 'tiny'; 
+			 		$pright->before_input = '<img src="' . $icon_url . 'p_right.png" class="icon padding" title="' . __("Margin Right","maxbuttons") . '" >'; 
+			 		$pright->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_right')); 
+			 		
+			 		$pright->output();
+			 					 		
+			 		$pbottom = new maxField('number'); 
+			 		$pbottom->id = 'container_margin_bottom';
+			 		$pbottom->name = $pbottom->id; 
+ 					$pbottom->min = 0; 
+			 		$pbottom->inputclass = 'tiny'; 
+			 		$pbottom->before_input = '<img src="' . $icon_url . 'p_bottom.png" class="icon padding" title="' . __("Margin Bottom","maxbuttons") . '" >'; 			 
+			 		$pbottom->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_bottom')); 
+			 		
+			 		$pbottom->output();
+			 		
+			 		$pleft = new maxField('number'); 
+			 		$pleft->id = 'container_margin_left';
+			 		$pleft->name = $pleft->id; 
+ 					$pleft->min = 0; 
+			 		$pleft->inputclass = 'tiny'; 
+			 		$pleft->before_input = '<img src="' . $icon_url . 'p_left.png" class="icon padding" title="' . __("Margin Left","maxbuttons") . '" >'; 
+			 		$pleft->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_left')); 
+			 		
+			 		$pleft->output('','end');	 
+	
+				
+					$align = new maxField('generic');
+	 				$align->label = __('Alignment','maxbuttons'); 
+	 				$align->name = 'container_alignment'; 
+	 				$align->id = $align->name; 
+	 				$align->value= maxBlocks::getValue('container_alignment'); 
+	 				//$align->setDefault(maxBlocks::getDefault('container_alignment')); 
+	 				$align->content = maxUtils::selectify($align->name, $maxbuttons_container_alignments, $align->value); 
+	 				$align->output('start', 'end'); 
+				?>
+ 
 				</div>
 			</div>
 <?php 

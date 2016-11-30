@@ -3,15 +3,14 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 3.15
+Version: 6.6
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 Text Domain: maxbuttons 
 Domain Path: /languages
 
-Copyright 2015 Max Foundry, LLC (http://maxfoundry.com)
+Copyright 2016 Max Foundry, LLC (http://maxfoundry.com)
 */
-
 
 if (! function_exists('maxbuttons_php52_nono'))
 {
@@ -45,44 +44,63 @@ if (function_exists("MB"))
 } 
 
 
-
 define("MAXBUTTONS_ROOT_FILE", __FILE__);
-define('MAXBUTTONS_VERSION_NUM', '3.15');
-define('MAXBUTTONS_RELEASE',"17 Sep 2015"); 
- 
+define('MAXBUTTONS_VERSION_NUM', '6.6');
+define('MAXBUTTONS_RELEASE',"11 Nov 2016"); 
 
-// Copy this to wp-config.php
-// define("MAXBUTTONS_BENCHMARK",false); 
+// In case of development, copy this to wp-config.php
+// define("MAXBUTTONS_DEBUG", true);
+// define("MAXBUTTONS_BENCHMARK",true); 
 
 require_once("classes/maxbuttons-class.php"); 
 
+// core
 require_once('classes/button.php');
 require_once('classes/buttons.php'); 
 require_once("classes/installation.php"); 	
 require_once("classes/max-utils.php"); 
-require_once("classes/scssphp/scss.inc.php");
+
+// more core
+require_once("classes/block.php"); 
+if (is_admin()) 
+{
+	require_once('classes/field.php'); 
+	require_once('classes/blocks.php'); 
+}			
+
+
+
 require_once("classes/maxCSSParser.php");
 require_once("classes/admin-class.php");
-require_once("classes/groups.php"); 
+
+require_once("classes/collections.php"); 
+require_once("classes/collection.php"); 
+require_once("classes/collection-block.php"); 
+require_once("classes/pack.php");
+require_once("classes/integrations.php");
 
 require_once("includes/maxbuttons-admin-helper.php"); 
-require_once("includes/arrays.php"); 
-	if (! class_exists('simple_html_dom_node'))
-		require_once("includes/simple_html_dom.php");
+ 
+
+// external libraries 
+require_once("assets/libraries/scssphp/scss.inc.php");
+require_once("assets/libraries/simple-template/simple_template.php"); 
+
+if (! class_exists('simple_html_dom_node'))
+	require_once("assets/libraries/simplehtmldom/simple_html_dom.php");
 
 
 // runtime.
-$m = new maxButtonsPlugin();	
-
 if (! function_exists("MB"))	{
 	function MB()
 	{
 		return maxButtonsPlugin::getInstance();
 	}
 }
+$m = new maxButtonsPlugin();	
+
 
 // Activation / deactivation
 register_activation_hook(__FILE__, array("maxInstall",'activation_hook') );
 register_deactivation_hook(__FILE__,array("maxInstall", 'deactivation_hook') );
 
-?>

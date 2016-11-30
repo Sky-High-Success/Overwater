@@ -1,14 +1,15 @@
 <?php 
+defined('ABSPATH') or die('No direct access permitted');
 $blockClass["dimension"] = "dimensionBlock";
-$blockOrder[1][] = "dimension";
+$blockOrder[20][] = "dimension";
 
 class dimensionBlock extends maxBlock
 {
 	protected $blockname = "dimension"; 
-	protected $fields = array("button_width" => array("default" => '0px', 
+	protected $fields = array("button_width" => array("default" => '160px', 
 										"css" => "width", 
 										), 
-							  "button_height" => array("default" => '0px', 
+							  "button_height" => array("default" => '50px', 
 							  			"css" => "height")
 							  ); 
 	
@@ -49,6 +50,8 @@ class dimensionBlock extends maxBlock
 
 	public function admin_fields()
 	{
+		return;
+		
 		$data = $this->data[$this->blockname]; 
  
 		foreach($this->fields as $field => $options)
@@ -58,17 +61,17 @@ class dimensionBlock extends maxBlock
 			${$field  . "_default"} = $default; 
 		}
 	?>
-	<div class="option-container">
+	<div class="mb_tab option-container">
 		<div class="title"><?php _e('Dimensions', 'maxbuttons') ?></div>
 		<div class="inside">
 			<div class="option-design">
 			<div class="label"><?php _e('Button Width', 'maxbuttons') ?></div>
-			<div class="input"><input class="tiny-nopad" type="text" id="button_width" name="button_width" value="<?php echo maxButtonsUtils::strip_px($button_width) ?>" />px</div>
+			<div class="input"><input class="tiny-nopad" type="text" id="button_width" name="button_width" value="<?php echo maxUtils::strip_px($button_width) ?>" />px</div>
 			<div class="clear"></div>
 			</div>
 			<div class="option-design">
 			<div class="label"><?php _e('Button Height', 'maxbuttons') ?></div>
-			<div class="input"><input class="tiny-nopad" type="text" id="button_height" name="button_height" value="<?php echo maxButtonsUtils::strip_px($button_height) ?>" />px</div>
+			<div class="input"><input class="tiny-nopad" type="text" id="button_height" name="button_height" value="<?php echo maxUtils::strip_px($button_height) ?>" />px</div>
 			<div class="clear"></div>
 			</div>
 		</div>

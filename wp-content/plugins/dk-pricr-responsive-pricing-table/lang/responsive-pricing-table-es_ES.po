@@ -1,19 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Responsive Pricing Table\n"
-"POT-Creation-Date: 2015-08-18 17:11+0800\n"
-"PO-Revision-Date: 2015-08-18 18:34+0800\n"
+"POT-Creation-Date: 2016-03-26 13:51+0800\n"
+"PO-Revision-Date: 2016-03-26 13:52+0800\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_x\n"
-"Last-Translator: \n"
-"Language: es\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: inc/cmb2/includes/CMB2.php:120
@@ -184,183 +184,183 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: inc/rpt-metaboxes.php:18
+#: inc/rpt-metaboxes.php:22
 msgid "Manage Plans"
 msgstr "Administrar ofertas"
 
-#: inc/rpt-metaboxes.php:18
+#: inc/rpt-metaboxes.php:22
 msgid "Unlock more features with Responsive Pricing Table PRO!"
 msgstr "&iexcl;Desbloquear más funciones con Responsive Pricing Table PRO!"
 
-#: inc/rpt-metaboxes.php:18
+#: inc/rpt-metaboxes.php:22
 msgid "Free version"
 msgstr "Versión gratuita"
 
-#: inc/rpt-metaboxes.php:26
+#: inc/rpt-metaboxes.php:30
 msgid "Plan {#}"
 msgstr "Oferta {#}"
 
-#: inc/rpt-metaboxes.php:27
+#: inc/rpt-metaboxes.php:31
 msgid "Add another plan"
 msgstr "Añadir otra oferta"
 
-#: inc/rpt-metaboxes.php:28
+#: inc/rpt-metaboxes.php:32
 msgid "Remove plan"
 msgstr "Borrar la oferta"
 
-#: inc/rpt-metaboxes.php:35
+#: inc/rpt-metaboxes.php:39
 msgid "Plan header"
 msgstr "Encabezamiento"
 
-#: inc/rpt-metaboxes.php:42 inc/rpt-metaboxes.php:255
+#: inc/rpt-metaboxes.php:46 inc/rpt-metaboxes.php:265
 msgid "Title"
 msgstr "Título"
 
-#: inc/rpt-metaboxes.php:50
+#: inc/rpt-metaboxes.php:54 inc/rpt-metaboxes.php:278
 msgid "Subtitle"
 msgstr "Subtítulo"
 
-#: inc/rpt-metaboxes.php:58 inc/rpt-metaboxes.php:307
+#: inc/rpt-metaboxes.php:62 inc/rpt-metaboxes.php:317
 msgid "Recurrence"
 msgstr "Recurrencia"
 
-#: inc/rpt-metaboxes.php:58
+#: inc/rpt-metaboxes.php:62
 msgid "eg. 'per month/year'"
 msgstr "ej. 'por mes / año'"
 
-#: inc/rpt-metaboxes.php:66 inc/rpt-metaboxes.php:293
+#: inc/rpt-metaboxes.php:70 inc/rpt-metaboxes.php:303
 msgid "Price"
 msgstr "Precio"
 
-#: inc/rpt-metaboxes.php:66
+#: inc/rpt-metaboxes.php:70
 msgid "No currency sign here (it can be set in the Settings tab)"
 msgstr ""
 "No signo de moneda aquí (se puede establecer en la ficha Configuración)"
 
-#: inc/rpt-metaboxes.php:74 inc/rpt-metaboxes.php:281
+#: inc/rpt-metaboxes.php:78 inc/rpt-metaboxes.php:291
 msgid "Description"
 msgstr "Descripción"
 
-#: inc/rpt-metaboxes.php:74
+#: inc/rpt-metaboxes.php:78
 msgid "Short text that will appear below the subtitle"
 msgstr "Texto breve que aparecerá debajo del subtítulo"
 
-#: inc/rpt-metaboxes.php:82
+#: inc/rpt-metaboxes.php:86
 msgid "Small icon"
 msgstr "Pequeño icono"
 
-#: inc/rpt-metaboxes.php:82
+#: inc/rpt-metaboxes.php:86
 msgid "Recommended:"
 msgstr "Recomendado:"
 
-#: inc/rpt-metaboxes.php:85
+#: inc/rpt-metaboxes.php:89
 msgid "Upload"
 msgstr "Subir"
 
-#: inc/rpt-metaboxes.php:90
+#: inc/rpt-metaboxes.php:94
 msgid "Recommended plan"
 msgstr "Oferta recomendada"
 
-#: inc/rpt-metaboxes.php:90
-msgid "Check this if this to highlight this plan"
-msgstr "Active esta opción para resaltar esta oferta"
+#: inc/rpt-metaboxes.php:94
+msgid "Check this to highlight this plan"
+msgstr ""
 
-#: inc/rpt-metaboxes.php:91
+#: inc/rpt-metaboxes.php:95
 msgid "Mark as recommended"
 msgstr "Marcar como recomendado"
 
-#: inc/rpt-metaboxes.php:99
+#: inc/rpt-metaboxes.php:103
 msgid "Remove currency sign"
 msgstr "Ocultar signo de moneda"
 
-#: inc/rpt-metaboxes.php:99
+#: inc/rpt-metaboxes.php:103
 msgid "Check this to hide the currency sign (for free plans for example)"
 msgstr ""
 "Active esta opción para ocultar el signo de moneda (por ejemplo para ofertas "
 "gratuitas)"
 
-#: inc/rpt-metaboxes.php:100
+#: inc/rpt-metaboxes.php:104
 msgid "Check to remove"
 msgstr "Active esta opción para ocultar"
 
-#: inc/rpt-metaboxes.php:108
+#: inc/rpt-metaboxes.php:112
 msgid "Plan features"
 msgstr "Características de la oferta"
 
-#: inc/rpt-metaboxes.php:115
+#: inc/rpt-metaboxes.php:119
 msgid "Feature list"
 msgstr "Lista de funciones"
 
-#: inc/rpt-metaboxes.php:115
+#: inc/rpt-metaboxes.php:119
 msgid "One per line — Read the Tips & Tricks section for useful information"
 msgstr ""
 "Una característica por línea - Leer la sección Consejos para mas información."
 
-#: inc/rpt-metaboxes.php:122
+#: inc/rpt-metaboxes.php:126
 msgid "One feature per line"
 msgstr "Una característica por línea"
 
-#: inc/rpt-metaboxes.php:127
+#: inc/rpt-metaboxes.php:131
 msgid "Tips & Tricks"
 msgstr "Consejos"
 
-#: inc/rpt-metaboxes.php:128
+#: inc/rpt-metaboxes.php:132
 msgid "Add images (not recommended)"
 msgstr "Añadir imágenes"
 
-#: inc/rpt-metaboxes.php:128
+#: inc/rpt-metaboxes.php:132
 msgid "Add links"
 msgstr "Añadir enlaces"
 
-#: inc/rpt-metaboxes.php:128
+#: inc/rpt-metaboxes.php:132
 msgid "Add bold text"
 msgstr "Añadir texto en negrita"
 
-#: inc/rpt-metaboxes.php:128
+#: inc/rpt-metaboxes.php:132
 msgid "Show feature as unavailable with"
 msgstr "Mostrar característica como no disponible con"
 
-#: inc/rpt-metaboxes.php:135
+#: inc/rpt-metaboxes.php:139
 msgid "Plan button..."
 msgstr "Botón de la oferta…"
 
-#: inc/rpt-metaboxes.php:142
+#: inc/rpt-metaboxes.php:146
 msgid "Button text"
 msgstr "Texto del botón"
 
-#: inc/rpt-metaboxes.php:142
+#: inc/rpt-metaboxes.php:146
 msgid "eg. 'Sign up, Buy'"
 msgstr "ej. ‘Registrar, Comprar'"
 
-#: inc/rpt-metaboxes.php:150
+#: inc/rpt-metaboxes.php:154
 msgid "Button link"
 msgstr "Enlace del botón"
 
-#: inc/rpt-metaboxes.php:150
+#: inc/rpt-metaboxes.php:154
 msgid "eg. 'http://anything.com'"
 msgstr "ej. 'http://cualquiercosa.com'"
 
-#: inc/rpt-metaboxes.php:158
+#: inc/rpt-metaboxes.php:162
 msgid "...or a custom button instead"
 msgstr "... o un botón personalizado en lugar"
 
-#: inc/rpt-metaboxes.php:165
+#: inc/rpt-metaboxes.php:169
 msgid "Custom button code"
 msgstr "Código del botón personalizado"
 
-#: inc/rpt-metaboxes.php:165
+#: inc/rpt-metaboxes.php:169
 msgid "This field will overwrite the standard button fields"
 msgstr "Este campo se sobrepone a los campos del botón estándar"
 
-#: inc/rpt-metaboxes.php:172
+#: inc/rpt-metaboxes.php:176
 msgid "Paste any button code here (Stripe, Paypal...)"
 msgstr "Pegue cualquier código de botón aquí (Stripe, Paypal...)"
 
-#: inc/rpt-metaboxes.php:177
+#: inc/rpt-metaboxes.php:181
 msgid "What is a custom button?"
 msgstr "¿Qué es un botón personalizado?"
 
-#: inc/rpt-metaboxes.php:178
+#: inc/rpt-metaboxes.php:182
 msgid ""
 "Custom buttons are provided by third-party payment plateforms to allow "
 "direct redirection to the payment page. Paypal, Stripe as well as many other "
@@ -370,7 +370,7 @@ msgstr ""
 "permitir la redirección directa a la página de pago. Paypal, Stripe, así "
 "como muchas otras empresas generarán botones de compras para usted."
 
-#: inc/rpt-metaboxes.php:178
+#: inc/rpt-metaboxes.php:182
 msgid ""
 "If you want your Pricing plan's footer to be replaced by a custom button, "
 "copy-paste the button code in this box. This will override the default "
@@ -380,7 +380,7 @@ msgstr ""
 "personalizado, copiar y pegar el código del botón en este cuadro. Esto "
 "anulará la configuración del botón predeterminado."
 
-#: inc/rpt-metaboxes.php:178
+#: inc/rpt-metaboxes.php:182
 msgid ""
 "We do <strong>not</strong> recommend doing this as it may not always go well "
 "with the design."
@@ -388,118 +388,122 @@ msgstr ""
 "<strong>No</strong> le recomendamos hacer esto, ya que no siempre se puede "
 "ir bien con el diseño."
 
-#: inc/rpt-metaboxes.php:185
-msgid "Plan styling"
-msgstr "Estilo de la oferta"
+#: inc/rpt-metaboxes.php:189
+msgid "Others"
+msgstr "Otros"
 
-#: inc/rpt-metaboxes.php:192
+#: inc/rpt-metaboxes.php:196
+msgid "Custom CSS classes"
+msgstr "Clases CSS personalizadas"
+
+#: inc/rpt-metaboxes.php:196
+msgid "Add classes to this plan like 'my-class another-class'"
+msgstr "Añada clases para esta oferta, separadas por espacios."
+
+#: inc/rpt-metaboxes.php:203
 msgid "Color"
 msgstr "Color"
 
-#: inc/rpt-metaboxes.php:192
+#: inc/rpt-metaboxes.php:203
 msgid "This color will be used for several elements of the plan"
 msgstr "Este color será utilizado para varios elementos de la oferta"
 
-#: inc/rpt-metaboxes.php:203
+#: inc/rpt-metaboxes.php:213
 msgid "Settings"
 msgstr "Configuración"
 
-#: inc/rpt-metaboxes.php:210
+#: inc/rpt-metaboxes.php:220
 msgid "General settings"
 msgstr "Configuración general"
 
-#: inc/rpt-metaboxes.php:217
+#: inc/rpt-metaboxes.php:227
 msgid "Change currency"
 msgstr "Cambiar la moneda"
 
-#: inc/rpt-metaboxes.php:217
+#: inc/rpt-metaboxes.php:227
 msgid "Add your currency sign here"
 msgstr "Añada su signo de moneda aquí"
 
-#: inc/rpt-metaboxes.php:224
+#: inc/rpt-metaboxes.php:234
 msgid "Links behavior"
 msgstr "Comportamiento del enlace"
 
-#: inc/rpt-metaboxes.php:228
+#: inc/rpt-metaboxes.php:238
 msgid "Open in current window"
 msgstr "Abrir en la misma ventana"
 
-#: inc/rpt-metaboxes.php:229
+#: inc/rpt-metaboxes.php:239
 msgid "Open in new window/tab"
 msgstr "Abrir en una nueva ventana"
 
-#: inc/rpt-metaboxes.php:237
+#: inc/rpt-metaboxes.php:247
 msgid "Force original fonts"
 msgstr "Utilizar la fuente original"
 
-#: inc/rpt-metaboxes.php:237
+#: inc/rpt-metaboxes.php:247
 msgid "Check this to use the plugin's font instead of your theme's"
 msgstr "Haga clic para usar la fuente del plugin en lugar de la de su tema"
 
-#: inc/rpt-metaboxes.php:238
+#: inc/rpt-metaboxes.php:248
 msgid "Check to enable"
 msgstr "Haga clic para activar"
 
-#: inc/rpt-metaboxes.php:248
+#: inc/rpt-metaboxes.php:258
 msgid "Adjust font sizes"
 msgstr "Ajustar tamaño de las fuentes"
 
-#: inc/rpt-metaboxes.php:259 inc/rpt-metaboxes.php:272
-#: inc/rpt-metaboxes.php:297
+#: inc/rpt-metaboxes.php:269 inc/rpt-metaboxes.php:282
+#: inc/rpt-metaboxes.php:307
 msgid "Tiny"
 msgstr "Diminuto"
 
-#: inc/rpt-metaboxes.php:260 inc/rpt-metaboxes.php:273
-#: inc/rpt-metaboxes.php:285 inc/rpt-metaboxes.php:298
-#: inc/rpt-metaboxes.php:311 inc/rpt-metaboxes.php:323
-#: inc/rpt-metaboxes.php:335
+#: inc/rpt-metaboxes.php:270 inc/rpt-metaboxes.php:283
+#: inc/rpt-metaboxes.php:295 inc/rpt-metaboxes.php:308
+#: inc/rpt-metaboxes.php:321 inc/rpt-metaboxes.php:333
+#: inc/rpt-metaboxes.php:345
 msgid "Small"
 msgstr "Pequeño"
 
-#: inc/rpt-metaboxes.php:261 inc/rpt-metaboxes.php:274
-#: inc/rpt-metaboxes.php:286 inc/rpt-metaboxes.php:299
-#: inc/rpt-metaboxes.php:312 inc/rpt-metaboxes.php:324
-#: inc/rpt-metaboxes.php:336
+#: inc/rpt-metaboxes.php:271 inc/rpt-metaboxes.php:284
+#: inc/rpt-metaboxes.php:296 inc/rpt-metaboxes.php:309
+#: inc/rpt-metaboxes.php:322 inc/rpt-metaboxes.php:334
+#: inc/rpt-metaboxes.php:346
 msgid "Normal"
 msgstr "Normal"
 
-#: inc/rpt-metaboxes.php:268
-msgid "Subitle"
-msgstr "Subtítulo"
-
-#: inc/rpt-metaboxes.php:300
+#: inc/rpt-metaboxes.php:310
 msgid "Big"
 msgstr "Grande"
 
-#: inc/rpt-metaboxes.php:319
+#: inc/rpt-metaboxes.php:329
 msgid "Button"
 msgstr "Botón"
 
-#: inc/rpt-metaboxes.php:331
+#: inc/rpt-metaboxes.php:341
 msgid "Features"
 msgstr "Características"
 
-#: inc/rpt-metaboxes.php:344
+#: inc/rpt-metaboxes.php:354
 msgid "Up to 5 plans"
 msgstr "Hasta 5 ofertas"
 
-#: inc/rpt-metaboxes.php:345
+#: inc/rpt-metaboxes.php:355
 msgid "You can add up to 5 plans per Pricing Table."
 msgstr "Usted puede añadir hasta 5 ofertas por Tabla de Precios."
 
-#: inc/rpt-metaboxes.php:345
+#: inc/rpt-metaboxes.php:355
 msgid "Adding more than that will result in display issues."
 msgstr "Añadir más ofertas dará lugar a problemas de visualización."
 
-#: inc/rpt-metaboxes.php:374
+#: inc/rpt-metaboxes.php:384
 msgid "Help & Support"
 msgstr "Ayuda"
 
-#: inc/rpt-metaboxes.php:383
+#: inc/rpt-metaboxes.php:393
 msgid "Display your Pricing Table"
 msgstr "Visualizar la Tabla de Precios"
 
-#: inc/rpt-metaboxes.php:383
+#: inc/rpt-metaboxes.php:393
 msgid ""
 "To display your Pricing Table on your site, copy-paste the "
 "<strong>[Shortcode]</strong> in your post/page. You can find this shortcode "
@@ -510,15 +514,15 @@ msgstr ""
 "Haga clic en <strong>Tablas de precios</strong> para encontrar este "
 "shortcode."
 
-#: inc/rpt-metaboxes.php:383
+#: inc/rpt-metaboxes.php:393
 msgid "Get support"
 msgstr "Obtener ayuda"
 
-#: inc/rpt-metaboxes.php:383
+#: inc/rpt-metaboxes.php:393
 msgid "Submit a ticket"
 msgstr "Enviar su pregunta"
 
-#: inc/rpt-metaboxes.php:383
+#: inc/rpt-metaboxes.php:393
 msgid "View documentation"
 msgstr "Consulte la documentaci&oacute;n"
 
@@ -581,3 +585,12 @@ msgstr "Tabla de Precios guardada."
 #: rpt.php:103
 msgid "Pricing Table draft updated."
 msgstr "Borrador de Tabla de Precios actualizado."
+
+#~ msgid "Check this if this to highlight this plan"
+#~ msgstr "Active esta opción para resaltar esta oferta"
+
+#~ msgid "Plan styling"
+#~ msgstr "Estilo de la oferta"
+
+#~ msgid "Subitle"
+#~ msgstr "Subtítulo"

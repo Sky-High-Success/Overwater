@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {	
 
-$('.maxbuttons-notice [data-action]').on('click', mb_review_init_ajax); 
+$('.maxbuttons-notice [data-action], .maxbuttons-reviewoffer [data-action]').on('click', mb_review_init_ajax); 
 
 function mb_review_init_ajax (e)
 {
@@ -35,7 +35,7 @@ function mb_review_ajax(new_status)
 
 function mb_review_done()
 {
-	$('.maxbuttons-notice').fadeOut(); 
+	$('.maxbuttons-notice, .maxbuttons-reviewoffer').fadeOut(); 
 
 }
 

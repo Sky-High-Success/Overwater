@@ -21,3 +21,4 @@ function is_mobile_user_agent() {
 	       "mobile_browser_android"     => false !== strpos( $_SERVER['HTTP_X_UA_DEVICE'], 'android' )
 	);
 }
+define( 'REDIS_SOCKET', '/var/run/RedisProxy/mwprp.sock' );

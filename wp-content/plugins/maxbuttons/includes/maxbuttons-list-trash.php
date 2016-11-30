@@ -62,7 +62,7 @@ if (isset($_GET["orderby"]))
 if (isset($_GET["order"])) 
 	$args["order"] = $_GET["order"]; 
 
-$mbadmin = MaxButtonsAdmin::getInstance(); 
+$mbadmin = MB()->getClass('admin');
 
 $args["status"] = "trash"; 
 $args["limit"] = -1;
@@ -101,7 +101,7 @@ $pagination = $mbadmin->getButtonPages($args);
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
+			<a href="https://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
 		<h2 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h2>

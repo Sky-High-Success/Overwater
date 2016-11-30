@@ -2,9 +2,11 @@
 defined('ABSPATH') or die('No direct access permitted');
 
 // new class for the future. 
-class maxButtonsUtils
+class maxUtils
 {
+ 
 	protected static $timings = array();
+	protected static $time_operations = array(); 
 	protected static $timer = 0;
 	
 	static function translit($string) 
@@ -14,12 +16,14 @@ class maxButtonsUtils
 		return $string;
 	}
 
-	static function selectify($name, $array, $selected, $target = '')
+	static function selectify($name, $array, $selected, $target = '', $class = '')
 	{
 		// optional target for js updating
 		if ($target != '' ) 
 			$target = " data-target='$target' "; 
-		$output = "<select name='$name' id='$name' $target>";
+		if ($class != '') 
+			$class = " class='$class' "; 
+		$output = "<select name='$name' id='$name' $target $class>";
 		
 		foreach($array as $key => $value) 
 		{
@@ -68,9 +72,21 @@ class maxButtonsUtils
 	}
 	
 	static function strip_px($value) {
-	return rtrim( intval($value), 'px');
-}
+		return rtrim( intval($value), 'px');
+	}
 
+	static function generate_font_sizes($start, $end, $step  = 1) 
+	{
+		$sizes = array(); 
+		 
+		for ($i = $start; $i <= $end; $i += $step)
+		{
+			$sizes[$i] = $i; 
+			
+		}
+		return $sizes; 
+		
+	}
 
 
 	static function get_media_query($get_option = 1)
@@ -91,8 +107,8 @@ class maxButtonsUtils
 						  	"phone" => __("Small phones","maxbuttons"), 
 						  	"phone_land" => __("Small phones (landscape)","maxbuttons"), 
 						  	"phone_portrait" => __("Small phones (portrait)","maxbuttons"), 
-						  	"ipad" => __("Ipad (all)","maxbuttons"),
 						  	"medium_phone" => __("Medium-size (smart)phone","maxbuttons"),
+						  	"ipad" => __("Ipad (all) / Large phones","maxbuttons"),
 						  	"ipad_land" => __("Ipad landscape","maxbuttons"), 
 						  	"ipad_portrait" => __("Ipad portrait","maxbuttons"),
 						  	"desktop" => __("Desktop","maxbuttons"),
@@ -128,7 +144,14 @@ class maxButtonsUtils
 		}
 	
 	}
-	static function get_buttons_table_name($old = false) {
+	
+	static function get_buttons_table_name($old = false) 
+	{
+		self::addTime('Legacy Function call : get_buttons_table_name'); 
+		return self::get_table_name($old);
+	}
+	
+	static function get_table_name($old = false) {
 		global $wpdb;
 		if ($old)
 			return $wpdb->prefix . 'maxbuttons_buttons';
@@ -142,15 +165,102 @@ class maxButtonsUtils
 	
 	}
 
+	static function get_coltrans_table_name() { 
+		global $wpdb; 
+		return $wpdb->prefix . 'maxbuttons_collections_trans'; 
+	
+	}
+	
+	/* Replacement function for Wordpress' transients and problematic name length.  */
+	static function get_transient($name) 
+	{
+		global $wpdb; 
+//		self::removeExpiredTrans(); 
+		
+		if ($name == '') 
+			return false;
+		
+		$table = self::get_coltrans_table_name();
+		
+		$sql = "SELECT value FROM $table where name= '%s' "; 
+		$sql = $wpdb->prepare($sql, $name); 
+		
+		$var = $wpdb->get_var($sql); 
+		
+		if (is_null($var)) 
+			$var = false;
+			
+		return $var; 
+		
+	}
+	
+	
+	static function set_transient($name, $value , $expire = -1 )
+	{
+		global $wpdb; 
+ 
+			
+		if ($expire == -1 )
+			$expire = HOUR_IN_SECONDS * 4; 
+			
+		if ($name == '') 
+			return false; 
+		
+		$expire_time = time() + $expire; 
+		
+		$table = self::get_coltrans_table_name();
+				
+		// prevent doubles, remove any present by this name
+		self::delete_transient($name); 
+		 
+		$wpdb->insert($table, 
+			array("name" => $name, 
+				  "value" => $value, 
+				  "expire" => $expire_time
+		 	), 
+		 	array("%s","%s","%d")); 
+		
+			
+	}	
+	
+	static function delete_transient($name) 
+	{
+		global $wpdb; 
+		
+ 
+		$table = self::get_coltrans_table_name();
+		$wpdb->delete($table, array("name" => $name), array('%s') ); 
+
+	}
+	
+	static function removeExpiredTrans() 
+	{
+		global $wpdb; 
+		
+		$table = self::get_coltrans_table_name();
+		$sql = "DELETE FROM $table WHERE expire <  UNIX_TIMESTAMP(NOW())"; 
+		$return = $wpdb->query($sql);
+ 
+		if($return === false)
+		{
+			$error = "Database error " . $wpdb->last_error;
+			MB()->add_notice('error', $error); 
+		}
+ 
+	}
+		
 
 	static function timeInit()
 	{
+		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
+			return;
+				
 		self::$timer = microtime(true);
 
 		if (is_admin()) 
-			add_filter("admin_footer",array('maxButtonsUtils', "showTime"), 100); 
+			add_filter("admin_footer",array('maxUtils', "showTime"), 100); 
 		else
-			add_action("wp_footer",array('maxButtonsUtils', "showTime")); 
+			add_action("wp_footer",array('maxUtils', "showTime")); 
 	
 	}
 
@@ -159,43 +269,71 @@ class maxButtonsUtils
 		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
 			return;
 		
-		if (count(self::$timings) == 0)
+		/*if (count(self::$timings) == 0)
 		{
 			self::timeInit(); 
-		} 
+		}  */
 		
 		self::$timings[] = array("msg" => $msg,"time" => microtime(true)); 
-		
-		/*
-		global $timer; global $timings;
-		$timer = microtime(true);
-		$timings = array(); 
-		function addTime($msg)
+	}
+	
+	static function startTime($operation)
+	{
+		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
+			return;
+			
+		self::$time_operations[$operation][] = array("start" => microtime(true), 
+												   "end" => 0, 
+											); 
+	
+	}
+	
+	static function endTime($operation) 
+	{
+		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
+			return;
+			
+		$timedcount = count(self::$time_operations[$operation]); 
+		for ($i = 0; $i < $timedcount; $i++) 
 		{
-			global $timings;
-			$timings[] = array("msg" => $msg, "time" => microtime(true)); 
-		}
-
-		function show_time()
-		{
-			global $timings; global $timer; 
-			//echo "TIME";  print_R($timings);
-			foreach($timings as $timing)
+			if (self::$time_operations[$operation][$i]["end"] == 0)
 			{
-				echo ($timing["time"] - $timer) . " :: " . $timing["msg"] . " <br /> "; 
+				self::$time_operations[$operation][$i]["end"] = microtime(true);
+				break;
 			}
 		}
-
-		add_action('wp_footer','show_time');  */
-
-
+		 
 	}
 	
 	static function showTime()
 	{
+		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
+		return;
+			
 			$timer = self::$timer;
 			$text = ''; 
 			$text .=  "<div id='mb-timer'>"; 
+			$text .= "<p><strong>Timed Operations</strong></p>"; 
+			
+			foreach(self::$time_operations as $operation => $operations) 
+			{
+				foreach($operations as $index => $data)
+				{
+					$start = $data["start"]; 
+					$end = $data["end"]; 
+					$duration = $end - $start; 
+				
+				
+					$text .= "<span class='first'>$duration</span>
+							  <span class='second'>$operation</span> 
+							  <span class='third'>&nbsp; </span><br /> 
+							 "; 
+							 
+			
+				}
+			}
+			
+			
 			$text .= "<p><strong>" . __("MaxButtons Loading Time:","maxbuttons") . "</strong></p>"; 
 			$prev_time =0;
 			
@@ -217,11 +355,11 @@ class maxButtonsUtils
 				$text .= "$timeline <br />"; 
 			}
 		*/
-			$text .= "</div><br><br><br>";
+			$text .= "</div> ";
 			$text .= "<style>#mb-timer { margin-left: 180px; } 
 					#mb-timer span { 
 						display: inline-block;
-
+						font-size: 12px;
 					}
 					#mb-timer span.first { 
 						width: 170px; 
@@ -230,7 +368,7 @@ class maxButtonsUtils
 						width: 300px; 
 					}
 					#mb-timer span.third { 
-						width: 100px; 
+						width: 150px; 
 					}										
 					</style>"; 
 					
@@ -240,5 +378,3 @@ class maxButtonsUtils
 			//return $filter . $text; 
 	}
 }
- 
-?>

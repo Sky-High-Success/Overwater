@@ -1,6 +1,7 @@
 <?php
+defined('ABSPATH') or die('No direct access permitted');
 $blockClass["responsive"] = "responsiveBlock"; 
-$blockOrder[20][] = "responsive"; 
+$blockOrder[90][] = "responsive"; 
 
 class responsiveBlock extends maxBlock 
 {
@@ -52,7 +53,7 @@ class responsiveBlock extends maxBlock
 															  "css" => "custom_maxwidth"),
 									"mq_hide" 			=> array("default" => '',
 																 "css" => "display", 
-																 "csspart" => array("mb-container", "maxbutton", "mb-center"),
+																 "csspart" => "mb-container, maxbutton, mb-center",
 																 
 															  ), 
 									); 
@@ -96,9 +97,9 @@ class responsiveBlock extends maxBlock
 		
 			foreach($fields as $field => $value)
 			{
-				$csspart = (isset($this->multi_fields[$field]["csspart"])) ? $this->multi_fields[$field]["csspart"] : 'maxbutton' ; 
+				$csspart = (isset($this->multi_fields[$field]["csspart"])) ? explode(",",$this->multi_fields[$field]["csspart"]) : array('maxbutton') ; 
 				$css_stat = $this->multi_fields[$field]["css"]; 
-				
+
  
 				if ($value == '' || $value == '0') 
 				{  }
@@ -106,20 +107,18 @@ class responsiveBlock extends maxBlock
 				{ } // skip custom fields on noncustom query
 				else
 				{
-					if (is_array($csspart)) 
-					{
 						foreach($csspart as $j => $part)
 						{
   
 							$css[$part]["responsive"][$query][$i][$css_stat] = $value; 						
 						}	
 						
-					}
+/*					}
 					else	
 					{	
  
 						$css[$csspart]["responsive"][$query][$i][$css_stat] = $value; 
-					}
+					} */
 				}
 				
 			}
@@ -127,8 +126,7 @@ class responsiveBlock extends maxBlock
 			endforeach;
 
 		endforeach;
-
- 
+		
 		return $css;
 	}
 	
@@ -161,7 +159,6 @@ class responsiveBlock extends maxBlock
 						$postval = $post[$field][$i]; 
 						if (is_numeric($default))  // sanitize.
 						{
-							echo "INTVAL $field";
 							$postval = intval($postval); 
 						}
 						else
@@ -185,10 +182,10 @@ class responsiveBlock extends maxBlock
 	
 	public function admin_fields()
 	{
-		$data = $this->data[$this->blockname];
+		$data = isset($this->data[$this->blockname]) ? $this->data[$this->blockname] : array(); 
 		
-		$media_names =  maxButtonsUtils::get_media_query(1); // nicenames
-		$media_desc = maxButtonsUtils::get_media_query(3);
+		$media_names =  maxUtils::get_media_query(1); // nicenames
+		$media_desc = maxUtils::get_media_query(3);
 		$units = array("px" => __("px","maxbuttons"),
 					   "%" => __("%","maxbuttons")
 					  );
@@ -212,19 +209,20 @@ class responsiveBlock extends maxBlock
  		$media_query = array_merge($names_used,$media_query);
 
 ?>
-			<div class="option-container">
+			<div class="mb_tab option-container">
 				<div class="title"><?php _e('Responsive Settings', 'maxbuttons') ?></div>
 				<div class="inside">
-					<p><?php _e("Responsive settings let you decide the behavior of the button on different devices and screen sizes. For instance large buttons on small screens.","maxbuttons") ?></p>
-					<div class="option-design"> 
-						<div class="label"><?php _e("Auto Responsive", 'maxbuttons') ?> <?php _e("(Experimental)","maxbuttons") ?></div>
 
-						<div class="input"> 
-							<input type='checkbox' name='auto_responsive' value='1' <?php checked(1, $auto_responsive); ?> >
+					<div class="option-design"> 
+						<p class="note"><?php _e("Responsive settings let you decide the behavior of the button on different devices and screen sizes. For instance large buttons on small screens.","maxbuttons") ?></p>	
+						<label for='auto_responsive'><?php _e("Auto Responsive", 'maxbuttons') ?> <?php _e("(Experimental)","maxbuttons") ?></label>
+
+						<div class="input checkbox"> 
+							<input type='checkbox' id='auto_responsive' name='auto_responsive' value='1' <?php checked(1, $auto_responsive); ?> >
 						</div>
 
-											<div class="clear"></div>
-						<p><strong><?php _e("Note:","maxbuttons"); ?> </strong><?php _e(" Auto responsive settings will take a guess only on small screens. To control your responsive settings uncheck this button. This will show more options.","maxbuttons"); ?></p>	
+						<div class="clear"></div>
+						<p class="note"><strong><?php _e("Note:","maxbuttons"); ?> </strong><?php _e(" Auto responsive settings will take a guess only on small screens. To control your responsive settings uncheck this button. This will show more options.","maxbuttons"); ?></p>	
 					</div>
  
 					
@@ -235,7 +233,7 @@ class responsiveBlock extends maxBlock
 						foreach ($data as $index => $fields):
 
 						?>
-						<div class='media_query'> 
+						<div class='media_query' data-query="<?php echo $item ?>"> 
 							<span class='removebutton'><img src="<?php echo MB()->get_plugin_url() ?>/assets/icons/remove.png"></span>
 							
 							<input type="hidden" name="media_query[<?php echo $i ?>]" value="<?php echo $item ?>"> 
@@ -256,34 +254,32 @@ class responsiveBlock extends maxBlock
 							</div>	
 						
 							<div class='label'><?php _e("Font size","maxbuttons") ?></div>
-							<div class='input'><input type='text' name='mq_font_size[<?php echo $i ?>]' class='tiny' value="<?php echo $fields["mq_font_size"] ?>"> <?php echo maxButtonsUtils::selectify("mq_font_size_unit[$i]",$units,$fields["mq_font_size_unit"]) ?>
+							<div class='input'><input type='text' name='mq_font_size[<?php echo $i ?>]' class='tiny' value="<?php echo $fields["mq_font_size"] ?>"> <?php echo maxUtils::selectify("mq_font_size_unit[$i]",$units,$fields["mq_font_size_unit"]) ?>
 							</div>	
 						
 							<div class='label'><?php _e("Button width", 'maxbuttons') ?></div>
 							
-							<div class='input'><input type='text' name="mq_button_width[<?php echo $i ?>]" value="<?php echo $fields["mq_button_width"] ?>" class='tiny'> <?php echo maxButtonsUtils::selectify("mq_button_width_unit[$i]",$units,$fields["mq_button_width_unit"]) ?></div>
+							<div class='input'><input type='text' name="mq_button_width[<?php echo $i ?>]" value="<?php echo $fields["mq_button_width"] ?>" class='tiny'> <?php echo maxUtils::selectify("mq_button_width_unit[$i]",$units,$fields["mq_button_width_unit"]) ?></div>
 							
 							<div class='label'><?php _e("Container width", 'maxbuttons'); ?></div>
 							
-							<div class='input'><input type='text' name="mq_container_width[<?php echo $i ?>]" value="<?php echo $fields["mq_container_width"] ?>" class='tiny'> <?php echo maxButtonsUtils::selectify("mq_container_width_unit[$i]",$units,$fields["mq_container_width_unit"]); ?>
+							<div class='input'><input type='text' name="mq_container_width[<?php echo $i ?>]" value="<?php echo $fields["mq_container_width"] ?>" class='tiny'> <?php echo maxUtils::selectify("mq_container_width_unit[$i]",$units,$fields["mq_container_width_unit"]); ?>
 							</div>
 							
 							<div class='label'><?php _e("Container float", "maxbuttons"); ?></div>
-							<div class="input"><?php echo maxButtonsUtils::selectify("mq_container_float[$i]",$container_floats, $fields["mq_container_float"]) ?></div>
+							<div class="input"><?php echo maxUtils::selectify("mq_container_float[$i]",$container_floats, $fields["mq_container_float"]) ?></div>
 							
 							<?php $mq_hide = (isset($fields["mq_hide"])) ? $fields["mq_hide"] : ''; ?>
 							<div class="label"><?php _e("Hide button on this view","maxbuttons"); ?></div>
 							<div class="input">
  
 								<input type="checkbox" name="mq_hide[<?php echo $i ?>]" value="none" <?php checked('none', $mq_hide ) ?> ></div>
-							
-								
 						</div>
 					 
 						<?php
 						$i++;
-						if ($item != 'custom')
-							unset($media_names[$item]); // remove existing queries from new query selection
+						//if ($item != 'custom')
+						//	unset($media_names[$item]); // remove existing queries from new query selection
 					endforeach;
 						endforeach;	
 					
@@ -293,12 +289,22 @@ class responsiveBlock extends maxBlock
 					<div class="new_query_space"></div>
 					<div class="clear"></div>					
 					<div class="option-design new-query">
-						<div class="label"><?php _e('New Query', 'maxbuttons') ?></div>
+						<label for='new_query'><?php _e('New Query', 'maxbuttons') ?></label>
 						
- 
 						<div class="input">
-							<?php echo maxButtonsUtils::selectify("new_query",$media_names,'' ); ?>
-							<a class="button add_media_query"><?php _e("Add","maxbuttons") ?></a>
+							<select name="new_query" id="new_query">
+							<?php 
+
+							foreach ($media_names as $key => $val):
+								$disabled = isset($media_query[$key]) && $key !== 'custom'    ? ' DISABLED ' : ''; 
+							?>
+							<option value="<?php echo $key ?>" <?php echo $disabled ?> ><?php echo $val ?></option>
+							 
+							
+							<?php endforeach; ?>
+							</select>
+							<?php //echo maxUtils::selectify("new_query",$media_names,'' ); ?>
+							<a href='javascript:void(0)' class="button add_media_query"><?php _e("Add","maxbuttons") ?></a>
 						</div>
 						
  
@@ -310,7 +316,7 @@ class responsiveBlock extends maxBlock
 			<input type="hidden" name="next_media_index" value="<?php echo $i ?>" >
 			<div class='media_option_prot'>
 
-				<div class='media_query'> 
+				<div class='media_query' data-query=''> 
 							<span class='removebutton'><img src="<?php echo MB()->get_plugin_url() ?>assets/icons/remove.png"></span>
 
 							<input type="hidden" name="media_query[]" value=""> 
@@ -327,18 +333,18 @@ class responsiveBlock extends maxBlock
 								
 							</div>	
 							<div class='label'><?php _e("Font size","maxbuttons") ?></div>
-							<div class='input'><input type='text' name='mq_font_size[]' class='tiny' value="90"> <?php echo maxButtonsUtils::selectify("mq_font_size_unit[]",$units,"%") ?>
+							<div class='input'><input type='text' name='mq_font_size[]' class='tiny' value="90"> <?php echo maxUtils::selectify("mq_font_size_unit[]",$units,"%") ?>
 							</div>	
 												
 							<div class='label'><?php _e("Button width", "maxbuttons") ?></div>
-							<div class='input'><input type='text' name="mq_button_width[]" value="0" class='tiny'> <?php echo maxButtonsUtils::selectify("mq_button_width_unit[]",$units,""); ?></div>
+							<div class='input'><input type='text' name="mq_button_width[]" value="0" class='tiny'> <?php echo maxUtils::selectify("mq_button_width_unit[]",$units,""); ?></div>
 							<div class='label'><?php _e("Container width", "maxbuttons"); ?></div>
 							<div class='input'>
-							<input type='text' name="mq_container_width[]" value="0" class='tiny'> <?php echo maxButtonsUtils::selectify("mq_container_width_unit[]",$units,""); ?>
+							<input type='text' name="mq_container_width[]" value="0" class='tiny'> <?php echo maxUtils::selectify("mq_container_width_unit[]",$units,""); ?>
 							</div>
 
 							<div class='label'><?php _e("Container float", "maxbuttons"); ?></div>
-							<div class="input"><?php echo maxButtonsUtils::selectify("mq_container_float[]",$container_floats, "") ?></div>
+							<div class="input"><?php echo maxUtils::selectify("mq_container_float[]",$container_floats, "") ?></div>
 							<div class="label"><?php _e("Hide button on this view","maxbuttons"); ?></div>
 							<div class="input"><input type="checkbox" name="mq_hide[]" value="none">
 							</div>								
