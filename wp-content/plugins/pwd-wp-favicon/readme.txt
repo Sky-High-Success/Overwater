@@ -3,9 +3,9 @@ Contributors: plateforme-wp-digital, nicolaskulka
 Author URI: http://www.plateformewpdigital.fr
 Plugin URL: http://www.plateformewpdigital.fr/plugins
 Requires at Least: 3.2
-Tested Up To: 4.1
+Tested Up To: 4.5
 Tags: theme, favicon, admin, blog, wordpress, icon, iphone, apple touch, apple touch icon, upload
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,7 +35,6 @@ Venez traduire le plugin : https://www.transifex.com/projects/p/pwd-wp-favicon/
 * Lithuanian
 * Dutch
 * Swedish
-* Portuguese
 
 = My Links =
 
@@ -71,16 +70,19 @@ Venez traduire le plugin : https://www.transifex.com/projects/p/pwd-wp-favicon/
 * This is the first version
 
 = 1.1 =
-* Added German translation 
-* Added Lithuanian translation 
-* Updated French translation 
+* Added translation files German
+* Added translation files Lithuanian
+* Updated translation files French
 
 = 1.2 =
-* Added Dutch translation
+* Added translation files Dutch
 
 = 1.3 =
-* Added Swedish translation 
+* Added translation files Swedish
 * Added settings links
 
 = 1.4 =
 * Added Portuguese translation
+
+= 1.5 =
+* Compatibility WP 4.5

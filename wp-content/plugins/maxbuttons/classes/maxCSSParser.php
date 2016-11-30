@@ -20,6 +20,16 @@ class maxCSSParser
 	protected $responsive = array();
 	
 	// settings
+	protected $elements_ignore_zero = array(
+		'text-shadow-left',
+		'text_shadow-top', 
+		'text-shadow-width',
+		'box-shadow-offset-left',
+		'box-shadow-offset-top', 
+		'box-shadow-width',
+		'box-shadow-spread', 
+	);  // items to ignore if value is zero, otherwise they become unremovable ( where 0 is still something on display)  
+	
 	protected $important = false;
 	
 	// log possible problems and incidents for debugging;
@@ -76,6 +86,7 @@ class maxCSSParser
 		$this->clear(); 
 		
 		$struct = $this->struct; 
+
 		$this->data = $data; 
 
  
@@ -96,15 +107,13 @@ class maxCSSParser
 			$this->parse_part($el,$el_data); 		
 		}
 
-		maxButtonsUtils::addTime("CSSParser: Responsive start ");
-		$this->parse_responsive();
-		maxButtonsUtils::addTime("CSSParser: Parsed responsive ");
 
- 
- 
- 
+		$this->parse_responsive();
+		
+		maxUtils::startTime('compile CSS');
 		$css = $this->compile($this->output_css);
-		maxButtonsUtils::addTime("CSSParser: Compile done ");
+		maxUtils::endTime('compile CSS');
+
 
 		return $css;
  
@@ -116,14 +125,13 @@ class maxCSSParser
 		$this->data = ''; 
 		$this->output_css = ''; 
 		$this->inline = array();
+		//$this->struct = array();
 		$this->responsive = array();
 	
 	}
 	
 	protected function compile($css)
 	{
-
-		
 		$scss = new scssc();
 		$scss->setImportPaths(MB()->get_plugin_path() . "assets/scss");
 		
@@ -132,7 +140,7 @@ class maxCSSParser
 			$scss->setFormatter('scss_formatter_compressed');
 		
 		$compile = " @import '_mixins.scss';  " . $css;
-		maxButtonsUtils::addTime("CSSParser: Compile start ");
+		//maxUtils::addTime("CSSParser: Compile start ");
 		
 		try
 		{
@@ -142,14 +150,14 @@ class maxCSSParser
 			$css = $this->output_css; 
 		 } 
 
-		maxButtonsUtils::addTime("CSSParser: Compile end ");
+		//maxUtils::addTime("CSSParser: Compile end ");
 
 		return $css;
 	}
 	
 	function parse_part($element, $el_data, $el_add = '')
 	{
-		maxButtonsUtils::addTime("CSSParser: Parse $element ");
+		maxUtils::addTime("CSSParser: Parse $element ");
 				
 		$tag = $el_data["tag"]; 
 		$element_data = $this->findData($this->data, $element);
@@ -174,7 +182,8 @@ class maxCSSParser
 			
 			if ($pseudo != 'normal') 
 			{
-				$ps_selector = preg_replace('/.maxbutton$|.maxbutton /i',".maxbutton:$pseudo ",$el_add);
+				// select the maxbutton case, ending with either space or next class -dot. 
+				$ps_selector = preg_replace('/.maxbutton$|.maxbutton([.| ])/i',".maxbutton:$pseudo\$1",$el_add);
 				
 				$this->output_css .= " $ps_selector { "; 
 			}
@@ -229,8 +238,11 @@ class maxCSSParser
 		$important = ($cssTag == '@include') ? "" : $important; // mixin's problem, no checking here. 
 		
 		$css_sep = ($cssTag == '@include') ? $css_sep = '' : ':';
+		
+		if ($cssVal == 0 && in_array($cssTag, $this->elements_ignore_zero))
+			return false; 
 			
-		if($cssVal != '' && $cssTag != '')
+		if($cssVal !== '' && $cssTag !== '')
 		{
 			$statement = "$cssTag $css_sep $cssVal$unit$important$css_end ";
 			return $statement;
@@ -246,7 +258,7 @@ class maxCSSParser
 		if (! is_array($responsive) || count($responsive) == 0) 
 			return;  
 
-		$media_queries = maxButtonsUtils::get_media_query(2); // query names
+		$media_queries = maxUtils::get_media_query(2); // query names
 					
 		$output = ''; 
 		
@@ -320,44 +332,6 @@ class maxCSSParser
 				$output = $this->parse_responsive_definition($output, $qdef, $vdata);
 			}
 
-
-			// never write empty media queries
-	/*		if (! isset($qdef) || $qdef == '')  {
-				  
-				continue; 
-			}
-
- 
-			$output .= "@media ". $qdef . " { "; 
-
-	
-		foreach($vdata as $index => $data)
-		{
- 
-			foreach($data as $element => $values) {
-			 //foreach($vdat as $index => $values):
-				$output .= $element . " { "; 
-				$css_end = ';';
-				
-				// same as parse part, maybe merge in future
-				foreach($values as $cssTag => $cssVal)
-				{
-					// unit check - two ways; either unitable items is first or unit declaration.
-					$statement =  $this->parse_cssline($values, $cssTag,$cssVal);
-					if($statement)
-						$output .= $statement;
-					
-				}
-
-				$output .= " } "; 
-			// endforeach;
-			}
-
-		
-		  }
-		  			$output .= " } ";  
-		  			
-		 */
 		endforeach;
  
  
@@ -472,16 +446,25 @@ class maxCSSParser
 		$start_opacity = isset(  $results["gradient-start-opacity"]  ) ?  $results["gradient-start-opacity"] : ''; 
 		$end_opacity = isset(  $results["gradient-end-opacity"]  ) ?  $results["gradient-end-opacity"] : ''; 		
 		$stop =  (isset( $results["gradient-stop"]) && $results["gradient-stop"] != '') ?  $results["gradient-stop"] . "%" : '45%'; 
+		// default to use ( old situation )
+		$use_gradient = (isset($results['gradient-use-gradient']) && $results['gradient-use-gradient'] != '') ? $results['gradient-use-gradient'] : 1;
 		
-		$start = maxButtonsUtils::hex2rgba($start, $start_opacity);
-		$end = maxButtonsUtils::hex2rgba($end, $end_opacity);		
+		$start = maxUtils::hex2rgba($start, $start_opacity);
+		$end = maxUtils::hex2rgba($end, $end_opacity);		
 		
 		$important = ($this->is_important()) ? "!important" : "";
+		//$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");		
 
-		
-		$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");			
+	if ($use_gradient == 1)
+		{
+			$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");			
+		}
+		else {
+			$values['background-color'] = $start; 
+		}
+		// remove the non-css keys from the value array ( field names ) 
 		$values = array_diff_key($values, $results);
- 
+		
 		return $values;
  
 	}
@@ -491,13 +474,15 @@ class maxCSSParser
 		$width = $results["box-shadow-width"]; 
 		$left = $results["box-shadow-offset-left"]; 
 		$top = $results["box-shadow-offset-top"]; 
+		$spread = isset($results['box-shadow-spread']) ? $results['box-shadow-spread'] : 0; 
 		$color = isset($results["box-shadow-color"]) ? $results["box-shadow-color"] : ''; 
 		
 		$important = ($this->is_important()) ? "!important" : ""; 
 		
-		if ($color != '' && $width > 0)		
-			$values = $this->add_include($values, "box-shadow($left, $top, $width, $color $important) ");			
-	
+		if ($width == 0 && $left == 0 && $top == 0) 
+			return $values; 
+		
+		$values = $this->add_include($values, "box-shadow($left, $top, $width, $color,$spread, false, $important) ");			
 		$values = array_diff_key($values, $results);
 
 		return $values; 		
@@ -505,15 +490,16 @@ class maxCSSParser
 	
 	function mixin_textshadow($results, $values)
 	{
-		
 		$width = isset($results["text-shadow-width"]) ? $results["text-shadow-width"] : 0; 
 		$left = isset($results["text-shadow-left"]) ? $results["text-shadow-left"] : 0; 
-		$top = isset($results["text-shadow-top"]) ? $results["text-shadow-left"] : 0; 
+		$top = isset($results["text-shadow-top"]) ? $results["text-shadow-top"] : 0; 
 		$color = isset($results["text-shadow-color"]) ? $results["text-shadow-color"] : ''; 
 		$important = ($this->is_important()) ? "!important" : ""; 
-				
-		if ($color != '' && $width > 0)
-			$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
+					
+ 		if ($width == 0 && $left == 0 && $top == 0) 
+			return $values; 
+		
+		$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
 		
 		$values = array_diff_key($values, $results);
 		
@@ -538,20 +524,28 @@ class maxCSSParser
 		// ISSUE #43 Sometimes this breaks 
 		if (! isset($inline[$pseudo])) 
 			return $domObj;
-		
-		foreach($inline[$pseudo] as $element => $styles)
+
+		$elements = array_keys($inline[$pseudo]);
+		if ($pseudo != 'normal') // gather all elements
+			$elements = array_merge($elements, array_keys($inline["normal"]));
+						
+		foreach($elements as $element  )
 		{
-			//$element = $element[$pseudo];
+			$styles = isset($inline[$pseudo][$element]) ? $inline[$pseudo][$element] : ''; 
+		
+			if ($pseudo != 'normal') // parse all possible missing styles from pseudo el.
+				$normstyle = $this->compile($inline['normal'][$element]); 
+ 
 			$normstyle = ''; 
 			if ($pseudo != 'normal') // parse all possible missing styles from pseudo el.
 				$normstyle = $this->compile($inline['normal'][$element]); 
-			
-			maxButtonsUtils::addTime("CSSParser: Parse inline done");
+ 
+			maxUtils::addTime("CSSParser: Parse inline done");
 			
 			$styles = $normstyle . $this->compile($styles);
 			
 			$element = trim(str_replace("."," ", $element)); // molten css class, seperator. 
-		
+		 
 			$el = $domObj->find('[class*="' . $element . '"]', 0);
 			if (is_null($el)) echo "NULL"; 
 			$el->style = $styles;
@@ -574,6 +568,3 @@ class compileException extends Exception {
 	protected $code = -1;
 
 }
-
-
-?>

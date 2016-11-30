@@ -4,7 +4,7 @@
 Plugin Name: Nextend Google Connect
 Plugin URI: http://nextendweb.com/
 Description: Google connect
-Version: 1.5.3
+Version: 1.6.0
 Author: Roland Soos, Jamie Bainbridge
 License: GPL2
 */
@@ -353,10 +353,10 @@ function new_add_google_login_form() {
     (function($) {
       if(!has_social_form){
         has_social_form = true;
-        var loginForm = $('#loginform,#registerform,#front-login-form');
+        var loginForm = $('#loginform,#registerform,#front-login-form,#setupform');
         socialLogins = $('<div class="newsociallogins" style="text-align: center;"><div style="clear:both;"></div></div>');
         if(loginForm.find('input').length > 0)
-          loginForm.prepend("<h3 style='text-align:center;'>OR</h3>");
+          loginForm.prepend("<h3 style='text-align:center;'><?php _e('OR'); ?></h3>");
         loginForm.prepend(socialLogins);
       }
       if(!window.google_added){
@@ -430,19 +430,19 @@ Miscellaneous functions
 function new_google_sign_button() {
 
   global $new_google_settings;
-  return '<a href="' . esc_url(new_google_login_url() . (isset($_GET['redirect_to']) ? '&redirect=' . $_GET['redirect_to'] : '')) . '" rel="nofollow">' . $new_google_settings['google_login_button'] . '</a><br />';
+  return '<a href="' . esc_url(new_google_login_url() . (isset($_GET['redirect_to']) ? '&redirect=' . urlencode($_GET['redirect_to']) : '')) . '" rel="nofollow">' . $new_google_settings['google_login_button'] . '</a><br />';
 }
 
 function new_google_link_button() {
 
   global $new_google_settings;
-  return '<a href="' . esc_url(new_google_login_url() . '&redirect=' . new_google_curPageURL()) . '">' . $new_google_settings['google_link_button'] . '</a><br />';
+  return '<a href="' . esc_url(new_google_login_url() . '&redirect=' . urlencode(new_google_curPageURL())) . '">' . $new_google_settings['google_link_button'] . '</a><br />';
 }
 
 function new_google_unlink_button() {
 
   global $new_google_settings;
-  return '<a href="' . esc_url(new_google_login_url() . '&action=unlink&redirect=' . new_google_curPageURL()) . '">' . $new_google_settings['google_unlink_button'] . '</a><br />';
+  return '<a href="' . esc_url(new_google_login_url() . '&action=unlink&redirect=' . urlencode(new_google_curPageURL())) . '">' . $new_google_settings['google_unlink_button'] . '</a><br />';
 }
 
 function new_google_curPageURL() {

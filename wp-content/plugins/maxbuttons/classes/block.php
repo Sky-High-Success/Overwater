@@ -1,17 +1,22 @@
 <?php
-/* A block is a combination of related settings. 
+defined('ABSPATH') or die('No direct access permitted');
 
-   Blocks are grouped and put into the same Database table row. This way related data, it's executing, display and other decision
-   making is seperate from other blocks improving realiability and readability of the code.
+/** A block is a combination of related settings. 
+*
+*  Blocks are grouped and put into the same Database table row. This way related data, it's executing, display and other decision
+*   making is seperate from other blocks improving realiability and readability of the code.
 */
+	use MaxButtons\maxBlocks  as maxBlocks;
+	use MaxButtons\maxField   as maxField;
+	
 abstract class maxBlock
 {
-	
 	protected $data = array();  
-
 	
-	/* Constructor for a block 
-	
+	/** Block constructor 
+	*
+	* Constructor for a button block. Hooks up all needed filters and inits data for a block. 
+	* 
 	*/
 	function __construct($priority = 10)
 	{
@@ -34,15 +39,15 @@ abstract class maxBlock
 		
 	}
  
-	/* Save fields runs the POST variable through all blocks
-	
-	   Taking the post variable from the form, the function will attach the submitted data to the block - field logic and 
-	   return a data object to save to the Database. If no value is submitted, the default will be loaded. 
-	   
-		@param $data Array Data in blockname - field logic format
-		@param $post Array $_POST style data
-		
-		@return $data Array
+	/** Save fields runs the POST variable through all blocks
+	*
+	*  Taking the post variable from the form, the function will attach the submitted data to the block - field logic and 
+	*   return a data object to save to the Database. If no value is submitted, the default will be loaded. 
+	*   
+	*	@param $data Array Data in blockname - field logic format
+	*	@param $post Array $_POST style data
+	*	
+	*	@return $data Array
 	*/
 	public function save_fields($data, $post)
 	{	
@@ -51,47 +56,74 @@ abstract class maxBlock
 		foreach($this->fields as $field => $options) 
 		{
 			$default = (isset($options["default"])) ? $options["default"] : ''; 
-			
-			//$block[$field] = (isset($post[$field])) ? $post[$field] : $default; 
-			if (strpos($default,"px") !== false)
+			if (is_string($default) && strpos($default,"px") !== false)
 				$block[$field] = (isset($post[$field]) ) ? intval($post[$field]) : $default; 
+			elseif( isset($post[$field]) && is_array($post[$field])) 
+			{
+				$block[$field] = $post[$field];
+			}
 			else	
 				$block[$field] = (isset($post[$field])) ? sanitize_text_field($post[$field]) : $default; 
 		}
- 
+
 		$data[$this->blockname] = $block; 
 		return $data;	
  
 	}
 	
+	/** Return fields of current block
+	* 
+	* 	Will return fields of current block only
+	* @return Array $fields
+	*/
+	public function get_fields()
+	{
+		return $this->fields;
+	}
+	
+	/** Returns Blockname of current block
+	* 
+	*  
+	* @return $string | boolean Name of the block, if set, otherwise false
+	*/
+	public function get_name() 
+	{
+		if (isset($this->blockname)) 
+			return $this->blockname; 
+			
+		return false;
+	}
+	
+	
 	/* Display Block admin interface
-		
-	   Writes admin interface to output.
+	*	
+	*   Writes admin interface to output.
+	*  @abstract
 	*/
 	abstract public function admin_fields();
 	
-	/* Parse HTML portion of button
-	
-	   This filter is passed through to modify the HTML parts of the button. 
-	   
-	   Note: When changing parts of the DomObj writing new tags / DOM to elements, it's needed to regenerate the Object.
-	   
-	   @param $button DomObj SimpleDOMObject
-	   @param $mode String[normal|preview] Flag to check if loading in preview 
-	   
-	   @return DomObj
+	/** Parse HTML portion of button
+	*
+	*   This filter is passed through to modify the HTML parts of the button. 
+	*   
+	*   Note: When changing parts of the DomObj writing new tags / DOM to elements, it's needed to regenerate the Object.
+	*   
+	*   @param $button DomObj SimpleDOMObject
+	*   @param $mode String[normal|preview] Flag to check if loading in preview 
+	*   
+	*   @return DomObj
 	*/
 	public function parse_button($button, $mode) { return $button;  } 
 	
 	/* Parse CSS of the button
-	
-		This function will go through the blocks, matching the $css definitions of a fields and putting them in the 
-		correct tags ( partly using csspart ) . 
-		
-		@param $css Array [normal|hover|other][cssline] = css declaration
-		@param $mode String [normal|preview] 
-		
-		@return $css Array 
+	*
+	*	This function will go through the blocks, matching the $css definitions of a fields and putting them in the 
+	*	correct tags ( partly using csspart ) . 
+	*	
+	*	@param $css Array [normal|hover|other][cssline] = css declaration
+	*	@param $mode String [normal|preview] 
+	*	
+	*	@return $css Array 
 	*/
 	public function parse_css($css, $mode = 'normal') { 
 
@@ -143,14 +175,14 @@ abstract class maxBlock
 	}
 	
 	
-	/* Map the Block fields  
-	
-		This function will take the field name and link it to the defined CSS definition to use in providing the live preview in the 
-		button editor. I.e. a field with name x will be linked to CSS-property X . Or to a custom Javascript function. 
-		
-		@param $map Array [$field_id][css|attr|func|] = property/function
-		
-		@return Array
+	/** Map the Block fields  
+	*
+	*	This function will take the field name and link it to the defined CSS definition to use in providing the live preview in the 
+	*	button editor. I.e. a field with name x will be linked to CSS-property X . Or to a custom Javascript function. 
+	*	
+	*	@param $map Array [$field_id][css|attr|func|] = property/function
+	*	
+	*	@return Array
 	*/
 	public function map_fields($map) 
 	{
@@ -184,131 +216,16 @@ abstract class maxBlock
 		
 	}
 	
-	/* Sets the data
-	
-		This action is called from button class when data is pulled from the database and populates the dataArray to all blocks
-		
+	/** Sets the data
+	*
+	*	This action is called from button class when data is pulled from the database and populates the dataArray to all blocks
+	*	
 	*/
 	function set($dataArray)
 	{
  
 		$this->data = $dataArray;
 	}
-
-	/* CSS POST PROCESSOR 
-	   This function will gather certain CSS elements and combine them. These element generally don't fix into the regular CSS scheme. 
-	   
-	   It loads the same data as parse_css, but *after* every other function. 
-	   
-	   @param $css Array
-	   @param $mode [normal|preview]
-	   @return $css Array 
-	*/
-	function post_process_css($css, $mode)  //DEPRECATED in favor of scss
-	{		
- 		$raw_css = $css;
- 		return $css; 
  
-		foreach($css as $part => $styles)
-		{
-			/* Hover part doesn't boost all settings - these are set from normal part */
- 
-			if ( strpos($part,':hover') !== false ) 
-			{
-
-				if (! isset($styles["gradient-start-opacity"])) 
-					$styles["gradient-start-opacity"] = $raw_css["normal"]["gradient-start-opacity"];
-				if (! isset($styles["gradient-end-opacity"])) 
-					$styles["gradient-end-opacity"] = $raw_css["normal"]["gradient-end-opacity"];
-				if (! isset($styles["gradient-stop"])) 
-					$styles["gradient-stop"] = $raw_css["normal"]["gradient-stop"];
-			
-				if (! isset($styles["box-shadow-width"])) 
-					$styles["box-shadow-width"] = $raw_css["normal"]["box-shadow-width"];
-				if (! isset($styles["box-shadow-offset-left"])) 
-					$styles["box-shadow-offset-left"] = $raw_css["normal"]["box-shadow-offset-left"];	
-				if (! isset($styles["box-shadow-offset-top"])) 
-					$styles["box-shadow-offset-top"] = $raw_css["normal"]["box-shadow-offset-top"];	
-
-	 			 
-	 			if (! isset($styles["text-shadow-width"])) 
-					$styles["text-shadow-width"] = $raw_css["-mb-text"]["text-shadow-width"];
-				if (! isset($styles["text-shadow-left"])) 
-					$styles["text-shadow-left"] = $raw_css["-mb-text"]["text-shadow-left"];	
-				if (! isset($styles["text-shadow-top"])) 
-					$styles["text-shadow-top"] = $raw_css["-mb-text"]["text-shadow-top"];	
-				
- 			}
- 
- 
-			/* End Hover fix */
-			
-			if (isset($styles["gradient-start-color"])) 
-			{
-				$start = isset($styles["gradient-start-color"]) ? $styles["gradient-start-color"] : '';
-				$end = isset(  $styles["gradient-end-color"]  ) ?  $styles["gradient-end-color"] : ''; 
-				$start_opacity = isset(  $styles["gradient-start-opacity"]  ) ?  $styles["gradient-start-opacity"] : ''; 
-				$end_opacity = isset(  $styles["gradient-end-opacity"]  ) ?  $styles["gradient-end-opacity"] : ''; 		
-				
-				$start = maxbuttons_hex2rgba($start, $start_opacity);
-				$end = maxbuttons_hex2rgba($end, $end_opacity);		
-				$stop =  isset( $styles["gradient-stop"]) ?  $styles["gradient-stop"] : ''; 
-		
-				$css[$part]["background-color"] = $start; 
-				if ( ( $start != '' && $end != '' && $stop != '' ) )
-				{
-				 $css[$part]["background"] = "linear-gradient( $start $stop%, $end);";  
-				 $css[$part]["background"] .= "background: -moz-linear-gradient($start $stop%, $end);";  
-				 $css[$part]["background"] .= "background: -webkit-gradient(linear, left top, left bottom, color-stop($stop%, $start), 
-				 								color-stop(1, $end));";  			 			 				
-		 		 $css[$part]["background"] .= "background: -o-linear-gradient($start $stop%, $end);";  
-		 		 $css[$part]["-pie-background"] = "linear-gradient($start $stop%, $end)";
-				 
-				}							
-			
-				unset($css[$part]["gradient-start-color"]); 
-				unset($css[$part]["gradient-end-color"]); 
-				unset($css[$part]["gradient-stop"]); 
-				unset($css[$part]["gradient-start-opacity"]); 
-				unset($css[$part]["gradient-end-opacity"]); 
-			}
-		
- 
-			if (isset($styles["box-shadow-width"])) 
-			{
-				$width = $styles["box-shadow-width"]; 
-				$left = $styles["box-shadow-offset-left"]; 
-				$top = $styles["box-shadow-offset-top"]; 
-				$color = isset($styles["box-shadow-color"]) ? $styles["box-shadow-color"] : ''; 
-				
-				if ($color != '') 
-					$css[$part]["box-shadow"] = "$left $top $width $color"; 
-				unset($css[$part]["box-shadow-width"]); 
-				unset($css[$part]["box-shadow-offset-left"]); 
-				unset($css[$part]["box-shadow-offset-top"]); 
-				unset($css[$part]["box-shadow-color"]); 
-			
-			}
-			if (isset($styles["text-shadow-width"]) ) 
-			{
-				$width = $styles["text-shadow-width"]; 
-				$left = $styles["text-shadow-left"]; 
-				$top = $styles["text-shadow-top"]; 
-				$color = isset($styles["text-shadow-color"]) ? $styles["text-shadow-color"] : ''; 
-				
-				if ($color != '')
-					$css[$part]["text-shadow"] = "$left $top $width $color"; 
-				unset($css[$part]["text-shadow-width"]); 
-				unset($css[$part]["text-shadow-left"]); 
-				unset($css[$part]["text-shadow-top"]); 
-				unset($css[$part]["text-shadow-color"]); 
-			
-			}		
-		
-		}				
-		
-		return $css; 
-			
-	}
 }
 ?>

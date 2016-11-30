@@ -4,7 +4,7 @@ Tags: twitter, register, login, social connect, social, twitter connect
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 1.5.2
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ One click registration & login plugin for Twitter? Easy installation? Is it tota
 
 == Description ==
 
-Check the [DEMO](http://www.nextendweb.com/wp-login.php) on our site.
+Check the [DEMO](http://secure.nextendweb.com/) on our site.
 
 Also we created a [Social Connect button generator](http://www.nextendweb.com/social-connect-button-generator) for this plugin. This allows you to create fancy login buttons. 
 
@@ -64,6 +64,15 @@ After you activated the plugin, the plugin will autmatically
 
 
 == Changelog ==
+
+= 1.6.0 =
+* Fix: Redirect urls are well encoded - made by JRB
+
+= 1.5.9 =
+* Nonce added to backend
+
+= 1.5.3 =
+* Vulnerability fix
 
 = 1.5.2 =
 * XSS Vulnerability fix

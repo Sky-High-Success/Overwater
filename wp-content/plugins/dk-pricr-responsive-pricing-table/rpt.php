@@ -3,10 +3,10 @@
  * Plugin Name: Responsive Pricing Table
  * Plugin URI: http://wpdarko.com/items/responsive-pricing-table-pro/
  * Description: A responsive, easy and elegant way to present your offer to your visitors. Just create a new pricing table (custom type) and copy-paste the shortcode into your posts/pages. Find help and information on our <a href="http://wpdarko.com/support/">support site</a>. This free version is NOT limited and does not contain any ad. Check out the <a href='http://wpdarko.com/items/responsive-pricing-table-pro/'>PRO version</a> for more great features.
- * Version: 4.2.1
+ * Version: 4.3
  * Author: WP Darko
  * Author URI: http://wpdarko.com
- * Text Domain: responsive-pricing-table
+ * Text Domain: dk-pricr-responsive-pricing-table
  * Domain Path: /lang/
  * License: GPL2
  */
@@ -15,7 +15,7 @@
 // Loading text domain
 add_action( 'plugins_loaded', 'rpt_load_plugin_textdomain' );
 function rpt_load_plugin_textdomain() {
-  load_plugin_textdomain( 'responsive-pricing-table', FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
+  load_plugin_textdomain( 'dk-pricr-responsive-pricing-table', FALSE, basename( dirname( __FILE__ ) ) . '/lang/' );
 }
 
 
@@ -58,19 +58,19 @@ function add_admin_rpt_style() {
 add_action( 'init', 'register_rpt_type' );
 function register_rpt_type() {
 	$labels = array(
-		'name'               => __( 'Pricing Tables', 'responsive-pricing-table' ),
-		'singular_name'      => __( 'Pricing Table', 'responsive-pricing-table' ),
-		'menu_name'          => __( 'Pricing Tables', 'responsive-pricing-table' ),
-		'name_admin_bar'     => __( 'Pricing Table', 'responsive-pricing-table' ),
-		'add_new'            => __( 'Add New', 'responsive-pricing-table' ),
-		'add_new_item'       => __( 'Add New Pricing Table', 'responsive-pricing-table' ),
-		'new_item'           => __( 'New Pricing Table', 'responsive-pricing-table' ),
-		'edit_item'          => __( 'Edit Pricing Table', 'responsive-pricing-table' ),
-		'view_item'          => __( 'View Pricing Table', 'responsive-pricing-table' ),
-		'all_items'          => __( 'All Pricing Tables', 'responsive-pricing-table' ),
-		'search_items'       => __( 'Search Pricing Tables', 'responsive-pricing-table' ),
-		'not_found'          => __( 'No Pricing Tables found.', 'responsive-pricing-table' ),
-		'not_found_in_trash' => __( 'No Pricing Tables found in Trash.', 'responsive-pricing-table' )
+		'name'               => __( 'Pricing Tables', 'dk-pricr-responsive-pricing-table' ),
+		'singular_name'      => __( 'Pricing Table', 'dk-pricr-responsive-pricing-table' ),
+		'menu_name'          => __( 'Pricing Tables', 'dk-pricr-responsive-pricing-table' ),
+		'name_admin_bar'     => __( 'Pricing Table', 'dk-pricr-responsive-pricing-table' ),
+		'add_new'            => __( 'Add New', 'dk-pricr-responsive-pricing-table' ),
+		'add_new_item'       => __( 'Add New Pricing Table', 'dk-pricr-responsive-pricing-table' ),
+		'new_item'           => __( 'New Pricing Table', 'dk-pricr-responsive-pricing-table' ),
+		'edit_item'          => __( 'Edit Pricing Table', 'dk-pricr-responsive-pricing-table' ),
+		'view_item'          => __( 'View Pricing Table', 'dk-pricr-responsive-pricing-table' ),
+		'all_items'          => __( 'All Pricing Tables', 'dk-pricr-responsive-pricing-table' ),
+		'search_items'       => __( 'Search Pricing Tables', 'dk-pricr-responsive-pricing-table' ),
+		'not_found'          => __( 'No Pricing Tables found.', 'dk-pricr-responsive-pricing-table' ),
+		'not_found_in_trash' => __( 'No Pricing Tables found in Trash.', 'dk-pricr-responsive-pricing-table' )
 	);
 
 	$args = array(
@@ -96,11 +96,11 @@ function rpt_updated_messages( $messages ) {
 	$post_type        = get_post_type( $post );
 	$post_type_object = get_post_type_object( $post_type );
 	$messages['rpt_pricing_table'] = array(
-		1  => __( 'Pricing Table updated.', 'responsive-pricing-table' ),
-		4  => __( 'Pricing Table updated.', 'responsive-pricing-table' ),
-		6  => __( 'Pricing Table published.', 'responsive-pricing-table' ),
-		7  => __( 'Pricing Table saved.', 'responsive-pricing-table' ),
-		10 => __( 'Pricing Table draft updated.', 'responsive-pricing-table' )
+		1  => __( 'Pricing Table updated.', 'dk-pricr-responsive-pricing-table' ),
+		4  => __( 'Pricing Table updated.', 'dk-pricr-responsive-pricing-table' ),
+		6  => __( 'Pricing Table published.', 'dk-pricr-responsive-pricing-table' ),
+		7  => __( 'Pricing Table saved.', 'dk-pricr-responsive-pricing-table' ),
+		10 => __( 'Pricing Table draft updated.', 'dk-pricr-responsive-pricing-table' )
 	);
 
 	if ( $post_type_object->publicly_queryable ) {
@@ -240,175 +240,180 @@ foreach($custom_posts as $post) : setup_postdata($post);
 	// Opening rpt_pricr inner
 	$output2 .= '<div class="'. $title_fs_class . $subtitle_fs_class . $description_fs_class . $price_fs_class . $recurrence_fs_class . $features_fs_class. $button_fs_class .'">';
 
-	foreach ($entries as $key => $plans) {
+    if (is_array($entries) || is_object($entries))
+    	foreach ($entries as $key => $plans) {
 
-	if (!empty($plans['_rpt_recommended'])){
-		$is_reco = $plans['_rpt_recommended'];
+    	if (!empty($plans['_rpt_recommended'])){
+    		$is_reco = $plans['_rpt_recommended'];
 
-		//Opening plan
-		if ($is_reco == true ){
-		    $reco = '<img class="rpt_recommended" src="' . plugins_url('img/rpt_recommended.png', __FILE__) . '"/>';
-		    $reco_class = 'rpt_recommended_plan';
-		} else if ($is_reco == false ) {
-		    $reco = '';
-		    $reco_class = '';
-		}
-	} else {
-		$reco = '';
-		$reco_class = '';
-	}
+    		//Opening plan
+    		if ($is_reco == true ){
+    		    $reco = '<img class="rpt_recommended" src="' . plugins_url('img/rpt_recommended.png', __FILE__) . '"/>';
+    		    $reco_class = 'rpt_recommended_plan';
+    		} else if ($is_reco == false ) {
+    		    $reco = '';
+    		    $reco_class = '';
+    		}
+    	} else {
+    		$reco = '';
+    		$reco_class = '';
+    	}
 
-	$output2 .= '<div class="rpt_plan  '.$ori_f.' rpt_plan_' . $key . ' ' . $reco_class . '">';
+      if (empty($plans['_rpt_custom_classes'])){
+        $plans['_rpt_custom_classes'] = '';
+      }
 
-		// Title
-		if (!empty($plans['_rpt_title'])){
-			$output2 .= '<div class="rpt_title rpt_title_' . $key . '">';
+    	$output2 .= '<div class="rpt_plan  '.$ori_f.' rpt_plan_' . $key . ' ' . $reco_class . ' ' . $plans['_rpt_custom_classes'] . '">';
 
-			if (!empty($plans['_rpt_icon'])){
-				$output2 .= '<img height=30px width=30px src="' . $plans['_rpt_icon'] . '" class="rpt_icon rpt_icon_' . $key . '"/> ';
-			}
+    		// Title
+    		if (!empty($plans['_rpt_title'])){
+    			$output2 .= '<div class="rpt_title rpt_title_' . $key . '">';
 
-			$output2 .= $plans['_rpt_title'];
-			$output2 .= $reco . '</div>';
-		}
+    			if (!empty($plans['_rpt_icon'])){
+    				$output2 .= '<img height=30px width=30px src="' . $plans['_rpt_icon'] . '" class="rpt_icon rpt_icon_' . $key . '"/> ';
+    			}
 
-		// Head
-		$output2 .= '<div class="rpt_head rpt_head_' . $key . '">';
+    			$output2 .= $plans['_rpt_title'];
+    			$output2 .= $reco . '</div>';
+    		}
 
-			// Recurrence
-			if (!empty($plans['_rpt_recurrence'])){
-			    	$output2 .= '<div class="rpt_recurrence rpt_recurrence_' . $key . '">' . $plans['_rpt_recurrence'] . '</div>';
-			}
+    		// Head
+    		$output2 .= '<div class="rpt_head rpt_head_' . $key . '">';
 
-			// Price
-			if (!empty($plans['_rpt_price'])){
+    			// Recurrence
+    			if (!empty($plans['_rpt_recurrence'])){
+    			    	$output2 .= '<div class="rpt_recurrence rpt_recurrence_' . $key . '">' . $plans['_rpt_recurrence'] . '</div>';
+    			}
 
-			    $output2 .= '<div class="rpt_price rpt_price_' . $key . '">';
+    			// Price
+    			if (!empty($plans['_rpt_price'])){
 
-			    if (!empty($plans['_rpt_free'])){
-			    	if ($plans['_rpt_free'] == true ){
-			    		$output2 .= $plans['_rpt_price'];
-			    	} else {
-				    	$output2 .= '<span class="rpt_currency"></span>' . $plans['_rpt_price'];
-			    	}
-			    } else {
+    			    $output2 .= '<div class="rpt_price rpt_price_' . $key . '">';
 
-			    	$currency = get_post_meta( $post->ID, '_rpt_currency', true );
+    			    if (!empty($plans['_rpt_free'])){
+    			    	if ($plans['_rpt_free'] == true ){
+    			    		$output2 .= $plans['_rpt_price'];
+    			    	} else {
+    				    	$output2 .= '<span class="rpt_currency"></span>' . $plans['_rpt_price'];
+    			    	}
+    			    } else {
 
-			    	if (!empty($currency)){
-			    		$output2 .= '<span class="rpt_currency">';
-			    		$output2 .= $currency;
-						$output2 .= '</span>';
-					}
+    			    	$currency = get_post_meta( $post->ID, '_rpt_currency', true );
 
-			    	$output2 .= $plans['_rpt_price'];
+    			    	if (!empty($currency)){
+    			    		$output2 .= '<span class="rpt_currency">';
+    			    		$output2 .= $currency;
+    						$output2 .= '</span>';
+    					}
 
-			    }
+    			    	$output2 .= $plans['_rpt_price'];
 
-			    $output2 .= '</div>';
-			}
+    			    }
 
-			// Subtitle
-			if (!empty($plans['_rpt_subtitle'])){
-			    	$output2 .= '<div style="color:' . $plans['_rpt_color'] . ';" class="rpt_subtitle rpt_subtitle_' . $key . '">' . $plans['_rpt_subtitle'] . '</div>';
-			    }
+    			    $output2 .= '</div>';
+    			}
 
-			// Description
-			if (!empty($plans['_rpt_description'])){
-			    $output2 .= '<div class="rpt_description rpt_description_' . $key . '">' . $plans['_rpt_description'] . '</div>';
-			}
+    			// Subtitle
+    			if (!empty($plans['_rpt_subtitle'])){
+    			    	$output2 .= '<div style="color:' . $plans['_rpt_color'] . ';" class="rpt_subtitle rpt_subtitle_' . $key . '">' . $plans['_rpt_subtitle'] . '</div>';
+    			    }
 
-		// Closing plan head
-		$output2 .= '</div>';
+    			// Description
+    			if (!empty($plans['_rpt_description'])){
+    			    $output2 .= '<div class="rpt_description rpt_description_' . $key . '">' . $plans['_rpt_description'] . '</div>';
+    			}
 
-
-		if (!empty($plans['_rpt_features'])){
-
-
-            $output2 .= '<div class="rpt_features rpt_features_' . $key . '">';
+    		// Closing plan head
+    		$output2 .= '</div>';
 
 
-			$string = $plans['_rpt_features'];
-			$stringAr = explode("\n", $string);
-			$stringAr = array_filter($stringAr, 'trim');
+    		if (!empty($plans['_rpt_features'])){
 
-			$features = '';
 
-			foreach ($stringAr as $feature) {
-				$features[] .= strip_tags($feature,'<strong></strong><br><br/></br><img><a>');
-			}
+                $output2 .= '<div class="rpt_features rpt_features_' . $key . '">';
 
-			foreach ($features as $small_key => $feature){
-				if (!empty($feature)){
 
-					$check = substr($feature, 0, 2);
-					if ($check == '-n') {
-						$feature = substr($feature, 2);
-						$check_color = '#bbbbbb';
-					} else {
-						$check_color = 'black';
-					}
+    			$string = $plans['_rpt_features'];
+    			$stringAr = explode("\n", $string);
+    			$stringAr = array_filter($stringAr, 'trim');
 
-					$output2 .= '<div style="color:' . $check_color . ';" class="rpt_feature rpt_feature_' . $key . '-' . $small_key . '">';
-					$output2 .= $feature;
-					$output2 .= '</div>';
+    			$features = '';
 
-				}
-			}
+    			foreach ($stringAr as $feature) {
+    				$features[] .= strip_tags($feature,'<strong></strong><br><br/></br><img><a>');
+    			}
 
-			$output2 .= '</div>';
-		}
+    			foreach ($features as $small_key => $feature){
+    				if (!empty($feature)){
 
-		if (!empty($plans['_rpt_btn_text'])){
-			$btn_text =	$plans['_rpt_btn_text'];
-			if (!empty($plans['_rpt_btn_link'])){
-				$btn_link =	$plans['_rpt_btn_link'];
-			} else { $btn_link = '#'; }
-		} else {
-			$btn_text =	'';
-			$btn_link = '#';
-		}
+    					$check = substr($feature, 0, 2);
+    					if ($check == '-n') {
+    						$feature = substr($feature, 2);
+    						$check_color = '#bbbbbb';
+    					} else {
+    						$check_color = 'black';
+    					}
 
-		// Link option
-		$newcurrentwindow = get_post_meta( $post->ID, '_rpt_open_newwindow', true );
-		if ($newcurrentwindow == 'newwindow'){
-			$link_behavior = 'target="_blank"';
-		} else {
-			$link_behavior = 'target="_self"';
-		}
+    					$output2 .= '<div style="color:' . $check_color . ';" class="rpt_feature rpt_feature_' . $key . '-' . $small_key . '">';
+    					$output2 .= $feature;
+    					$output2 .= '</div>';
 
-        // Check for custom button
-        if (!empty($plans['_rpt_btn_custom_btn'])){
-            $output2 .= '<div class="rpt_custom_btn" style="border-bottom-left-radius:5px; border-bottom-right-radius:5px; text-align:center; padding:16px 20px; background-color:'.$plans['_rpt_color'].'">';
-                $output2 .= do_shortcode($plans['_rpt_btn_custom_btn']);
-            $output2 .= '</div>';
-        } else {
-		  // Default footer
-            if (!empty($plans['_rpt_btn_text'])){
-		    $output2 .= '<a '. $link_behavior .' href="' . do_shortcode($btn_link) . '" style="background:' . $plans['_rpt_color'] . '" class="rpt_foot rpt_foot_' . $key . '">';
+    				}
+    			}
+
+    			$output2 .= '</div>';
+    		}
+
+    		if (!empty($plans['_rpt_btn_text'])){
+    			$btn_text =	$plans['_rpt_btn_text'];
+    			if (!empty($plans['_rpt_btn_link'])){
+    				$btn_link =	$plans['_rpt_btn_link'];
+    			} else { $btn_link = '#'; }
+    		} else {
+    			$btn_text =	'';
+    			$btn_link = '#';
+    		}
+
+    		// Link option
+    		$newcurrentwindow = get_post_meta( $post->ID, '_rpt_open_newwindow', true );
+    		if ($newcurrentwindow == 'newwindow'){
+    			$link_behavior = 'target="_blank"';
+    		} else {
+    			$link_behavior = 'target="_self"';
+    		}
+
+            // Check for custom button
+            if (!empty($plans['_rpt_btn_custom_btn'])){
+                $output2 .= '<div class="rpt_custom_btn" style="border-bottom-left-radius:5px; border-bottom-right-radius:5px; text-align:center; padding:16px 20px; background-color:'.$plans['_rpt_color'].'">';
+                    $output2 .= do_shortcode($plans['_rpt_btn_custom_btn']);
+                $output2 .= '</div>';
             } else {
-              $output2 .= '<a '. $link_behavior .' style="background:' . $plans['_rpt_color'] . '" class="rpt_foot rpt_foot_' . $key . '">';
+    		  // Default footer
+                if (!empty($plans['_rpt_btn_text'])){
+    		    $output2 .= '<a '. $link_behavior .' href="' . do_shortcode($btn_link) . '" style="background:' . $plans['_rpt_color'] . '" class="rpt_foot rpt_foot_' . $key . '">';
+                } else {
+                  $output2 .= '<a '. $link_behavior .' style="background:' . $plans['_rpt_color'] . '" class="rpt_foot rpt_foot_' . $key . '">';
+                }
+
+                $output2 .= do_shortcode($btn_text);
+
+    		  // Closing default footer
+    		  $output2 .= '</a>';
             }
 
-            $output2 .= do_shortcode($btn_text);
+        $output2 .= '</div>';
 
-		  // Closing default footer
-		  $output2 .= '</a>';
-        }
+    	}
 
-    $output2 .= '</div>';
+    	// Closing rpt_inner
+    	$output2 .= '</div>';
 
-	}
+    	// Closing rpt_container
+    	$output2 .= '</div>';
 
-	// Closing rpt_inner
-	$output2 .= '</div>';
+    	$output2 .= '<div style="clear:both;"></div>';
 
-	// Closing rpt_container
-	$output2 .= '</div>';
-
-	$output2 .= '<div style="clear:both;"></div>';
-
-  endforeach; wp_reset_postdata();
+        endforeach; wp_reset_postdata();
   return $output2;
 
 }

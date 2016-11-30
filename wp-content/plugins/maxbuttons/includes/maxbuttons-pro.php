@@ -1,154 +1,449 @@
 <?php
 
-$plugin_url = MB()->get_plugin_url();
+$url = MB()->get_plugin_url();
+$img_url = $url . "images/gopro";
+$icon_url = $img_url . '/icons/';  
+?>
+<?php
+$admin = MB()->getClass('admin'); 
+$page_title = __("Upgrade to Pro","maxbuttons"); 
+$version = maxAdmin::getAdversion(); 
+$checkout_url = maxAdmin::getCheckoutURL(); 
+
+$buy_now_top = '<a class="page-title-action add-new-h2 big-maxg-btn" href="
+' . $checkout_url . '&utm_source=mbf-dash' . $version . '&utm_medium=mbf-plugin&utm_content=buy-now&utm_campaign=buy-now-top' . $version . '" target="_blank">' . __("Buy Now", "maxbuttons") . "</a>"; 
+
+$middle_buy = $checkout_url . "&utm_source=mbf-dash$version&utm_medium=mbf-plugin&utm_content=buy-now&utm_campaign=buy-now-1selling$version"; 
+
+$bottom_buy = $checkout_url . "&utm_source=mbf-dash$version&utm_medium=mbf-plugin&utm_content=buy-now&utm_campaign=getitnow$version"; 
+ 
+$admin->get_header(array("title" => $page_title, "title_action" => $buy_now_top, 'action' => 'gopro' ) );
+
+
+
 ?>
 
-<div id="maxbuttons">
-	<div class="wrap">
-		<div class="icon32">
-			<a href="https://maxbuttons.com" target="_blank"><img src="<?php echo $plugin_url   ?>images/mb-32.png" alt="MaxButtons" /></a>
-		</div>
-		
-		<h2 class="title"><?php _e('MaxButtons: Upgrade to Pro', 'maxbuttons') ?></h2>
-		
-		<div class="logo">
-			<?php do_action("mb-display-logo"); ?> 
-		</div>
-		
-		<div class="clear"></div>
-		
-			<?php do_action('mb-display-tabs'); ?> 
-		
-		<div class="pro-offer">
-			<h2><?php _e('Upgrade to MaxButtons Pro - It\'s Only $19!', 'maxbuttons') ?></h2>
-			<p><?php _e('If you\'ve created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.', 'maxbuttons') ?></p>
-			<p><?php printf(__('Now you can take your buttons to the next level with %sMaxButtons Pro%s. The Pro version gives you all the CSS3 goodness and so much more:', 'maxbuttons'), '<a href="https://maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank">', '</a>') ?></p>
-			<ul>
-				<li><strong><?php _e('Font Awesome Integration', 'maxbuttons') ?></strong> - <?php _e('Use icons from the most popular icon font set on the web!', 'maxbuttons') ?></li>
-				<li><strong><?php _e('Icon Support', 'maxbuttons') ?></strong> - <?php _e('Like buttons, everyone loves icons. Use Font Awesome or upload yor own.', 'maxbuttons') ?></li>
-				<li><strong><?php _e('Multi-Line Text', 'maxbuttons') ?></strong> - <?php _e('Use a second a line of text to communicate extra information to your users and customers.', 'maxbuttons') ?></li>
-				<li><strong><?php _e('Google Fonts', 'maxbuttons') ?></strong> - <?php _e('Great typography can take your buttons up several notches.', 'maxbuttons') ?></li>
-				<li><strong><?php _e('Button Packs', 'maxbuttons') ?></strong> - <?php _e('Import sets of pre-defined buttons, which you can then use as-is or customize as you need.', 'maxbuttons') ?></li>
-				<li><strong><?php _e('Shopp Integration', 'maxbuttons') ?></strong> - <?php _e('Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.', 'maxbuttons') ?></li>
-			</ul>
-			<p><?php printf(__('And did we mention you can %sget MaxButtons Pro for only $19%s', 'maxbuttons'), '<a href="https://maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank">', '</a>') ?></a>?</p>
-			
-			<h2><?php _e('CSS3 Button Examples', 'maxbuttons') ?></h2>
-			<p><?php _e('Just take a look at the types of buttons you can make with MaxButtons Pro:', 'maxbuttons') ?></p>
-			<p><img src="<?php echo $plugin_url  ?>images/css3-button-examples.png" alt="CSS3 Button Examples" /></p>
+   <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>   
+    <div class="wrapper-inner">
+ 
+ 
 
-			<h2><?php _e('Button Packs: Pre-Made Sets of CSS3 and Icon Goodness', 'maxbuttons') ?></h2>
-			<p><?php printf(__('Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an %sever-growing collection of button packs%s that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).', 'maxbuttons'), '<a href="https://maxbuttons.com/product-category/button-packs/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21" target="_blank">', '</a>') ?></p>
-			<div class="button-packs">
-				<div class="pack">
-					<a href="https://maxbuttons.com/shop/e-commerce-buttons/?ref=mbfree" target="_blank"><img src="<?php echo $plugin_url  ?>images/button-pack-e-commerce-buttons.png" alt="E-Commerce Buttons" border="0" /></a>
-					<br />
-					<a href="http://maxbuttons.com/shop/e-commerce-buttons/?ref=mbfree" target="_blank"><?php _e('E-Commerce Buttons', 'maxbuttons') ?></a>
-				</div>
-				<div class="pack">
-					<a href="https://maxbuttons.com/shop/colored-round-social-icons-1/?ref=mbfree" target="_blank"><img src="<?php echo $plugin_url  ?>images/button-pack-colored-round-social-icons-1.png" alt="Colored Round Social Icons 1" border="0" /></a>
-					<br />
-					<a href="https://maxbuttons.com/shop/colored-round-social-icons-1/?ref=mbfree" target="_blank"><?php _e('Colored Round Social Icons Set #1', 'maxbuttons') ?></a>
-				</div>
-				<div class="pack">
-					<a href="https://maxbuttons.com/shop/chrome-icons/?ref=mbfree" target="_blank"><img src="<?php echo $plugin_url  ?>images/button-pack-chrome-icons.png" alt="Chrome Icons" border="0" /></a>
-					<br />
-					<a href="http://maxbuttons.com/shop/chrome-icons/?ref=mbfree" target="_blank"><?php _e('Chrome Icons', 'maxbuttons') ?></a>
-				</div>
-				<div class="pack">
-					<a href="http://maxbuttons.com/shop/shopping-cart-blue/?ref=mbfree" target="_blank"><img src="<?php echo $plugin_url  ?>images/button-pack-shopping-cart-blue.png" alt="Shopping Cart Blue" border="0" /></a>
-					<br />
-					<a href="https://maxbuttons.com/shop/shopping-cart-blue/?ref=mbfree" target="_blank"><?php _e('Shopping Cart Blue', 'maxbuttons') ?></a>
-				</div>
-				<div class="pack">
-					<a href="https://maxbuttons.com/shop/pace/?ref=mbfree" target="_blank"><img src="<?php echo $plugin_url  ?>images/button-pack-pace.png" alt="Pace" border="0" /></a>
-					<br />
-					<a href="https://maxbuttons.com/shop/pace/?ref=mbfree" target="_blank"><?php _e('Pace', 'maxbuttons') ?></a>
-				</div>
-				<div class="pack">
-					<a href="https://maxbuttons.com/shop/social-sign-in/?ref=mbfree" target="_blank"><img src="<?php echo $plugin_url  ?>images/button-pack-social-sign-in.png" alt="Social Sign-In" border="0" /></a>
-					<br />
-					<a href="https://maxbuttons.com/shop/social-sign-in/?ref=mbfree" target="_blank"><?php _e('Social Sign-In', 'maxbuttons') ?></a>
-				</div>
+  <div class="default-section">
+    <div class="container">
+      <h2>Build Even Better WordPress Buttons with MaxButtons Pro!</h2>
+      <p>
+        Take your WordPress Buttons, Social Share and Social Icons to the next level
+      </p>
+      <div class="rating bordered">
+        <img src="<?php echo $img_url ?>/stars.png" alt="stars" />
+        <p>
+          300+ 5 Star Ratings
+        </p>
+      </div>
+      <p>
+        Join our over 5,000 customers!
+      </p>
+    </div> <!-- container --> 
+  </div>
+
+  <div class="default-section">
+    <div class="container">
+      <h2>Powerful Advanced Features</h2>
+      <p>
+        Add icons, use Google Fonts and More to Fully Customize your Design to Work on your Site
+      </p>
+      <div class="icon-row">
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>nocode.png" alt="No Coding Required" />
+		      <p>
+		        No Coding Required
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>easycreate.png" alt="Easily Create And Modify Buttons" />
+		      <p>
+		       Easily Create And Modify Buttons
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>quickadd.png" alt="img" />
+		      <p>
+				Quickly Add Buttons to Your Site
+		      </p>
+		    </div>
+		    <div class="clearfix"></div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>responsive.png" alt="img" />
+		      <p>
+		        Responsive Layout
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>1000buttons.png" alt="img" />
+		      <p>
+		        Thousands of Buttons
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>buttonmanagement.png" alt="img" />
+		      <p>
+		       Button Management
+		      </p>
+		    </div>
+		    <div class="clearfix"></div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>basic-buttons-pack.png" alt="img" />
+		      <p>
+	 	       Basic Buttons Pack Included
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>2lines.png" alt="img" />
+		      <p>
+		        Two Lines of Text
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>add-icons.png" alt="img" />
+		      <p>
+		        Add Icons
+		      </p>
+		    </div>
+		    <div class="clearfix"></div>
+
+		    <div class="width-33">
+		      <p>&nbsp;
+		      </p>
+		    </div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>support.png" alt="img" />
+		      <p>
+		        Regular Upgrades and Fast Friendly Support
+		      </p>
+		    </div>
+		    <div class="width-33">
+				<p>&nbsp;</p>
+
+		    </div>
+			 <div class="clearfix"></div>
+		</div><!-- icon row --> 
+
+  		<h2>Powerful Integrations</h2>
+  		<p>&nbsp;</p>
+  		<div class='icon-row'>
+  			<div class='clearfix'></div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>visual-composer.png" alt="No Coding Required" />
+		      <p>
+		        Visual Composer for WordPress
+		      </p>
+		    </div>
+			<div class="width-33">
+			  <img src="<?php echo $icon_url ?>site-origin.png" alt="No Coding Required" />
+			  <p>
+				SiteOrigin Page Builder
+			  </p>
 			</div>
-			
-			<h2><?php _e('Feature Comparison', 'maxbuttons') ?></h2>
-			<p><?php _e('There\'s nothing like a nice, straightforward checklist to do a product comparison, so here\'s another one:', 'maxbuttons') ?></p>
-			<table class="compare" cellpadding="0" cellspacing="0">
-				<tr>
-					<th>&nbsp;</th>
-					<th><?php _e('Free Version', 'maxbuttons') ?></th>
-					<th><?php _e('MaxButtons Pro', 'maxbuttons') ?></th>
-				</tr>
-				<tr>
-					<td><?php _e('Icon support (put icons to the left, right, top, or bottom of your text)', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Multi-line text, to add a second line of text for communicating extra information', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Google Fonts, to make your buttons stand out with beautiful typography', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Button packs, to import pre-made sets of buttons into your website', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Import/export functionality (useful for backing up and/or moving your buttons)', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Explicit height and width options, to ensure your buttons are the same size', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Shopp integration for buttons in your e-commerce shopping cart', 'maxbuttons') ?></td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Major browser support (Firefox, Chrome, Opera, Safari, and IE9)', 'maxbuttons') ?></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Gradients for background colors', 'maxbuttons') ?></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Border radius for rounded corners', 'maxbuttons') ?></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Text and box shadowing', 'maxbuttons') ?></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Hover effects and styles', 'maxbuttons') ?></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td><?php _e('Shortcodes to use anywhere in your WordPress site', 'maxbuttons') ?></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo $plugin_url  ?>images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-			</table>
-			
-			<h2><?php _e('Get Your Copy Today', 'maxbuttons') ?></h2>
-			<p><?php printf(__('So what are you waiting for? %sGrab your copy of MaxButtons Pro today%s!', 'maxbuttons'), '<a href="https://maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank">', '</a>') ?></p>
-		</div>
-	</div>
-</div>
+			<div class="width-33">
+				<img src="<?php echo $icon_url ?>easydigitaldownloads.png" alt="No Coding Required" />
+				<p>
+				Easy Digital Downloads
+				</p>
+			</div>        
+			<div class="clearfix"></div>
+		    <div class="width-33">
+		      <img src="<?php echo $icon_url ?>beaverbuilder.png" alt="No Coding Required" />
+		      <p>
+			    Beaver Builder
+		      </p>
+		    </div>
+			<div class="width-33">
+			  <img src="<?php echo $icon_url ?>fontawesome.png" alt="No Coding Required" />
+			  <p>
+				Font Awesome Icons
+			  </p>
+			</div>
+			<div class="width-33">
+				<img src="<?php echo $icon_url ?>googleanalytics.png" alt="No Coding Required" />
+				<p>
+				Google Analytics Event Tracking
+				</p>
+			</div> 
+			<div class="clearfix"></div>
+		    <div class="width-33">
+		      <p>
+		       
+		      </p>
+		    </div>
+			<div class="width-33">
+			  <img src="<?php echo $icon_url ?>google-fonts.png" alt="No Coding Required" />
+			  <p>
+				 Google Fonts
+			  </p>
+			</div>
+			<div class="width-33">
+				<p>
+				</p>
+			</div> 	
+			<div class="clearfix"></div>		        
+  		</div> <!-- icon-row -->
+  	</div> <!-- container -->
+  </div> <!-- section --> 
+  	
+
+  <div class="default-section">
+    <div class="container">
+      <h2>#1 Selling WordPress Button Plugin!</h2>
+      <div class="btn-row">
+        <img src="<?php echo $img_url ?>/s2-price.png" alt="img" class="inline-block" />
+        <a href="<?php echo $middle_buy ?>" target="_blank" class="big-maxg-btn inline-block">Buy Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="default-section">
+    <div class="container">
+      <h2>More Effective Buttons Are Made with MaxButton Pro's Advanced Features</h2>
+      <img src="<?php echo $img_url ?>/s3-btns.png" alt="img" class="bordered" />
+    </div>
+  </div>
+
+  <div class="default-section">
+    <div class="container">
+      <h2>Purchase Professionally Designed, Production Ready Button Packs</h2>
+      <p>
+        Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an ever-growing collection of button packs that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).
+      </p>
+      <div class="image-row">
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack1.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack2.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack3.png" alt="img" class="bordered" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack4.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack5.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack6.png" alt="img" class="bordered" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack7.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack8.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s4-pack9.png" alt="img" class="bordered" />
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="default-section">
+    <div class="container">
+      <h2>10+ Free Sets of Ready to Use Button Packs</h2>
+      <p>
+        No time to design your own buttons?
+      </p>
+      <p>
+        Download any of our free button packs included with MaxButtons Pro and load them onto your site in seconds!
+      </p>
+      <div class="image-row">
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set1.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set2.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set3.png" alt="img" class="bordered" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set4.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set5.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set6.png" alt="img" class="bordered" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set7.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set8.png" alt="img" class="bordered" />
+        </div>
+        <div class="width-33">
+          <img src="<?php echo $img_url ?>/s5-set9.png" alt="img" class="bordered" />
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="default-section">
+    <div class="container">
+      <h2>Social Share Capabilities</h2>
+      <p>
+        MaxButtons Pro includes 17 Designed and Configured Social Share Collections to get the Most Value From your Content Marketing.
+      </p>
+      <p>
+        Use one of our Collections out of the Box or Customize Your Icons with MaxButtons Pro's Editor.
+      </p>
+      <p>
+        Here are Samples of Each of Our Collections.
+      </p>
+      <div class="social-row image-row">
+        <div class="width-33">
+          <p>
+            5 Social Share Boxes
+
+          <img src="<?php echo $img_url ?>/social-1.png" alt="img" />
+          </p>
+        </div>
+        <div class="width-33">
+          <p>
+            Gray Social Share Buttons 
+          <img src="<?php echo $img_url ?>/social-2.png" alt="img" />
+         </p>
+        </div>
+        <div class="width-33">
+          <p>
+            Minimalistic Share Buttons
+          <img src="<?php echo $img_url ?>/social-3.png" alt="img" />
+           </p>
+        </div>
+         <div class="clearfix"></div>
+        <div class="width-33">
+          <p>
+            Modern Social Share
+          <img src="<?php echo $img_url ?>/social-4.png" alt="img" />
+          </p>
+        </div>
+        <div class="width-33">
+          <p>
+            Monochrome Social Share Buttons
+          <img src="<?php echo $img_url ?>/social-5.png" alt="img" />
+          </p>
+        </div>
+        <div class="width-33">
+          <p>
+            Notched Box Social Share
+          <img src="<?php echo $img_url ?>/social-6.png" alt="img" />
+          </p>
+
+        </div>
+         <div class="clearfix"></div>
+        <div class="width-33">
+          <p>
+            Round sharing collection
+          <img src="<?php echo $img_url ?>/social-7.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-33">
+          <p>
+            Round White Social Share
+          <img src="<?php echo $img_url ?>/social-8.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-33">
+          <p>
+            Rounded Corner Black Icons
+          <img src="<?php echo $img_url ?>/social-9.png" alt="img" />
+          </p>
+
+        </div>
+        
+        <div class="clearfix"></div>
+         
+        <div class="width-33">
+          <p>
+            Share Plus Buttons
+          <img src="<?php echo $img_url ?>/social-10.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-33">
+          <p>
+            Sharing Circles
+          <img src="<?php echo $img_url ?>/social-11.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-33">
+          <p>
+            Social Counter Buttons
+          <img src="<?php echo $img_url ?>/social-12.png" alt="img" />
+          </p>
+
+        </div>
+        
+         <div class="clearfix"></div>
+        <div class="width-33">
+          <p>
+            Social Share Squares
+          <img src="<?php echo $img_url ?>/social-13.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-33">
+          <p>
+            Stacked Rectangles
+          <img src="<?php echo $img_url ?>/social-14.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-33">
+          <p>
+            Stacked Sharing Buttons
+          <img src="<?php echo $img_url ?>/social-15.png" alt="img" />
+          </p>
+
+        </div>
+        
+         <div class="clearfix"></div>
+        <div class="width-50">
+          <p>
+            Text Plus Count Share Buttons
+          <img src="<?php echo $img_url ?>/social-16.png" alt="img" />
+          </p>
+
+        </div>
+        <div class="width-50">
+          <p>
+            Transparent Social Share Squares
+          <img src="<?php echo $img_url ?>/social-17.png" alt="img" />
+          </p>
+        </div>
+         <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="default-section">
+    <div class="container">
+      <h2>Get MaxButtons Pro Now!</h2>
+      <div class="btn-row">
+        <a href="<?php echo $bottom_buy ?>" target="_blank" class="big-maxg-btn inline-block">Get It Now</a>
+      </div>
+    </div>
+  </div>
+    </div>
+    <!-- wrapper -->
+	
+ 
+<?php $admin->get_footer(); ?> 

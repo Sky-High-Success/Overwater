@@ -22,6 +22,20 @@ class maxButtonsAdmin
 	
 	}
 
+	public function loadFonts() 
+	{
+		$fonts = array(
+			'' => '',
+			'Arial' => 'Arial',
+			'Courier New' => 'Courier New', 
+			'Georgia' => 'Georgia',
+			'Tahoma' => 'Tahoma',
+			'Times New Roman' => 'Times New Roman',
+			'Trebuchet MS' => 'Trebuchet MS',
+			'Verdana' => 'Verdana'
+		);
+		return $fonts;
+	}
 
 	/* Get multiple buttons 
 	
@@ -35,8 +49,8 @@ class maxButtonsAdmin
 		
 		$defaults = array(
 			"status" => "publish", 
-			"orderby" => "", 
-			"order" => "asc",
+			"orderby" => "id", 
+			"order" => "DESC",
 			"limit" => 20, 
 			"paged" => 1, 
 		);
@@ -50,6 +64,9 @@ class maxButtonsAdmin
 		// 'white-list' escaping
 		switch ($args["orderby"])
 		{
+			case "id"; 
+				$orderby = "id"; 
+			break;
 			case "name": 
 			default: 
 				$orderby = "name"; 	
@@ -60,16 +77,18 @@ class maxButtonsAdmin
 		switch($args["order"])
 		{
 			case "DESC": 
+			case "desc": 
 				$order = "DESC"; 
 			break;
 			case "ASC": 
+			case "asc": 
 			default:
 				$order = "ASC"; 
 			break;
 		}
 
 		
-		$sql = "SELECT id FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE status = '%s'"; 
+		$sql = "SELECT id FROM " . maxUtils::get_table_name() . " WHERE status = '%s'"; 
 		if ($args["orderby"] != '')
 		{
 			$sql .=  " ORDER BY $orderby $order"; 
@@ -88,8 +107,10 @@ class maxButtonsAdmin
 		}
 		
 		$sql = $this->wpdb->prepare($sql,$escape , ARRAY_A); 
- 
+ 		
 		$buttons = $this->wpdb->get_results($sql, ARRAY_A);
+ 
+		
 		return $buttons;
 		
 	}
@@ -102,7 +123,7 @@ class maxButtonsAdmin
 		);
 		$args = wp_parse_args($args, $defaults); 
 		
-		$sql = "SELECT count(id) FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE status = '%s'"; 
+		$sql = "SELECT count(id) FROM " . maxUtils::get_table_name() . " WHERE status = '%s'"; 
 		$sql = $this->wpdb->prepare($sql, $args["status"] ); 
 		$result = $this->wpdb->get_var($sql);
 		return $result;
@@ -179,35 +200,35 @@ class maxButtonsAdmin
 		$button = new MaxButton(); 
 		$buttons = $admin->getButtons($args);
 	
-	
-		$nav = $admin->getButtonPages($args); 
-		$prev = ''; $next = ''; 
-		
-		if ($nav["prev_page"])
-		{
-			$prev = " <span class='prev' data-page='" . $nav["prev_page"] . "'> << </span>  "; 
-		}		
-		if ($nav["next_page"])		
-		{
-			$next = "<span class='next' data-page='" . $nav["next_page"] . "'> >> </span> ";
-		}
- 
-
-		echo "<div class='pagination'>$prev $next
-				</div>";
 		echo "<div id='maxbuttons'><div class='preview-buttons'>";
+
+		echo '<div class="tablenav top"> ';
+		echo "<span class='hint'>" . __('Click on a button to select it and add the shortcode to the editor', 'maxbuttons') . "</span>"; 		
+		do_action('mb-display-pagination', $args); 
+		echo '<span class="loading"></span>'; 
+		echo '</div>'; 
+
+
+		if (count($buttons) == 0) 
+		{
+ 
+ 			$url = admin_url('admin.php?page=maxbuttons-controller&action=edit');
+			echo "<p><strong>" . __("You didn't add any buttons yet!","maxbuttons") . "</strong></p>"; 
+			echo "<P>" . sprintf(__("Click %shere%s to add one", "maxbuttons"), 
+					"<a href='$url' target='_blank'>", "</a>") . "</strong></p>"; 
+
+		}
+		
 		foreach($buttons as $b)
 		{
 			
 			$button_id = $b["id"]; 
 			$button->set($button_id);
-			echo "<div class='button-row'>"; 
+			echo "<div class='button-row button-select' data-button='$button_id'>"; 
 			echo "<span class='col col_insert'> "; 
-			echo "	<a href='#' onclick='insertButtonShortcode($button_id); return false;'>";
-			 _e('Insert This Button', 'maxbuttons'); 
-			 echo "</a> &raquo;
-			 	<br> <span class='small'>[ID: $button_id ]</span>
-			 </span>  ";
+
+			 echo "<span class='small'>[ID: $button_id ]</span>
+			 </span>  "; 
 			 
 			echo "<span class='col col_button'><div class='shortcode-container'>";
 			 $button->display(array("mode" => "preview", "load_css" => "inline" ));
@@ -215,23 +236,82 @@ class maxButtonsAdmin
 			echo "<span class='col col_name'>" . $button->getName() . "</span>";
 			echo "</div>";  
 		}
-		echo "</div></div>"; 
-		echo "<div class='pagination'>$prev $next
-				</div>";		
+		echo '<div class="tablenav bottom"> ';
+		do_action('mb-display-pagination', $args); 
+		echo '<span class="loading"></span>'; 		
+		echo '</div>'; 
+
+		
+		echo "</div></div>";
+		echo "<p>&nbsp;</p>";  
+			
 		exit(); 
 		
 	}
-
-	function get_header()
+	function get_header($args =array() )
 	{
+		$defaults = array(
+			"tabs_active" => false,
+			"title" => "",		
+			"action" => "", 
+			); 
+		
+		$args = wp_parse_args($args, $defaults); 
+		extract($args);
+		
 		include_once(MB()->get_plugin_path() . "includes/admin_header.php"); 
 	
 	}
+
 	
 	function get_footer()
 	{
 		include_once(MB()->get_plugin_path() . "includes/admin_footer.php"); 
 	
 	}
-
+	
+	// unified (future way to end ajax requests + feedback 
+	function endAjaxRequest($args = array())
+	{
+		$defaults = array(
+			"error" => true, // can have errors and still result true on success
+			"result" => true, 
+			"body" => "", 
+			"title" => "",
+			"data" => array(), 
+			);
+			
+		$args = wp_parse_args($args, $defaults); 
+		
+		echo json_encode($args);
+		die(); 
+					
+	
+	}
+	
+	function log($action, $message) 
+	{
+		if (! defined('MAXBUTTONS_DEBUG') || ! MAXBUTTONS_DEBUG)
+			return; 
+		
+		$stack = debug_backtrace(); 
+		$caller = $stack[1]['function'];	
+	
+		$dir = MB()->get_plugin_path() . "logs"; 
+		if (! is_dir($dir)) 
+			@mkdir($dir, 0777, true); // silently fail here. 
+	
+		if (! is_dir($dir)) 
+			return false; 
+	
+		$file = fopen($dir . "/maxbuttons.log", "a+"); 
+		$now = new DateTime() ; 
+		$now_format = $now->format("d/M/Y H:i:s"); 
+		
+		$write_string = "[" . $now_format . "] $action - $message ( $caller )"; 
+		fwrite($file, $write_string); 
+		fclose($file); 
+		 
+		
+	}
 }

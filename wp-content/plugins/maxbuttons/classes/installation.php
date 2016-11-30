@@ -23,22 +23,25 @@ class maxInstall
 	static function check_database()
 	{
 		$checked = get_option("MB_DBASECHECK", true); 
-		if ($checked == '')
+		if ($checked !== false) // removing this option.
+			delete_option('MB_DBASECHECK'); 
+		
+		$version = MAXBUTTONS_VERSION_NUM;
+		$installed_version = MB()->get_installed_version(); 
+		if ($version !== $installed_version)
 		{
- 
-			$table = maxButtonsUtils::get_buttons_table_name(); 
- 
-			if (! self::maxbuttons_database_table_exists($table))
-			{
-				self::activate_plugin();
-			}
+			$table = maxUtils::get_table_name(); 
+
+			self::activate_plugin(); // always run the DBdelta on version mismatch.
+			self::clear();
 		}
-		update_option("MB_DBASECHECK","1");
 	}
 
 	static function activate_plugin($gocreate = true)
 	{
-		
+		$button = new maxButton();
+		$button->reset_cache(); //refresh cache
+	
 		static::create_database_table();
 		static::migrate(); 
 		static::upgradeUTF();
@@ -51,7 +54,13 @@ class maxInstall
 
 	}
 	
-	/* Move data from old version database to new version 
+	/** Function to clear out obsolete and old options, items etc. */
+	static function clear() 
+	{
+		delete_option('MB_DBASECHECK');
+	}
+	
+	/** Move data from old version database to new version 
 		
 	   Check if new database table is empty ( aka new ) to prevent migrating the same data multiple times then copy all rows from old table to the new one.  
 	*/
@@ -59,8 +68,8 @@ class maxInstall
 	{
 		global $wpdb; 
 		
-		$old_table = maxButtonsUtils::get_buttons_table_name(true); 
-		$table = maxButtonsUtils::get_buttons_table_name(); 
+		$old_table = maxUtils::get_table_name(true); 
+		$table = maxUtils::get_table_name(); 
  	
  		if (! self::maxbuttons_database_table_exists($old_table))
  		{
@@ -92,6 +101,7 @@ class maxInstall
 		}
 	}
 	
+	/** Import fields from the old database format ( pre version 3.0 ) */
 	static function convertOldFields($row)
 	{
 			$data = array(); 
@@ -161,6 +171,42 @@ class maxInstall
 			 
 			$data["external_css"] =  (isset($row["external_css"]) && $row["external_css"] != "") ? 1: 0; 
 			$data["important_css"] =  (isset($row["important_css"]) && $row["important_css"] != "") ? 1 : 0;
+			
+			// icon
+	 		$data["use_fa_icon"] = (isset($row["use_font_awesome_icon"]) && $row["use_font_awesome_icon"] != '') ? 1 : 0; 
+	 		$data["fa_icon_value"] = (isset($row["font_awesome_icon"])) ? $row["font_awesome_icon"] : '';
+	 		$data["fa_icon_size"] = (isset($row["font_awesome_icon_size"])) ? $row["font_awesome_icon_size"] : ''; 
+	 		$data["icon_url"] = (isset($row["icon_url"])) ? $row["icon_url"] : '';
+	 		$data["icon_alt"] = (isset($row["icon_alt"])) ? $row["icon_alt"] : ''; 
+	 		$data["icon_position"] = (isset($row["icon_position"])) ? $row["icon_position"] : '';
+	 		$data["icon_padding_top"] = (isset($row["icon_padding_top"])) ? $row["icon_padding_top"] : '';
+	 		$data["icon_padding_bottom"] = (isset($row["icon_padding_bottom"])) ? $row["icon_padding_bottom"] : '';
+	 		$data["icon_padding_left"] = (isset($row["icon_padding_left"])) ? $row["icon_padding_left"] : '';
+	 		$data["icon_padding_right"] = (isset($row["icon_padding_right"]))? $row["icon_padding_right"] : '';
+
+			// dimension
+			$data["button_width"] = (isset($row["width"])) ? $row["width"] : ''; 
+			$data["button_height"] = (isset($row["height"])) ? $row["height"] : ''; 
+
+			// colorPro 
+			$data["icon_color"] = (isset($row["icon_color"])) ? $row["icon_color"] : ''; 
+			$data["icon_color_hover"] = (isset($row["icon_color_hover"])) ? $row["icon_color_hover"] : ''; 
+			
+			// textPro 
+			$data["text2"] = $row["text2"]; 
+			$data["font2"] = $row["text2_font_family"]; 
+			$data["font_size2"] = $row["text2_font_size"]; 
+			$data["font_style2"] = $row["text2_font_style"]; 
+			$data["font_weight2"] = $row["text2_font_weight"]; 
+			$data["padding_top2"] = $row["text2_padding_top"]; 
+			$data["padding_right2"] = $row["text2_padding_right"]; 
+			$data["padding_bottom2"] = $row["text2_padding_bottom"]; 	
+			$data["padding_left2"] = $row["text2_padding_left"];
+		
+			$data["text_align"] = (isset($row["text_align"])) ? $row["text_align"] : ''; 
+			$data["text_align2"] = (isset($row["text2_align"])) ? $row["text2_align"] : ''; 
+	 		// here old / new Pro Database fields. 			
+			
 			return $data;
 	}
 	
@@ -181,7 +227,7 @@ class maxInstall
 	 
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		
-		$table_name = maxButtonsUtils::get_buttons_table_name();
+		$table_name = maxUtils::get_table_name();
 		$button = new maxButton();
 		$blocks = $button->getDefinedBlocks();
 	
@@ -200,53 +246,56 @@ class maxInstall
 			$sql .= "" . $block . " TEXT NULL, \n "; 	
 		}
 	 
-		$sql .= " PRIMARY KEY  (id) )"; 
- 
-		if (! static::maxbuttons_database_table_exists($table_name)) {
-			//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			dbDelta($sql);
-		}
-		
-		if ( static::maxbuttons_database_table_exists($table_name) && (get_option(MAXBUTTONS_VERSION_KEY) != MAXBUTTONS_VERSION_NUM 
-			|| get_option(MAXBUTTONS_VERSION_KEY) == '' ) ){
-		 
-			//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			dbDelta($sql);
-		}
-		
+		$sql .= "updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+				 created TIMESTAMP DEFAULT 0 NOT NULL, 
+				 PRIMARY KEY  (id) )"; 
+
+		$result = dbDelta($sql);		// always dbdelta			
+
 		// Reset the cache if there were any left from before
 		$button->reset_cache(); 
 
 		// Collection table
-		$collection_table_name = maxButtonsUtils::get_collection_table_name();
+		$collection_table_name = maxUtils::get_collection_table_name();
 		
 		$sql = "CREATE TABLE " . $collection_table_name . " ( 
-					meta_id int NOT NULL AUTO_INCREMENT, 
-					collection_id int NOT NULL, 
+					meta_id int(11) NOT NULL AUTO_INCREMENT, 
+					collection_id int(11) NOT NULL, 
 					collection_key varchar(255), 
 					collection_value text, 
-					PRIMARY KEY(meta_id) ) 
+					PRIMARY KEY  (meta_id) ) 
 					
 				";
 
 		dbDelta($sql);
-				
-		//else exit( __("Something went wrong when creating database table", "maxbuttons") );
+		
+		$collection_trans_table = maxUtils::get_coltrans_table_name();
+		$sql = "CREATE TABLE $collection_trans_table ( 
+ 				name varchar(1000), 
+				value varchar(255),
+				expire int(11)
+				); 
+		";		
+		$res = dbDelta($sql); 
 	}
 	
-	/* Attempt to upgrade UTF table to UTFmb4 - see this article https://make.wordpress.org/core/2015/04/02/the-utf8mb4-upgrade/
+	/** Attempt to upgrade UTF table to UTFmb4 - see this article https://make.wordpress.org/core/2015/04/02/the-utf8mb4-upgrade/
 	*/
 	public static function upgradeUTF() 
 	{
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		
+		if (! function_exists('maybe_convert_table_to_utf8mb4')) 
+			return; // Versions before 4.2.0 
 	
-		$table_name = maxButtonsUtils::get_buttons_table_name();
-		$collection_table_name = maxButtonsUtils::get_collection_table_name();
+		$table_name = maxUtils::get_table_name();
+		$collection_table_name = maxUtils::get_collection_table_name();
 	
 		maybe_convert_table_to_utf8mb4($table_name);
 		maybe_convert_table_to_utf8mb4($collection_table_name); 
 	}
  
+ 	/** Routine for activation for WPMU - All blogs */
 	public static function call_function_for_each_site($function) {
 		global $wpdb;
 	
@@ -264,4 +313,4 @@ class maxInstall
 		switch_to_blog($root_blog);
 	}
 } // class
-?>
+

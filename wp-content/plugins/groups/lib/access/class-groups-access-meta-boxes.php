@@ -55,8 +55,8 @@ class Groups_Access_Meta_Boxes {
 			add_action( 'save_post', array( __CLASS__, "save_post" ), 10, 2 );
 			add_filter( 'wp_insert_post_empty_content', array( __CLASS__, 'wp_insert_post_empty_content' ), 10, 2 );
 
-			add_action( 'attachment_fields_to_edit', array( __CLASS__, 'attachment_fields_to_edit' ), 10, 2 );
-			add_action( 'attachment_fields_to_save', array( __CLASS__, 'attachment_fields_to_save' ), 10, 2 );
+			add_filter( 'attachment_fields_to_edit', array( __CLASS__, 'attachment_fields_to_edit' ), 10, 2 );
+			add_filter( 'attachment_fields_to_save', array( __CLASS__, 'attachment_fields_to_save' ), 10, 2 );
 		}
 	}
 
@@ -76,7 +76,6 @@ class Groups_Access_Meta_Boxes {
 		if ( $pagenow == 'upload.php' ) {
 			Groups_UIE::enqueue( 'select' );
 		}
-		
 	}
 
 	/**
@@ -238,7 +237,17 @@ class Groups_Access_Meta_Boxes {
 						} else {
 							$label_title = __( 'No groups grant access through this capability. To grant access to group members using this capability, you should assign it to a group and enable the capability for access restriction.', GROUPS_PLUGIN_DOMAIN );
 						}
-						$output .= sprintf( '<option value="%s" %s>', esc_attr( $capability->capability_id ), in_array( $capability->capability, $read_caps ) ? ' selected="selected" ' : '' );
+
+						$selected = apply_filters(
+							'groups_access_restrictions_capability_selected',
+							in_array( $capability->capability, $read_caps ),
+							$capability->capability,
+							$capability->capability_id,
+							$read_caps,
+							$post_id,
+							$post_type
+						);
+						$output .= sprintf( '<option value="%s" %s>', esc_attr( $capability->capability_id ), $selected ? ' selected="selected" ': '' );
 						$output .= wp_filter_nohtml_kses( $capability->capability );
 						if ( $show_groups ) {
 							if ( count( $group_names ) > 0 ) {
@@ -251,7 +260,7 @@ class Groups_Access_Meta_Boxes {
 				}
 			}
 			$output .= '</select>';
-			
+
 			$output .= Groups_UIE::render_select( '.select.capability' );
 // 			$output .= '<script type="text/javascript">';
 // 			$output .= 'if (typeof jQuery !== "undefined"){';

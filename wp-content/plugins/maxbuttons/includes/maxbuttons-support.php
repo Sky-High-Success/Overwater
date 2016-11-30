@@ -3,18 +3,11 @@ $theme = wp_get_theme();
 $browser = maxbuttons_get_browser();
 
 if(is_admin()) {
-    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
+   // wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
 }
 
 function maxbuttons_system_label($label, $value, $spaces_between) {
-	$output = "<label>$label</label>";
-	
-	/*if ($spaces_between > 0) {
-		for ($i = 0; $i < $spaces_between; $i++) {
-			$output .= "&nbsp;";
-		}
-	} */
-	
+	$output = "<label>$label</label>";	
 	return "<div class='info'>" . $output . trim($value) . "</div>" ;
 }
 
@@ -101,7 +94,7 @@ function maxbuttons_get_browser() {
 function check_charset() {
     global $maxbuttons_installed_version;
     global $wpdb;
-    $check = "SHOW FULL COLUMNS FROM " . maxButtonsUtils::get_buttons_table_name();
+    $check = "SHOW FULL COLUMNS FROM " . maxUtils::get_table_name();
     $charset = $wpdb->query($check);
     return $charset;
 }
@@ -109,7 +102,7 @@ function check_charset() {
         $kludge = 'altering table to be utf-8';
         global $maxbuttons_installed_version;
         global $wpdb;
-        $table_name = maxbuttons_get_buttons_table_name();
+        $table_name = maxUtils::get_table_name();
         $kludge = $table_name;
         // IMPORTANT: There MUST be two spaces between the PRIMARY KEY keywords
         // and the column name, and the column name MUST be in parenthesis.
@@ -123,23 +116,16 @@ function check_charset() {
     $charr = check_charset(); 
 
 ?>
+<?php
+$support_link = apply_filters("mb-support-link", 'http://wordpress.org/support/plugin/maxbuttons'); 
 
-<div id="maxbuttons">
-	<div class="wrap">
- 
-		
-		<h2 class="title"><?php _e('MaxButtons: Support', 'maxbuttons') ?></h2>
-		
-		<div class="logo">
-			<?php do_action("mb-display-logo"); ?> 
-		</div>
-
-		<div class="clear"></div>
-        <div class="main">
-		
-			<?php do_action('mb-display-tabs'); ?> 
+$admin = MB()->getClass('admin'); 
+$page_title = __("Support","maxbuttons"); 
+$action = "<a href='$support_link' class='page-title-action add-new-h2' target='_blank'>" . __("Go to support","maxbuttons") . "</a>";
+$admin->get_header(array("title" => $page_title, "title_action" => $action) );
+?>
     		
-    		<h4><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), apply_filters("mb-support-link", '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">'), '</a>') ?></h4>
+    		<h4><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), "<a href='$support_link' target='_blank'>" , '</a>') ?></h4>
 
     <div class="rss-feed">
           <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
@@ -148,6 +134,7 @@ function check_charset() {
               
                	try{
                   $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
+
                   $x = new SimpleXmlElement($content);
 				}
 				catch (Exception $e)
@@ -158,12 +145,16 @@ function check_charset() {
                   echo '<ul >';
                   $i = 0;
                   foreach($x->channel->item as $entry) {
-                      if(strpos($entry->title, 'johnbhartley') === false && strpos($entry->title, 'Bas Schuiling') === false) {
+                      if(strpos($entry->title, 'Bas Schuiling') === false) {
                           $title = $entry->title;
                           $title = explode(" ", $title);
-                          $title = array_slice($title, 7);
+                          if (count($title) <= 7) 
+                          	$title = array_slice($title, 2); // small reply format
+                          else
+	                          $title = array_slice($title, 7);
                           $time = $entry->pubDate;
                           $time = substr($time, 0, -9);
+                  
                           $support_title = '';
                           foreach($title as $word) {
                               $word = str_replace("\"", "", $word);
@@ -256,5 +247,5 @@ foreach ($plugins as $plugin_path => $plugin) {
         <div class="ad-wrap">
      		<?php do_action("mb-display-ads"); ?> 
     </div>
-	</div>
-</div>
+	 
+<?php $admin->get_footer(); ?> 

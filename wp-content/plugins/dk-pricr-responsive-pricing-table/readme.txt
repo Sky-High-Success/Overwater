@@ -2,7 +2,7 @@
 Contributors: spwebguy
 Tags: pricing table, pricing tables, prices, pricing, plans, offer, shortcode, price, responsive, pricing, tables, pricing plan
 Requires at least: 3.6
-Tested up to: 4.3
+Tested up to: 4.7
 Stable tag: trunk
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl.html
@@ -32,6 +32,7 @@ The [PRO version](http://wpdarko.com/items/responsive-pricing-table-pro/) adds t
 * Features (as many as you want)
 * Button URL and text
 * Custom buttons (Stripe, Paypal…)
+* Custom CSS classes
 * Color (per plan)
 
 = Available settings =
@@ -88,6 +89,9 @@ Find help in [our forums](http://wpdarko.com/support/) for this plugin (we’ll 
 6. Finding the shortcode (admin view)
 
 == Changelog ==
+= 4.3 =
+* Added custom CSS classes
+
 = 4.2.1 =
 * Fixed shortcode
 

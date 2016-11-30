@@ -1,12 +1,19 @@
 <?php
+defined('ABSPATH') or die('No direct access permitted');
 $blockClass["advanced"] = "advancedBlock"; 
-$blockOrder[10][] = "advanced"; 
+$blockOrder[80][] = "advanced"; 
+
+use MaxButtons\maxBlocks  as maxBlocks;
+use MaxButtons\maxField   as maxField;
 
 class advancedBlock extends maxBlock 
 {
 	protected $blockname = "advanced"; 
 	protected $fields = array("important_css" => array("default" => "0"),
+						"custom_rel" => array('default' => ''), 
+						"extra_classes" => array('default' => ''), 
 						"external_css" => array("default" => "0"),
+					
 
   						
 						); 
@@ -45,7 +52,38 @@ class advancedBlock extends maxBlock
 		return $css;
 	}
 	
+ 	public function parse_button($domObj, $mode = 'normal')
+	{
  
+		$data = $this->data[$this->blockname]; 
+		
+		$button_id = $this->data["id"]; 
+		
+		$anchor = $domObj->find("a",0); 		
+ 
+ 		if (isset($data["custom_rel"]) && trim($data["custom_rel"]) != '')
+ 		{
+ 			$rel = ''; 
+ 			$custom_rel = trim($data["custom_rel"]);
+ 			if (isset($anchor->rel) && $anchor->rel != '') 
+ 			{
+ 				$anchor->rel .= ' ';
+ 			}
+ 			
+ 			$anchor->rel .= $custom_rel;
+ 		}
+ 		
+ 		if (isset($data["extra_classes"]) && trim($data["extra_classes"]) != '') 
+ 		{
+ 			$extra = trim($data["extra_classes"]); 
+ 			$anchor->class .= ' ' . $extra; 
+ 		
+ 		}
+ 		
+ 
+ 		return $domObj; 
+ 		
+ 	}
 	
 	public function admin_fields() 
 	{
@@ -63,44 +101,79 @@ class advancedBlock extends maxBlock
  
 ?>		
 	
-			<div class="option-container">
+			<div class="option-container mb_tab">
 				<div class="title"><?php _e('Advanced', 'maxbuttons') ?></div>
-				<div class="inside">					
-					<div class="option-design">
-						<p class="note"><?php _e('Adding !important to the button styles can help avoid potential conflicts with your theme styles.', 'maxbuttons') ?></p>
-						<div class="label"><?php _e('Use !important', 'maxbuttons') ?></div>
-						<div class="input"><input type="checkbox" value="1" id="important_css" name="important_css" <?php checked($important_css,1) ?>></div>
-						<div class="clear"></div>
-					</div>
+				<div class="inside advanced">
+				
+					<?php 
 					
-					<div class="spacer big"></div>
-					
-					<div class="option-design">
-						<p class="note"><?php _e('By default, the CSS styles for the button are rendered within a &lt;style&gt; block in the HTML body. Enabling the "Use External CSS" option allows you to put the CSS code for the button into your theme stylesheet instead.', 'maxbuttons') ?></p>
-						<div class="label"><?php _e('Use External CSS', 'maxbuttons') ?></div>
-						<div class="input"><input type="checkbox" id="external_css" name="external_css" value="1" <?php checked($external_css,1) ?>></div>
-						<div class="clear"></div>
-					</div>
+			/*	$fspacer = new maxField('spacer'); 
+				$fspacer->label = __('Use !Important', 'maxbuttons'); 
+				$fspacer->name = '';  
+				$fspacer->note = __('Adding !important to the button styles can help avoid potential conflicts with your theme styles.', 'maxbuttons') ;
+				$fspacer->output('start'); 
+			*/	
+				
+				$imp = new maxField('switch'); 
+				$imp->note = __('Adding !important to the button styles can help avoid potential conflicts with your theme styles.', 'maxbuttons') ;
+				$imp->id = 'important_css'; 
+				$imp->name = $imp->id;
+				$imp->value = 1; 
+				$imp->label = __('Use !Important', 'maxbuttons');
+				$imp->checked = checked(maxBlocks::getValue('important_css'), 1, false);
+				//$imp->value = maxBlocks::getValue('important_css');
+				$imp->output('start','end');
+				
+				$class = new maxField(); 
+				$class->id = 'extra_classes'; 
+				$class->name = $class->id; 
+				$class->label = __("Extra classes","maxbuttons");
+				$class->value = maxBlocks::getValue($class->id); 
+				$class->note = __("Useful for custom code or other plugins who target classes", "maxbuttons");
+				$class->output('start','end');
+				
+				$rel = new maxField(); 
+				$rel->id = 'custom_rel';
+				$rel->name = $rel->id; 
+				$rel->label = __("Custom Rel Tag","maxbuttons");
+				$rel->value = maxBlocks::getValue($rel->id); 
+				$rel->note = __("Useful when button is targeting lightbox and/or popup plugins that use this method", "maxbuttons");
+				$rel->output('start','end');
+				
+				do_action('mb-after-advanced');
+				
+				
+				$nocss = new maxField('switch');
+				$nocss->note = __('By default, the CSS styles for the button are rendered within a &lt;style&gt; block in the HTML body. Enabling the "Use External CSS" option allows you to put the CSS code for the button into your theme stylesheet instead.', 'maxbuttons'); 
+				$nocss->label = __('Use External CSS', 'maxbuttons');
+				$nocss->id = 'external_css'; 
+				$nocss->value = 1;
+				$nocss->name = $nocss->id; 
+				$nocss->checked = checked($external_css, 1, false);
+				$nocss->output('start','');
+				
+				$nospace = new maxField('spacer'); 
+				$nospace->content = __("Warning: This will remove all styling of the buttons!","maxbuttons"); 
+				$nospace->output('','end');	
+					?>					
+
+
+										
+ 
 					
 					<div class="option-design">
 						<div class="label">&nbsp;</div>
-						<div class="input"><a id="view_css_modal" name="view_css" href="#view_css" class="button" rel="leanModal"><?php _e('View CSS', 'maxbuttons') ?></a></div>
+						<div class="input"><a id="view_css_modal" name="view_css" href="javascript:void(0)" class="button maxmodal" data-modal="view-css"><?php _e('View CSS', 'maxbuttons') ?></a></div>
 						<div class="clear"></div>
 						
-						
-					
-						<div id="view_css" class="max-modal">
-							<div class="modal_header">
-								<?php _e("External CSS","maxbuttons"); ?>
-								<div class="modal_close tb-close-icon"></div>
-							</div>
-
-							<div class="note">
+						<div id="view-css" class="maxmodal-data" >	
+								<h3 class="title"><?php _e("External CSS","maxbuttons"); ?></h3>
+							<div class="content">
 								<p><?php _e('If the "Use External CSS" option is enabled for this button, copy and paste the CSS code below into your theme stylesheet.', 'maxbuttons') ?></p>
-							</div>
-							<textarea id="maxbutton-css">
+							
+							<textarea id="maxbutton-css" readonly="readonly">
 							<?php 
-								if (isset($this->data["id"]))
+								if (isset($this->data["id"]) && $this->data['id'] > 0)
 								{
 									$id = $this->data["id"];
 									$b = new maxButton(); 
@@ -116,6 +189,11 @@ class advancedBlock extends maxBlock
  								{ _e("Please save the button first","maxbuttons"); }
 								
 							 ?></textarea>
+							 </div>
+							 <div class='controls'>
+							 	<p><a class='button-primary modal_close' href='javascript:void(0);'><?php _e("Close","maxbuttons"); ?></a>
+							 	</p>
+							 </div>
 						</div>
 
 					</div>
