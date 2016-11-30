@@ -150,6 +150,13 @@ echo do_shortcode('[layerslider id="294"]');
 <div id="package_wrap" class="wrap">
 	<a name="CustomPackagesData"></a>
 	<h3 id="package_text_anchor" class="home-travel-h3">Travel Packages</h3>
+	
+	<div class="textbox textbox1 textshadow1">
+    	<span>If you find a cheaper hotel package we will match the price + also <br> give you a AUD $100 voucher to use on your next island getaway</span>
+  	</div>
+  	
+  	<div class="clearfix"></div>
+	
 
 	<div class="box">
 
