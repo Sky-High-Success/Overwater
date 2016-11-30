@@ -304,7 +304,8 @@ div.box-notification a:hover {
 }
 
 .home-travel-h3{
-	margin-left: 10px;
+/* 	margin-left: 10px; */
+	text-align: center;
 }
 
 .travel-style h3 a:before{
@@ -952,4 +953,64 @@ a.enquiry_anchor.buton_custom{
 
 .margin-left-adjust{
 	margin-left: 40px;
+}
+
+.textbox{
+  width:100%;
+  float:left;
+  background-color:white; 
+  margin-top:20px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border-radius:5px;
+}
+.textbox span{
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight:normal;
+  text-align:center;
+  color:#fff;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.textbox1{
+  background-color: #486685;
+}
+
+.textshadow1{
+  position:relative;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+}
+
+.textshadow1 span{
+  width:87%;
+/*   height:100px; */
+  margin-left:6%;
+  border:2px dashed #fff;
+  border-radius:5px;
+  line-height: 30px;
+  font-size: 18px;
+}
+
+.textshadow1:before, .textshadow1:after{
+  position:absolute;
+  content:"";
+  bottom:12px;left:15px;top:80%;
+  width:45%;
+  background:#486685;
+  z-index:-1;
+  -webkit-box-shadow: 0 5px 5px #486685;
+  -moz-box-shadow: 0 5px 5px #486685;
+  box-shadow: 0 5px 5px #486685;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+
+.textshadow1:after{
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  transform: rotate(2deg);
+  right: 15px;left: auto;
 }
