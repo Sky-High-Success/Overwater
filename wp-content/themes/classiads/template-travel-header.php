@@ -267,6 +267,14 @@ DOC;
     <meta name="keywords" content="overwater, bungalow, honeymoon, love, package, cheap, deal" />
     <!-- Favicon-->
     
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TMG94GS');</script>
+<!-- End Google Tag Manager -->
+    
    <!-- //// <link rel="shortcut icon" href="<?php echo get_template_directory_uri();?>/images/icon/favicon.ico" type="" /> -->
 <style>
 
@@ -278,16 +286,7 @@ DOC;
     
 	<script src='https://www.google.com/recaptcha/api.js' async></script>
 	
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	
-	  ga('create', 'UA-6222281-5', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -302,6 +301,10 @@ DOC;
 
   </head>
   <body class="travel-style" onload="_googWcmGet('google-forwarding-number', '1300-256-067')">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMG94GS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <div id="templatemo_mobile_menu_wap" class="col-xs-12 visible-sm visible-xs">
         <p id="mobile_menu_btn"> <span class="glyphicon glyphicon-align-justify"></span></p>
         <div id="mobile_menu" style="display: none;">
