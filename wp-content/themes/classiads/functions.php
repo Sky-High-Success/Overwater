@@ -23,6 +23,11 @@
  * @subpackage classiads
  * @since classiads 1.2.2
  */
+// Rest API synchronization part
+
+global $delegate_urls;
+
+$delegate_urls = array('http://luxuryislandresorts.com.au', 'http://overwaterbungalows.com.au', 'http://tahitinuivacations.com');
 
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin' );
 
@@ -47,6 +52,286 @@ function simple_authentication($result) {
 	}
 
 }
+
+function get_remote_travel_package($post, $site){
+
+	$postdata = http_build_query(
+			array(
+					'request_post_name' => $post->post_name,
+					'request_post_type' => $post->post_type,
+					'client_id' => 'VPLJ1vXj9kyRhizubrsMrYAMhj6Vns',
+					'client_secret' => 'VihH2jcZCljbcAuM5FdyrEx2rOlxJI',
+			)
+			);
+
+	$options  = array (
+			'http' =>
+			array (
+					'ignore_errors' => true,
+					'method' => 'POST',
+					'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+					'content' => $postdata,
+
+			),
+	);
+
+	$context  = stream_context_create( $options );
+	$response = file_get_contents(
+			"$site" . '/get_remote_travel_package/',
+			false,
+			$context
+			);
+
+	return json_decode($response, true);
+
+}
+
+function delete_remote_site_travel_package($post, $site){
+
+	$result = get_remote_travel_package($post,$site);
+
+	if(is_array($result) && $result["valid"] == 1){
+
+		if($result["post_id"] != 0){
+				
+			$id = $result["post_id"];
+				
+			// delete post
+			require_once("IXR_Library.php");
+				
+			$client = new IXR_Client($site . '/xmlrpc.php');
+
+			$USER = 'DBadmin';
+			$PASS = '69>PyTJ3';
+
+			if (!$client->query('wp.deletePost','', $USER,$PASS, $id))
+			{
+				die( 'Error while editing post' . $client->getErrorCode() ." : ". $client->getErrorMessage());
+			}
+				
+			error_log("test". $client->getResponse());
+				
+		}
+	}
+
+}
+
+
+function edit_remote_site_travel_package($post, $site){
+
+	$result = get_remote_travel_package($post,$site);
+
+	if(is_array($result) && $result["valid"] == 1){
+
+		if($result["post_id"] != 0){
+			// edit post
+				
+			$term_arr = wp_get_post_terms($post->ID, 'package_taxonomy', array("fields" => "names"));
+				
+			$id = $result["post_id"];
+				
+			$post_meta_arr = $result["meta"];
+				
+			$post_meta_hash = array();
+				
+			foreach($post_meta_arr as $post_meta) {
+				if(empty($post_meta_hash[$post_meta["meta_key"]])){
+					$post_meta_hash[$post_meta["meta_key"]] = $post_meta;
+				}
+			}
+				
+			require_once("IXR_Library.php");
+				
+			$client = new IXR_Client($site . '/xmlrpc.php');
+
+			$USER = 'DBadmin';
+			$PASS = '69>PyTJ3';
+				
+			$content['post_title'] = $post->post_title;
+			$content['post_status'] = $post->post_status;
+			$content['post_type'] = $post->post_type;
+			$content['post_content'] = $post->post_content;
+				
+			$content['custom_fields'] = array(
+					array('id' => $post_meta_hash['package_pricing']['meta_id'], 'key' => 'package_pricing', 'value' => $_POST['list_package_pricing']),
+					array('id' => $post_meta_hash['package_excerpt']['meta_id'], 'key' => 'package_excerpt', 'value' => $_POST['list_package_excerpt']),
+					array('id' => $post_meta_hash['package_cover_photo_url']['meta_id'], 'key' => 'package_cover_photo_url', 'value' => $_POST['list_package_cover_photo_url']),
+					array('id' => $post_meta_hash['package_layer_slider_id']['meta_id'], 'key' => 'package_layer_slider_id', 'value' => $_POST['list_package_layer_slider_id']),
+					array('id' => $post_meta_hash['package_detail_include']['meta_id'], 'key' => 'package_detail_include', 'value' => $_POST['list_package_detail_include']),
+					array('id' => $post_meta_hash['package_detail_validity']['meta_id'], 'key' => 'package_detail_validity', 'value' => $_POST['list_package_detail_validity']),
+						
+					array('id' => $post_meta_hash['list_package_notes']['meta_id'], 'key' => 'list_package_notes', 'value' => $_POST['package_notes']),
+					array('id' => $post_meta_hash['list_package_notes_exclusive_sale']['meta_id'], 'key' => 'list_package_notes_exclusive_sale', 'value' => $_POST['list_package_notes_exclusive_sale']),
+					array('id' => $post_meta_hash['list_package_notes_added_value']['meta_id'], 'key' => 'list_package_notes_added_value', 'value' => $_POST['list_package_notes_added_value']),
+					array('id' => $post_meta_hash['list_package_notes_value_inclusion_1']['meta_id'], 'key' => 'list_package_notes_value_inclusion_1', 'value' => $_POST['list_package_notes_value_inclusion_1']),
+					array('id' => $post_meta_hash['list_package_notes_value_inclusion_2']['meta_id'], 'key' => 'list_package_notes_value_inclusion_2', 'value' => $_POST['list_package_notes_value_inclusion_2']),
+
+					array('id' => $post_meta_hash['list_package_other_travel_dates_honeymoon']['meta_id'], 'key' => 'list_package_other_travel_dates_honeymoon', 'value' => $_POST['list_package_other_travel_dates_honeymoon']),
+					array('id' => $post_meta_hash['list_package_other_travel_dates_holiday']['meta_id'], 'key' => 'list_package_other_travel_dates_holiday', 'value' => $_POST['list_package_other_travel_dates_holiday']),
+
+						
+						
+			);
+				
+			$content['terms_names'] = array("package_taxonomy" => $term_arr);
+
+			if (!$client->query('wp.editPost','', $USER,$PASS,$id, $content))
+			{
+				die( 'Error while editing post' . $client->getErrorCode() ." : ". $client->getErrorMessage());
+			}
+				
+		}else{
+			// create post
+				
+			$term_arr = wp_get_post_terms($post->ID, 'package_taxonomy', array("fields" => "names"));
+				
+			require_once("IXR_Library.php");
+
+			$client = new IXR_Client($site . '/xmlrpc.php');
+				
+			$USER = 'DBadmin';
+			$PASS = '69>PyTJ3';
+
+			$content['post_title'] = $post->post_title;
+			$content['post_status'] = $post->post_status;
+			$content['post_type'] = $post->post_type;
+			$content['post_content'] = $post->post_content;
+			$content['post_name'] = $post->post_name;
+
+			$content['custom_fields'] = array(
+					array('key' => 'package_pricing', 'value' => $_POST['list_package_pricing']),
+
+					array('key' => 'package_excerpt', 'value' => $_POST['list_package_excerpt']),
+					array('key' => 'package_cover_photo_url', 'value' => $_POST['list_package_cover_photo_url']),
+					array('key' => 'package_layer_slider_id', 'value' => $_POST['list_package_layer_slider_id']),
+					array('key' => 'package_detail_include', 'value' => $_POST['list_package_detail_include']),
+					array('key' => 'package_detail_validity', 'value' => $_POST['list_package_detail_validity']),
+						
+					array('key' => 'list_package_notes', 'value' => $_POST['package_notes']),
+					array('key' => 'list_package_notes_exclusive_sale', 'value' => $_POST['list_package_notes_exclusive_sale']),
+					array('key' => 'list_package_notes_added_value', 'value' => $_POST['list_package_notes_added_value']),
+					array('key' => 'list_package_notes_value_inclusion_1', 'value' => $_POST['list_package_notes_value_inclusion_1']),
+					array('key' => 'list_package_notes_value_inclusion_2', 'value' => $_POST['list_package_notes_value_inclusion_2']),
+						
+					array('key' => 'list_package_other_travel_dates_honeymoon', 'value' => $_POST['list_package_other_travel_dates_honeymoon']),
+					array('key' => 'list_package_other_travel_dates_holiday', 'value' => $_POST['list_package_other_travel_dates_holiday']),
+
+
+			);
+				
+			$content['terms_names'] = array("package_taxonomy" => $term_arr);
+				
+			if (!$client->query('wp.newPost','', $USER,$PASS, $content))
+			{
+				die( 'Error while editing post' . $client->getErrorCode() ." : ". $client->getErrorMessage());
+			}
+
+			error_log("test". $client->getResponse());
+
+		}
+	}
+
+}
+
+
+function save_package_remote( $post_id, $post, $update ) {
+
+	if($post->post_status != "publish" && $post->post_status != "trash" && $post->post_status != "private"){
+		return;
+	}
+
+	// Return if it's a post revision
+	if ( false !== wp_is_post_revision( $post_id ) ){
+		return;
+	}
+
+
+	/*
+	 * In production code, $slug should be set only once in the plugin,
+	 * preferably as a class property, rather than in each function that needs it.
+	 */
+
+
+	global $delegate_urls;
+
+	$slug = 'travel_package';
+
+	// If this isn't a 'book' post, don't update it.
+	if ( $slug != $post->post_type ) {
+		return;
+	}
+
+	if($post->post_status == "publish" || $post->post_status == "private"){
+
+		foreach($delegate_urls as $url){
+			edit_remote_site_travel_package($post, $url);
+		}
+		return;
+	}
+
+	if($post->post_status == "trash"){
+		foreach($delegate_urls as $url){
+			delete_remote_site_travel_package($post, $url);
+		}
+		return;
+	}
+
+
+	//oauth_authenticate();
+
+	// - Update the post's metadata.
+
+	// 	if ( isset( $_REQUEST['book_author'] ) ) {
+	// 		update_post_meta( $post_id, 'book_author', sanitize_text_field( $_REQUEST['book_author'] ) );
+	// 	}
+
+	// 	if ( isset( $_REQUEST['publisher'] ) ) {
+	// 		update_post_meta( $post_id, 'publisher', sanitize_text_field( $_REQUEST['publisher'] ) );
+	// 	}
+
+	// 	// Checkboxes are present if checked, absent if not.
+	// 	if ( isset( $_REQUEST['inprint'] ) ) {
+	// 		update_post_meta( $post_id, 'inprint', TRUE );
+	// 	} else {
+	// 		update_post_meta( $post_id, 'inprint', FALSE );
+	// 	}
+}
+
+add_action( 'save_post_travel_package', 'save_package_remote', 10, 3 );
+
+function add_attachment_hook( $attach_id ) {
+	global $delegate_urls;
+
+	$fullsize_path = get_attached_file( $attach_id );
+	$filename = basename($fullsize_path);
+
+	$mime_type = get_post_mime_type( $attach_id );
+
+	require_once("IXR_Library.php");
+	foreach($delegate_urls as $url){
+
+		$client = new IXR_Client( $url . '/xmlrpc.php');
+
+		$USER = 'DBadmin';
+		$PASS = '69>PyTJ3';
+			
+		$fh = fopen($fullsize_path, 'r');
+		$fs = filesize($fullsize_path);
+		$theData = fread($fh, $fs);
+		fclose($fh);
+
+		$params = array('name' => $filename, 'type' => $mime_type, 'bits' => new IXR_Base64($theData));
+
+		if (!$client->query('wp.uploadFile', '', $USER, $PASS, $params))
+		{
+			die( 'Error while editing post' . $client->getErrorCode() ." : ". $client->getErrorMessage());
+		}
+
+	}
+
+}
+
+add_action( 'add_attachment', 'add_attachment_hook');
 
 // for website ID tracking
 add_action( 'wp_ajax_id_tracking', 'id_tracking_callback' );
