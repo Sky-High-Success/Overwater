@@ -268,11 +268,11 @@ DOC;
     <!-- Favicon-->
     
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TMG94GS');</script>
+})(window,document,'script','dataLayer','GTM-TMG94GS');</script>  -->
 <!-- End Google Tag Manager -->
     
    <!-- //// <link rel="shortcut icon" href="<?php echo get_template_directory_uri();?>/images/icon/favicon.ico" type="" /> -->
@@ -311,8 +311,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </head>
   <body class="travel-style" onload="_googWcmGet('google-forwarding-number', '1300-256-067')">
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMG94GS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!--  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMG94GS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
 <!-- End Google Tag Manager (noscript) -->
   <div id="templatemo_mobile_menu_wap" class="col-xs-12 visible-sm visible-xs">
         <p id="mobile_menu_btn"> <span class="glyphicon glyphicon-align-justify"></span></p>
