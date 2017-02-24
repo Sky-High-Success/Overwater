@@ -4,8 +4,8 @@ function wpcrown_wpcss_loaded() {
 
 	// Return the lowest priority number from all the functions that hook into wp_head
 	global $wp_filter;
-	$lowest_priority = max(array_keys($wp_filter['wp_head']));
-	//$lowest_priority = 1;
+	//$lowest_priority = max(array_keys($wp_filter['wp_head']));
+	$lowest_priority = 1;
 	add_action('wp_head', 'wpcrown_wpcss_head', $lowest_priority + 1);
  
 	$arr = $wp_filter['wp_head'];

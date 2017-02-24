@@ -354,6 +354,7 @@ div.box-notification a:hover {
 .pagination span.current, .pagination a:hover{
 	border-color: #e85f5f;
 	color: #fff !important;
+	background-color: #e85f5f;
 }
 
 .pagination a, .pagination span{
@@ -1013,4 +1014,12 @@ a.enquiry_anchor.buton_custom{
   -moz-transform: rotate(2deg);
   transform: rotate(2deg);
   right: 15px;left: auto;
+}
+
+#templatemo_banner_top .btn:active, #templatemo_banner_top .btn.active{
+	box-shadow: none;
+}
+
+#templatemo_banner_top .btn:focus, #templatemo_banner_top .btn:active:focus, #templatemo_banner_top .btn.active:focus{
+	outline: none;
 }
