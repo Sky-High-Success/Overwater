@@ -95,105 +95,113 @@
 
 <?php
 
-if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce') && $_POST['phone'] != "123456") {
+if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_nonce_field']) && wp_verify_nonce($_POST['post_nonce_field'], 'post_nonce') && isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 
-	$is_honeymoon = false;
-	$is_flight = false;
-	$is_newsletter = false;
-	$is_honeymoon_human = "no";
-	$is_flight_human = "no";
-	$is_newsletter_human = "no";
+	//your site secret key
+	$recaptcha_secret = '6Lc03xYUAAAAAAFIcPi0ky6YgO7itu8GtGvZU4rY';
+	//get verify response data
+	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$recaptcha_secret.'&response='.$_POST['g-recaptcha-response']);
+	$responseData = json_decode($verifyResponse);
+	if($responseData->success){
+		
 
-	$post_honeymoon = esc_attr(strip_tags($_POST['honeymoon']));
-	$post_flight = esc_attr(strip_tags($_POST['flight']));
-	$post_date_depart = esc_attr(strip_tags($_POST['date-depart']));
-	
-	$post_contact_method = esc_attr(strip_tags($_POST['contact-method']));
-	$post_number_of_nights = esc_attr(strip_tags($_POST['number-of-nights']));
-	$post_spend= esc_attr(strip_tags($_POST['spend']));
-	$post_time_to_call = esc_attr(strip_tags($_POST['time-to-call']));
-	$post_travel_occasion = esc_attr(strip_tags($_POST['travel-occasion']));
-	
-
-	$post_newsletter = esc_attr(strip_tags($_POST['newsletter']));
-
-	if(!empty($post_honeymoon)) {
-		$is_honeymoon = true;
-		$is_honeymoon_human = "yes";
-	}
-
-	if(!empty($post_flight)) {
-		$is_flight = true;
-		$is_flight_human = "yes";
-	}
-
-	if(!empty($post_newsletter)) {
-		$is_newsletter = true;
-		$is_newsletter_human = "yes";
-	}
-	
-	if(!empty($post_date_depart)) {
-	
-		$date_depart_timestamp = strtotime($post_date_depart);
-	
-		if(empty($date_depart_timestamp)){
-			exit;
+		$is_honeymoon = false;
+		$is_flight = false;
+		$is_newsletter = false;
+		$is_honeymoon_human = "no";
+		$is_flight_human = "no";
+		$is_newsletter_human = "no";
+		
+		$post_honeymoon = esc_attr(strip_tags($_POST['honeymoon']));
+		$post_flight = esc_attr(strip_tags($_POST['flight']));
+		$post_date_depart = esc_attr(strip_tags($_POST['date-depart']));
+		
+		$post_contact_method = esc_attr(strip_tags($_POST['contact-method']));
+		$post_number_of_nights = esc_attr(strip_tags($_POST['number-of-nights']));
+		$post_spend= esc_attr(strip_tags($_POST['spend']));
+		$post_time_to_call = esc_attr(strip_tags($_POST['time-to-call']));
+		$post_travel_occasion = esc_attr(strip_tags($_POST['travel-occasion']));
+		
+		
+		$post_newsletter = esc_attr(strip_tags($_POST['newsletter']));
+		
+		if(!empty($post_honeymoon)) {
+			$is_honeymoon = true;
+			$is_honeymoon_human = "yes";
 		}
-		$departure_date = date('Y-m-d', $date_depart_timestamp);
-	}
-
-	$current_date = date('Y-m-d', current_time( 'timestamp'));
-
-	$enquiry_category = esc_attr(strip_tags($_POST['submit']));
-
-	$enquiry_information = array(
-			'first_name' => esc_attr(strip_tags($_POST['first-name'])),
-			'last_name' => esc_attr(strip_tags($_POST['last-name'])),
-			'city_depart' => esc_attr(strip_tags($_POST['city-depart'])),
-			'departure_date' => $departure_date,
-			'email'    => esc_attr(strip_tags($_POST['email'])),
-			'phone' => esc_attr(strip_tags($_POST['phone'])),
-			'package' => esc_attr(strip_tags($_POST['package'])),
-			'promo_code' => esc_attr(strip_tags($_POST['promo-code'])),
-			'honeymoon' => $is_honeymoon,
-			'flight' => $is_flight,
-			'message' => esc_attr(strip_tags($_POST['message'])),
-			'category' => $enquiry_category,
-			'enquiry_date' => $current_date,
-			'contact_method' => $post_contact_method,
-			'number_of_nights' => $post_number_of_nights,
-			'spend' => $post_spend,
-			'time_to_call' => $post_time_to_call,
-			'travel_occasion' => $post_travel_occasion,
-				
-	);
-
-
-	// insert listing meta for each listing post in separate table
-	$wpdb->insert ( $wpdb->prefix . 'travel_enquiry_booking', array (
-			'First Name' => $enquiry_information["first_name"],
-			'Last Name' => $enquiry_information["last_name"],
-			'City Depart' => $enquiry_information["city_depart"],
-			'Departure Date' => $enquiry_information["departure_date"],
-			'Email' => $enquiry_information["email"],
-			//'Region' => $obj->region,
-			'Phone' => $enquiry_information["phone"],
-			'Package' => $enquiry_information["package"],
-			'Promo Code' => $enquiry_information["promo_code"],
-			'Honeymoon' => $enquiry_information["honeymoon"],
-			'Flight' => $enquiry_information["flight"],
-			'Message' => $enquiry_information["message"],
-			'category' => $enquiry_information["category"],
-			'Enquiry Date' => $enquiry_information["enquiry_date"],
-	)
-	);
-
-	$multiple_to_recipients = array(
-			
-			'chengxianga2002@163.com'		
-	);
-
-	$content_here = <<<DOC
+		
+		if(!empty($post_flight)) {
+			$is_flight = true;
+			$is_flight_human = "yes";
+		}
+		
+		if(!empty($post_newsletter)) {
+			$is_newsletter = true;
+			$is_newsletter_human = "yes";
+		}
+		
+		if(!empty($post_date_depart)) {
+		
+			$date_depart_timestamp = strtotime($post_date_depart);
+		
+			if(empty($date_depart_timestamp)){
+				exit;
+			}
+			$departure_date = date('Y-m-d', $date_depart_timestamp);
+		}
+		
+		$current_date = date('Y-m-d', current_time( 'timestamp'));
+		
+		$enquiry_category = esc_attr(strip_tags($_POST['submit']));
+		
+		$enquiry_information = array(
+				'first_name' => esc_attr(strip_tags($_POST['first-name'])),
+				'last_name' => esc_attr(strip_tags($_POST['last-name'])),
+				'city_depart' => esc_attr(strip_tags($_POST['city-depart'])),
+				'departure_date' => $departure_date,
+				'email'    => esc_attr(strip_tags($_POST['email'])),
+				'phone' => esc_attr(strip_tags($_POST['phone'])),
+				'package' => esc_attr(strip_tags($_POST['package'])),
+				'promo_code' => esc_attr(strip_tags($_POST['promo-code'])),
+				'honeymoon' => $is_honeymoon,
+				'flight' => $is_flight,
+				'message' => esc_attr(strip_tags($_POST['message'])),
+				'category' => $enquiry_category,
+				'enquiry_date' => $current_date,
+				'contact_method' => $post_contact_method,
+				'number_of_nights' => $post_number_of_nights,
+				'spend' => $post_spend,
+				'time_to_call' => $post_time_to_call,
+				'travel_occasion' => $post_travel_occasion,
+		
+		);
+		
+		
+		// insert listing meta for each listing post in separate table
+		$wpdb->insert ( $wpdb->prefix . 'travel_enquiry_booking', array (
+				'First Name' => $enquiry_information["first_name"],
+				'Last Name' => $enquiry_information["last_name"],
+				'City Depart' => $enquiry_information["city_depart"],
+				'Departure Date' => $enquiry_information["departure_date"],
+				'Email' => $enquiry_information["email"],
+				//'Region' => $obj->region,
+				'Phone' => $enquiry_information["phone"],
+				'Package' => $enquiry_information["package"],
+				'Promo Code' => $enquiry_information["promo_code"],
+				'Honeymoon' => $enquiry_information["honeymoon"],
+				'Flight' => $enquiry_information["flight"],
+				'Message' => $enquiry_information["message"],
+				'category' => $enquiry_information["category"],
+				'Enquiry Date' => $enquiry_information["enquiry_date"],
+		)
+				);
+		
+		$multiple_to_recipients = array(
+				'sales@overwaterbungalows.com.au',
+				'chengxianga2008@yahoo.com'
+		);
+		
+		$content_here = <<<DOC
   First Name: {$enquiry_information["first_name"]}
   Last Name: {$enquiry_information["last_name"]}
   Arrival Date: {$enquiry_information["departure_date"]}
@@ -205,32 +213,32 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
   Promo Code: {$enquiry_information["promo_code"]}
   Number of nights stay: {$enquiry_information["number_of_nights"]}
   Maximum Spend AUD $: {$enquiry_information["spend"]}
-  Travel Occasion: {$enquiry_information["travel_occasion"]} 
+  Travel Occasion: {$enquiry_information["travel_occasion"]}
   Deals subscription checked: $is_newsletter_human
   Message:
 -------------------------
-
+		
 {$enquiry_information["message"]}
-
+		
 -------------------------
   Category: {$enquiry_information["category"]}
 DOC;
-
-    error_log($content_here);
-
-	$mail_subject = ucwords($enquiry_category)." - Package: ".$enquiry_information["package"]." - Date: ".$current_date;
-
-	wp_mail($multiple_to_recipients, $mail_subject, $content_here);
-	
-	$contact_message = $enquiry_category;
-
-
-			// Mailchimp Add Subscriber part
-
-			//if($is_newsletter){
-			if(false){
+		
+		error_log($content_here);
+		
+		$mail_subject = ucwords($enquiry_category)." - Package: ".$enquiry_information["package"]." - Date: ".$current_date;
+		
+		wp_mail($multiple_to_recipients, $mail_subject, $content_here);
+		
+		$contact_message = $enquiry_category;
+		
+		
+		// Mailchimp Add Subscriber part
+		
+		//if($is_newsletter){
+		if(false){
 			include_once 'Drewm/MailChimp.php';
-
+		
 			$MailChimp = new \Drewm\MailChimp('b54b29c0661fc003f612c8a1526ad5b5-us10');
 			$result = $MailChimp->call('lists/subscribe', array(
 					'id'                => '0d54271254',
@@ -241,12 +249,13 @@ DOC;
 					'replace_interests' => false,
 					'send_welcome'      => false,
 			));
-			}
-
-
-			wp_redirect( get_home_url(null, "thank-you") ); 
-			exit;
-
+		}
+		
+		
+		wp_redirect( get_home_url(null, "thank-you") );
+		exit;
+			
+	}	
 }
 
 ?>
