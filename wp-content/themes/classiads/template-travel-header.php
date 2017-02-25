@@ -187,6 +187,8 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 			'Enquiry Date' => $enquiry_information["enquiry_date"],
 	)
 	);
+	
+	error_log("enter");
 
 	$multiple_to_recipients = array(
 			'res.overwaterbungalows@gmail.com',
