@@ -220,8 +220,9 @@ DOC;
 
 	$mail_subject = ucwords($enquiry_category)." - Package: ".$enquiry_information["package"]." - Date: ".$current_date;
 
-	wp_mail($multiple_to_recipients, $mail_subject, $content_here);
-
+	$result = wp_mail($multiple_to_recipients, $mail_subject, $content_here);
+	error_log($result);
+	
 	$contact_message = $enquiry_category;
 
 
