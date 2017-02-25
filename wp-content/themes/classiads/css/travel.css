@@ -695,6 +695,7 @@ backface-visibility: hidden;
 
 .icontravel img{
 	width: 350px;
+	vertical-align: middle;
 }
 
 @media (max-width: 510px) {
@@ -1022,4 +1023,18 @@ a.enquiry_anchor.buton_custom{
 
 #templatemo_banner_top .btn:focus, #templatemo_banner_top .btn:active:focus, #templatemo_banner_top .btn.active:focus{
 	outline: none;
+}
+
+.sectiontravel{
+	background-color: #eee;
+}
+
+.sectiontravel h3, .sectiontravel h3 a{
+	line-height: 30px;
+}
+
+.sectiontravel .helper{
+	display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }

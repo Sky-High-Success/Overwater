@@ -1510,7 +1510,7 @@ travel.no-touch .boxInner:hover .titleBox, travel.touch .boxInner.touchFocus .ti
 	color: #fff;
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 30px;
+/* 	margin-top: 30px; */
 }
 
 .sectiontravel.color h2 {

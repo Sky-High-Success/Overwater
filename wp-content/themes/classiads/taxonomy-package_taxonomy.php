@@ -111,7 +111,7 @@
 			</div>
 			<?php }
 			?>
-               
+        <span class="helper"></span>     
         <a href="<?php echo $package_information['package_url'];?>">
           <img src="<?php echo  get_site_url(null, $package_information['package_cover_photo_url']);?>" alt="" />
         </a>
