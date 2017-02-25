@@ -187,12 +187,10 @@ if(isset($_POST['submit']) && isset($_POST['package']) && isset($_POST['post_non
 			'Enquiry Date' => $enquiry_information["enquiry_date"],
 	)
 	);
-	
-	error_log("enter");
 
 	$multiple_to_recipients = array(
-			'res.overwaterbungalows@gmail.com',
-			'chengxianga2008@yahoo.com',		
+			
+			'chengxianga2002@163.com'		
 	);
 
 	$content_here = <<<DOC
@@ -222,15 +220,15 @@ DOC;
 
 	$mail_subject = ucwords($enquiry_category)." - Package: ".$enquiry_information["package"]." - Date: ".$current_date;
 
-			wp_mail($multiple_to_recipients, $mail_subject, $content_here);
+	wp_mail($multiple_to_recipients, $mail_subject, $content_here);
 
-			$contact_message = $enquiry_category;
+	$contact_message = $enquiry_category;
 
 
 			// Mailchimp Add Subscriber part
 
-			if($is_newsletter){
-
+			//if($is_newsletter){
+			if(false){
 			include_once 'Drewm/MailChimp.php';
 
 			$MailChimp = new \Drewm\MailChimp('b54b29c0661fc003f612c8a1526ad5b5-us10');
