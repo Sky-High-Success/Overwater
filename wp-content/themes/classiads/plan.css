@@ -1515,6 +1515,7 @@ travel.no-touch .boxInner:hover .titleBox, travel.touch .boxInner.touchFocus .ti
 	text-align: center;
 	margin: 0 auto;
 	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .sectiontravel.color h2 {
