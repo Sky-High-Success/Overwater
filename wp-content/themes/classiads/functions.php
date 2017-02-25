@@ -1564,4 +1564,28 @@ function vc_remove_wp_ver_css_js( $src ) {
 add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
 add_filter( 'script_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
 
+add_filter( 'wp_mail_from_name', 'custom_wp_mail_from_name' );
+
+function custom_wp_mail_from_name( $original_email_from ) {
+	return 'Info';
+}
+
+
+add_filter( 'wp_mail_from', 'custom_wp_mail_from' );
+
+function custom_wp_mail_from( $original_email_address ) {
+	//Make sure the email is from the same domain
+	//as your website to avoid being marked as spam.
+
+	$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+	if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+		$sitename = substr( $sitename, 4 );
+	}
+
+	//$from_email = 'admin@' . $sitename;
+	$from_email = 'info@overwaterbungalows.com.au';
+
+	return $from_email;
+}
+
 include_once "custom_settings.php";
