@@ -51,7 +51,7 @@
   <div class="sectiontravel row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 texttravel">
       <h3 class="hidden-xs hidden-sm">
-        <a title="<?php echo $package_information['package_name'];?>" href="<?php echo $package_information['package_url'];?>"><?php echo $package_information['package_name']." | ".$package_information['package_pricing'];?></a>
+        <i class="fa fa-eercast package-bullet"></i> <a title="<?php echo $package_information['package_name'];?>" href="<?php echo $package_information['package_url'];?>"><?php echo $package_information['package_name']." | ".$package_information['package_pricing'];?></a>
       </h3>
       
       <h3 class="visible-xs visible-sm">
@@ -110,8 +110,7 @@
 						
 			</div>
 			<?php }
-			?>
-        <span class="helper"></span>     
+			?>  
         <a href="<?php echo $package_information['package_url'];?>">
           <img src="<?php echo  get_site_url(null, $package_information['package_cover_photo_url']);?>" alt="" />
         </a>

@@ -1450,6 +1450,7 @@ travel.no-touch .boxInner:hover .titleBox, travel.touch .boxInner.touchFocus .ti
 
 .containertravel {
 	overflow: hidden;
+	padding-top: 15px;
 	/* we don't want the pseudo-elements sticking out */
 }
 
@@ -1476,6 +1477,9 @@ travel.no-touch .boxInner:hover .titleBox, travel.touch .boxInner.touchFocus .ti
 
 .texttravel:first-child {
 	text-align: left;
+	padding-left: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .texttravel:nth-child(2) {
@@ -1510,7 +1514,7 @@ travel.no-touch .boxInner:hover .titleBox, travel.touch .boxInner.touchFocus .ti
 	color: #fff;
 	text-align: center;
 	margin: 0 auto;
-/* 	margin-top: 30px; */
+	margin-top: 10px;
 }
 
 .sectiontravel.color h2 {
