@@ -829,9 +829,10 @@ a i{
 }
 /*-------button effect----------*/
 .quote.button_effect{
-	background-color: #0086AC !important;
-    border-style: groove;
-    box-shadow: 0 0 8px #fff inset;
+ 	background-color: #fff !important;
+ 	color: #0086ac !important;
+/*     border-style: groove; */
+/*     box-shadow: 0 0 8px #fff inset; */
     font-family: "Oleo Script",cursive;
     font-size: 26px !important;
     line-height: 10px !important;
@@ -991,7 +992,7 @@ a.enquiry_anchor.buton_custom{
   width:96%;
 /*   height:100px; */
   margin-left:2%;
-  border:2px dashed #fff;
+/*   border:2px dashed #fff; */
   border-radius:5px;
   line-height: 40px;
   font-size: 18px;
@@ -1041,4 +1042,12 @@ a.enquiry_anchor.buton_custom{
 
 .package-bullet{
 	color: #7988d6;
+}
+
+#templatemo_banner_top a.header_enquiry.header_quote{
+	background-color: #0086AC !important;
+	border-style: none;
+	box-shadow: 0 0 8px #fff inset;
+	color: #fff !important;
+	padding: 10px;
 }

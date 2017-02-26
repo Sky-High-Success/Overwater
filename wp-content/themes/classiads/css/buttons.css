@@ -883,10 +883,10 @@
 		opacity: 0;
 		-webkit-transform: translate3d(0, -100%, 0);
 		transform: translate3d(0, -100%, 0);
-		color: #fff;
+		color: #0086ac;
 	}
 	100% {
-		color: #fff;
+		color: #0086ac;
 	}
 }
 @keyframes anim-nanuk-1 {
@@ -911,10 +911,10 @@
 		opacity: 0;
 		-webkit-transform: translate3d(0, -100%, 0);
 		transform: translate3d(0, -100%, 0);
-		color: #fff;
+		color: #0086ac;
 	}
 	100% {
-		color: #fff;
+		color: #0086ac;
 	}
 }
 @-webkit-keyframes anim-nanuk-2 {
@@ -939,10 +939,10 @@
 		opacity: 0;
 		-webkit-transform: translate3d(0, 100%, 0);
 		transform: translate3d(0, 100%, 0);
-		color: #fff;
+		color: #0086ac;
 	}
 	100% {
-		color: #fff;
+		color: #0086ac;
 	}
 }
 @keyframes anim-nanuk-2 {
@@ -967,10 +967,10 @@
 		opacity: 0;
 		-webkit-transform: translate3d(0, 100%, 0);
 		transform: translate3d(0, 100%, 0);
-		color: #fff;
+		color: #0086ac;
 	}
 	100% {
-		color: #fff;
+		color: #0086ac;
 	}
 }
 .button--nanuk:hover > span:nth-child(1) {

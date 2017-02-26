@@ -477,9 +477,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                Packages
                             </a> -->
                            
-                       <a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs hidden-md header_enquiry " href="http://overwaterbungalows.reslogic.com" ><i class="fa fa-hand-o-right"></i> QUOTE</a>       
+                       <a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs header_enquiry header_quote" href="http://overwaterbungalows.reslogic.com" ><i class="fa fa-hand-o-right"></i> QUOTE</a>       
                       <?php if(!$hide_enquiry){?> 
- 				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs header_enquiry " href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general"><i class="fa fa-hand-o-right"></i> ENQUIRE</a>  
+ 				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs hidden-md header_enquiry " href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general"><i class="fa fa-hand-o-right"></i> ENQUIRE</a>  
  				      <?php } ?>
 				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs header_phone " href="tel:1300256067">1300 256 067</a>
 				     	
