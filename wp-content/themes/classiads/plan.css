@@ -1921,7 +1921,8 @@ svg#bigTriangleColor {
 }
 
 .boxInner .card_content h3 {
-  font-size: 24px;
+  font-size: 16px;
+  font-weight: 700;
   margin-bottom: 7px;
 }
 
@@ -1988,7 +1989,7 @@ svg#bigTriangleColor {
 }
 
 #templatemo_banner_top a.header_enquiry{
-	font-size: 20px !important;
+	font-size: 18px !important;
 	line-height: 0px !important;
 	
 	padding-left: 0;

@@ -392,7 +392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<a href="<?php echo get_home_url();?>"><img src="<?php bloginfo('template_url'); ?>/images/sitelogo.jpg" alt="logo"/></a>
 					</div>
                 </div>
-                <div class="col-md-5 col-lg-4">
+                <div class="col-md-5 col-lg-3">
                 	<div class="prosenjitdiv">  
 
                      <div class="plan-trip-dropdown btn-group">
@@ -418,8 +418,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                 
                 </div>
-                <div class="col-md-3 col-lg-4 header-p right">
-                  <div class="row">
+                <div class="col-md-3 col-lg-5 header-p right">
+                  <div class="row" style="margin-left: 0px;">
                     
                       <div class="col-lg-1 col-md-1">
                       </div>
@@ -477,11 +477,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                Packages
                             </a> -->
                            
-                       <a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs header_enquiry header_quote" href="http://overwaterbungalows.reslogic.com" ><i class="fa fa-hand-o-right"></i> QUOTE</a>       
+                       <a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs header_enquiry header_quote" href="http://overwaterbungalows.reslogic.com" >Get a Quote</a>       
                       <?php if(!$hide_enquiry){?> 
  				    	<a class="btn enquiry_anchor book-now1 buton_custom hidden-sm hidden-xs hidden-md header_enquiry " href="#" data-toggle="modal" data-target="#enquiryModal" data-package_quote="general"><i class="fa fa-hand-o-right"></i> ENQUIRE</a>  
  				      <?php } ?>
-				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs header_phone " href="tel:1300256067">1300 256 067</a>
+				     	<a class="google-forwarding-number phone-txt mob_txt mob_align hidden-sm hidden-xs hidden-md header_phone " href="tel:1300256067">1300 256 067</a>
 				     	
  				     </div>
                    

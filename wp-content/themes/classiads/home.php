@@ -165,7 +165,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/maldives_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>MALDIVES</h3>
+					<h3>MALDIVES RESORT</h3>
 				</div>
 			</a>
 
@@ -180,7 +180,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/tahiti_300.jpg'; ?>" alt="" />
 
 				<div class="card_content">
-					<h3>TAHITI</h3>
+					<h3>TAHITI RESORT</h3>
 				</div>
 
 			</a>
@@ -196,7 +196,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/fiji_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>FIJI</h3>
+					<h3>FIJI RESORT</h3>
 				</div>
 			</a>
 
@@ -211,7 +211,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/malaysia_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>MALAYSIA</h3>
+					<h3>MALAYSIA RESORT</h3>
 				</div>
 			</a>
 
@@ -226,7 +226,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/vanuatu_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>VANUATU</h3>
+					<h3>VANUATU RESORT</h3>
 				</div>
 			</a>
 
@@ -241,7 +241,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/samoa_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>SAMOA</h3>
+					<h3>SAMOA RESORT</h3>
 				</div>
 			</a>
 
@@ -256,7 +256,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/philippines_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>PHILIPPINES</h3>
+					<h3>PHILIPPINES RESORT</h3>
 				</div>
 			</a>
 
@@ -271,7 +271,7 @@ echo do_shortcode('[layerslider id="294"]');
 				<img src="<?php echo get_template_directory_uri() . '/images/cover/other_islands_300.jpg'; ?>" alt="" />
 				
 				<div class="card_content">
-					<h3>OTHER ISLANDS</h3>
+					<h3>OTHER ISLANDS RESORT</h3>
 				</div>
 			</a>
 

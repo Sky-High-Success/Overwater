@@ -539,8 +539,10 @@ div.box-notification a:hover {
 
 .remove-left-padding{
 	padding-left: 0;
-	margin-top: 18px;
+	margin-top: 12px;
 }
+
+
 
 #package_dropdown{
 	width: 100%;
@@ -834,14 +836,14 @@ a i{
 /*     border-style: groove; */
 /*     box-shadow: 0 0 8px #fff inset; */
     font-family: "Oleo Script",cursive;
-    font-size: 26px !important;
+    font-size: 20px !important;
     line-height: 10px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: -30px;
-    padding: 0 15px;
+    padding: 0 0px;
     margin-bottom: 0px;
-    width: 320px;
+    width: 230px;
 }
 
 .prosenjitdiv li a{
@@ -954,6 +956,16 @@ a.enquiry_anchor.buton_custom{
 	 margin-top: -160px;
 	 height: 160px;
 	}
+	
+	
+}
+
+@media (max-width: 1199px){
+	
+	.remove-left-padding{
+	 margin-top: 18px;
+	}
+	
 }
 
 .margin-left-adjust{
@@ -1050,4 +1062,5 @@ a.enquiry_anchor.buton_custom{
 	box-shadow: 0 0 8px #fff inset;
 	color: #fff !important;
 	padding: 10px;
+	line-height: 20px !important;
 }
