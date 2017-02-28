@@ -1064,3 +1064,8 @@ a.enquiry_anchor.buton_custom{
 	padding: 10px;
 	line-height: 20px !important;
 }
+
+#quote-mobile a{
+	margin-right: 0px;
+	margin-top: 10px;
+}

@@ -2021,7 +2021,11 @@ svg#bigTriangleColor {
 	}
 	
 	.banner-fixed-offset{
-		margin-top: 150px;
+		margin-top: 191px;
+	}
+	
+	.ls-bottom-nav-wrapper{
+		display: none;
 	}
 
 }
@@ -2036,7 +2040,7 @@ svg#bigTriangleColor {
 	}
 	
 	.banner-fixed-offset{
-		margin-top: 121px;
+		margin-top: 181px;
 	}
 	
 }

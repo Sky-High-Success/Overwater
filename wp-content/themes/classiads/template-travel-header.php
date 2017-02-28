@@ -392,6 +392,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<a href="<?php echo get_home_url();?>"><img src="<?php bloginfo('template_url'); ?>/images/sitelogo.jpg" alt="logo"/></a>
 					</div>
                 </div>
+                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                	<div id="quote-mobile" class="text-center ">
+                 		<a class="btn enquiry_anchor book-now1 buton_custom  header_enquiry header_quote" href="http://overwaterbungalows.reslogic.com" >Get a Quote</a> 
+                	</div>
+                </div>
                 <div class="col-md-5 col-lg-3">
                 	<div class="prosenjitdiv">  
 
