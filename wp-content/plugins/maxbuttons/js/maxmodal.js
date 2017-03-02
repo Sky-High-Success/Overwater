@@ -77,8 +77,6 @@ jQuery(document).ready(function($) {
 		this.currentModal.css('left', left + 'px'); 
 		this.currentModal.css('top', top + 'px'); 
 		this.currentModal.css('height', modalHeight);
-
-		
 		
 		this.currentModal.show(); 
 				
@@ -105,7 +103,6 @@ jQuery(document).ready(function($) {
 		this.currentModal.removeAttr('style'); 	
 		this.currentModal.find('.modal_content').removeAttr('style'); 	
 		// redo sizes, repaint.		
-
 		
 		this.show(); 
 	}
@@ -218,6 +215,7 @@ jQuery(document).ready(function($) {
 		this.setTitle(title)
 		this.setContent(content);
 		this.setControls(controls);
+
 		
 		// callback on init 
 		if (typeof data.data('load') !== 'undefined') 
@@ -241,7 +239,6 @@ jQuery(document).ready(function($) {
 			
 			try
 			{
-
 				callFunc(this);
 			}
 			catch(err)
@@ -249,9 +246,8 @@ jQuery(document).ready(function($) {
 				console.log('MB Modal Callback Error: ' + err.message);
 			}
 		}
-				
+			
 		this.show();
-		
 	}
 
 	maxModal.prototype.newModal = function(id) 
@@ -274,7 +270,7 @@ jQuery(document).ready(function($) {
 		$(modal).draggable({
 			handle: '.modal_header'
 		}); 
-		
+
 		this.modals.push(modal); 
 		this.currentModal = modal;
 		this.controls = []; 

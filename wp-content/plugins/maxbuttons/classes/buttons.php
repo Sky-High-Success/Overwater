@@ -112,5 +112,50 @@ class maxButtons
 		}
 		
 	}
+	
+	public static function ajax_action() 
+	{
+		$action = sanitize_text_field($_POST['button_action']); 
+		$check = wp_verify_nonce($_POST['nonce'], 'button-' . $action);
+		$button_id = intval($_POST["button_id"]);  
+		$button = new maxButton();
+									
+		if  (! $check) 
+			exit('Invalid Nonce'); 
+		
+		switch($action)
+		{
+			case "delete": 
+				$button->delete($button_id); 
+				$redirect_url = admin_url() . 'admin.php?page=maxbuttons-controller&action=list&message=1delete'; 
+			break;
+			
+			case "trash": 
+				$result = $button->set($button_id);	
+			 	if ($result)
+					$button->setStatus('trash'); 	
+				$redirect_url = admin_url() . 'admin.php?page=maxbuttons-controller&action=list&message=1'; 		
+			break; 
+			case "restore": 
+				$set = $button->set($button_id,'','trash');
+				$button->setStatus("publish"); 
+				$redirect_url = admin_url() . 'admin.php?page=maxbuttons-controller&action=list&status=trash&message=1restore';
+			break;
+			case "copy": 
+				$button->set($button_id); 
+				$new_id = $button->copy();		
+				$redirect_url = admin_url() . 'admin.php?page=maxbuttons-controller&action=button&id=' . $new_id;
+			break;
+		
+		}
+		
+		if (isset($redirect_url)) {
+			$response = array('redirection' => $redirect_url); 
+			echo json_encode($response);
+			exit();
+		}
+		
+		exit(true);
+	}
 
 } // class

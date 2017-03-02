@@ -89,6 +89,9 @@ Find help in [our forums](http://wpdarko.com/support/) for this plugin (we’ll 
 6. Finding the shortcode (admin view)
 
 == Changelog ==
+= 4.3.2 =
+* Fix 1 PHP error causing page content to disappear/crash
+
 = 4.3 =
 * Added custom CSS classes
 

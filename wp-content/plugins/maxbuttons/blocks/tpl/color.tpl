@@ -1,4 +1,4 @@
-		{if:label} 	<label class='color'>%%label%%</label> {/if:label} 
+		{if:label} 	<label for='%%id%%' class='color'>%%label%%</label> {/if:label} 
 
 	<div class="input color %%name%%"  {if:conditional}data-show="%%conditional%%"{/if:conditional}>
 	

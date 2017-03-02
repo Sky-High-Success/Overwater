@@ -29,6 +29,10 @@ class basicBlock extends maxBlock
 
 	public function parse_css($css,  $mode = 'normal')
 	{
+		// emtpy string init is not like by PHP 7.1
+		if (! is_array($css))
+			$css = array(); 
+
 		$data = $this->data[$this->blockname]; 
 			
 		$css["maxbutton"]["normal"]["position"] = "relative";

@@ -352,14 +352,16 @@
 
 /* Media queries interface */
 .media_query { 
-	width: 28%; 
-	/*margin: 15px 0 15px 165px; */
+
+	width: 640px;
 	margin: 0 20px 15px 0;
 	border: 1px solid #ccc;
 	padding: 10px 15px;
 	display: inline-block;
+	clear: both;
+	
 	position: relative;
-	float:left;
+
 	.removebutton { 
 		position: absolute;
 		right: 10px; 
@@ -376,14 +378,22 @@
 		clear: both; 
 		margin-bottom: 15px;
 	}	
+	label.title {
+		 padding: 0; 
+		 font-size: 20px;		 
+	}
 	.custom .label, .custom .input {
-		float: left;
+		//float: left;
 	}
 	.custom.hidden { display: none; } 
+	.option.custom label:nth-of-type(2)
+	{
+		margin-left: 95px;
+	}
 	.description {
  		padding: 15px 0px;
- 		text-align: center;
- 		min-height: 45px;
+ 		text-align: left;
+ 		//min-height: 45px;
 	 }
 	 select { width: 60px; }
 	.input input { 
@@ -397,10 +407,10 @@
 } // media_query 
 
 .option-container .media_query label { 
-	display: block;
-	font-size:16px;
-	text-align: center;
-		cursor: default;
+	//display: block;
+	//font-size:16px;
+	//text-align: center;
+	//	cursor: default;
 }
  
 .media_queries_options .new-query { 
@@ -413,6 +423,33 @@
 	
  .media_option_prot, #media_desc {
 	display: none;
+}
+
+// The warning layout for the copy button dialog
+.copy-warning { 
+	width: 400px;
+	margin: 0 auto;	
+	position: relative;
+	line-height: 1.1;
+
+	&:before {
+		content: "\f534";
+		font-size: 40px; 
+		color: #ff0000; 
+		width: 35px; 
+		height: 35px; 
+		font-family: "Dashicons"; 
+		position: absolute; 
+		left: 20px; 
+		top: 40%; 
+		margin-top: -14px;
+	}
+	
+	.example {
+		margin-bottom: 5px;
+	}
+
+
 }
 
   .form-actions {

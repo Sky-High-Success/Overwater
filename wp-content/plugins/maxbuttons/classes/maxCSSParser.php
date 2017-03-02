@@ -132,12 +132,12 @@ class maxCSSParser
 	
 	protected function compile($css)
 	{
-		$scss = new scssc();
+		$scss = new \Leafo\ScssPhp\Compiler();
 		$scss->setImportPaths(MB()->get_plugin_path() . "assets/scss");
 		
 		$minify = get_option("maxbuttons_minify", 1); 
 		if ($minify == 1)
-			$scss->setFormatter('scss_formatter_compressed');
+			$scss->setFormatter('\Leafo\ScssPhp\Formatter\Compressed');
 		
 		$compile = " @import '_mixins.scss';  " . $css;
 		//maxUtils::addTime("CSSParser: Compile start ");
@@ -148,7 +148,7 @@ class maxCSSParser
 		} catch (Exception $e) { 
  
 			$css = $this->output_css; 
-		 } 
+		} 
 
 		//maxUtils::addTime("CSSParser: Compile end ");
 
@@ -173,7 +173,7 @@ class maxCSSParser
 	 	{
 	 		$responsive = $element_data["responsive"]; // doing that at the end
 	 		unset($element_data["responsive"]); 
- 
+
 	 		$this->responsive[$el_add] = $responsive;
 	 	}
 	 
@@ -275,6 +275,7 @@ class maxCSSParser
 			}}
 		}
  
+
 	 			
 		foreach($query_array as $query => $vdata):
 
@@ -410,12 +411,15 @@ class maxCSSParser
 		{
 
 			$results = preg_grep("/^$mixin/i",array_keys($values) );
+			if (count($results) === 0) 
+				continue; // no mixins. 
+		
 			$mixin_array = array();
 		 	foreach($results as $result)
 		 	{
 		 		$mixin_array[$result] = $values[$result]; 
 		 	}
-		 	
+
 			if (count($mixin_array) > 0)
 			{
 				switch($mixin)
@@ -455,16 +459,17 @@ class maxCSSParser
 		$important = ($this->is_important()) ? "!important" : "";
 		//$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");		
 
-	if ($use_gradient == 1)
+		if ($use_gradient == 1)
 		{
 			$values = $this->add_include($values, "linear-gradient($start,$end,$stop,$important)");			
 		}
 		else {
 			$values['background-color'] = $start; 
 		}
+
 		// remove the non-css keys from the value array ( field names ) 
 		$values = array_diff_key($values, $results);
-		
+
 		return $values;
  
 	}
@@ -497,7 +502,10 @@ class maxCSSParser
 		$important = ($this->is_important()) ? "!important" : ""; 
 					
  		if ($width == 0 && $left == 0 && $top == 0) 
+		{
+			$values = array_diff_key($values, $results); // remove them from the values, prevent incorrect output.
 			return $values; 
+		}
 		
 		$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
 		

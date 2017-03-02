@@ -1,5 +1,3 @@
-
-
 jQuery(document).ready(function($) {	
 	
 	function runMaxInit()
@@ -15,9 +13,6 @@ jQuery(document).ready(function($) {
 		
 		window.maxFoundry.maxcollection = new maxCollection(); 
 		window.maxFoundry.maxcollection.init();  
-		
-
-
 	} 	
 
 	runMaxInit(); 

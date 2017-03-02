@@ -248,6 +248,41 @@ class maxUtils
 		}
  
 	}
+	
+	/** Function will try to unload any FA scripts other than MB from WP. In case of conflict */ 
+	static function fixFAConflict() 
+	{
+		$forcefa = get_option('maxbuttons_forcefa'); 
+		
+		if ($forcefa != '1') 
+			return;
+	
+		global $wp_styles;
+
+		// Loop through all registered styles and remove any that appear to be Font Awesome.
+		foreach ( $wp_styles->registered as $script => $details ) {
+			$src = isset($details->src) ? $details->src : false;
+
+ 			if ($script == 'mbpro-font-awesome') 
+ 			{
+ 				$mbpro_src = $src;
+ 				continue; // exclude us
+ 			}
+ 			
+			if ( false !== strpos( $script, 'fontawesome' ) || false !== strpos( $script, 'font-awesome' ) ) {
+				wp_dequeue_style( $script );
+			}
+			if ($src && ( false !== strpos($src, 'font-awesome') || false !== strpos($src, 'fontawesome') ) )
+			{
+				wp_dequeue_style( $script );			
+			}
+
+		}
+		
+		// This is a fix specific for NGGallery since they load their scripts weirdly / wrongly, but do check for the presence of a style named 'fontawesome' . 
+		wp_register_style('fontawesome', $src);
+
+	}
 		
 
 	static function timeInit()
@@ -268,11 +303,7 @@ class maxUtils
 	{
 		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
 			return;
-		
-		/*if (count(self::$timings) == 0)
-		{
-			self::timeInit(); 
-		}  */
+
 		
 		self::$timings[] = array("msg" => $msg,"time" => microtime(true)); 
 	}

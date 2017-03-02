@@ -46,7 +46,6 @@ class maxButtonsAdmin
 	
 	function getButtons($args = array())
 	{
-		
 		$defaults = array(
 			"status" => "publish", 
 			"orderby" => "id", 
@@ -106,7 +105,7 @@ class maxButtonsAdmin
 	 		$sql .= " LIMIT $offset, $limit "; 
 		}
 		
-		$sql = $this->wpdb->prepare($sql,$escape , ARRAY_A); 
+		$sql = $this->wpdb->prepare($sql,$escape); 
  		
 		$buttons = $this->wpdb->get_results($sql, ARRAY_A);
  

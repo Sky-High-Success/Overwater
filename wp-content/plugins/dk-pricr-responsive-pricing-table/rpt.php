@@ -3,7 +3,7 @@
  * Plugin Name: Responsive Pricing Table
  * Plugin URI: http://wpdarko.com/items/responsive-pricing-table-pro/
  * Description: A responsive, easy and elegant way to present your offer to your visitors. Just create a new pricing table (custom type) and copy-paste the shortcode into your posts/pages. Find help and information on our <a href="http://wpdarko.com/support/">support site</a>. This free version is NOT limited and does not contain any ad. Check out the <a href='http://wpdarko.com/items/responsive-pricing-table-pro/'>PRO version</a> for more great features.
- * Version: 4.3
+ * Version: 4.3.2
  * Author: WP Darko
  * Author URI: http://wpdarko.com
  * Text Domain: dk-pricr-responsive-pricing-table
@@ -330,17 +330,16 @@ foreach($custom_posts as $post) : setup_postdata($post);
     		if (!empty($plans['_rpt_features'])){
 
 
-                $output2 .= '<div class="rpt_features rpt_features_' . $key . '">';
+          $output2 .= '<div class="rpt_features rpt_features_' . $key . '">';
 
+          $features = array();
 
     			$string = $plans['_rpt_features'];
     			$stringAr = explode("\n", $string);
     			$stringAr = array_filter($stringAr, 'trim');
 
-    			$features = '';
-
     			foreach ($stringAr as $feature) {
-    				$features[] .= strip_tags($feature,'<strong></strong><br><br/></br><img><a>');
+    				$features[] = strip_tags($feature,'<strong></strong><br><br/></br><img><a>');
     			}
 
     			foreach ($features as $small_key => $feature){

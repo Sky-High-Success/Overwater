@@ -224,7 +224,7 @@ class pickerCollectionBlock extends collectionBlock
 		<div class="title">
 			<span class="dashicons dashicons-list-view"></span> 
 			<span class='title'><?php _e("Buttons", "maxbuttons"); ?></span>
-			<button name="picker_popup" type="button" class="button"><?php _e("Select Social Share Icons","maxbuttons"); ?></button>
+			<button name="picker_popup" type="button" class="button-primary"><?php _e("Select Social Share Icons","maxbuttons"); ?></button>
 			<span class='right'><button name="save" type="submit"  data-form='collection_edit' class="button button-primary"><?php _e("Save All","maxbuttons"); ?></button>
 			</span>
 		</div> 

@@ -177,12 +177,14 @@ $mbadmin->get_header(array("title" => $page_title, "title_action" => $action));
 			</p>
 			<?php
 			do_action("mb-display-meta"); 
-			
 
 			?>
-	
-
 			<form method="post">
+				<?php wp_nonce_field("button-copy","copy_nonce"); ?> 
+				<?php wp_nonce_field("button-delete","delete_nonce"); ?> 
+				<?php wp_nonce_field('button-trash', 'trash_nonce'); ?> 
+				<?php wp_nonce_field('button-restore', 'restore_nonce'); ?> 
+							
 				<input type="hidden" name="view" value="<?php echo $view ?>" /> 
 				<?php wp_nonce_field("mb-list","mb-list-nonce");  ?>
 				
@@ -244,8 +246,10 @@ $mbadmin->get_header(array("title" => $page_title, "title_action" => $action));
 						</span>
 						<span class='col col_shortcode'><?php _e('Shortcode', 'maxbuttons') ?></span>						
 					</div> <!-- heading --> 
-					<?php foreach ($published_buttons as $b): 
-						$id = $b["id"]; 
+				
+					<?php 
+						foreach ($published_buttons as $b): 
+						$id = $b['id'];
 						if($view == 'trash') 
 							$button->set($id,'','trash');
 						else 
@@ -266,15 +270,15 @@ $mbadmin->get_header(array("title" => $page_title, "title_action" => $action));
 								<?php if($view == 'all') : ?>
 								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $id ?>"><?php _e('Edit', 'maxbuttons') ?></a>
 									<span class="separator">|</span>
-									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
+									<a href='javascript:void(0);' data-buttonaction='copy' data-buttonid="<?php echo $id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
 									<span class="separator">|</span>
-									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
+									<a href="javascript:void(0)" data-buttonaction='trash' data-buttonid="<?php echo $id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
 								<?php endif; 
 								if ($view == 'trash'): 
 								?> 
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=restore&id=<?php echo $id ?>"><?php _e('Restore', 'maxbuttons') ?></a>
+								<a href="javascript:void(0);" data-buttonaction='restore' data-buttonid="<?php echo $id ?>"><?php _e('Restore', 'maxbuttons') ?></a>
 								<span class="separator">|</span>
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
+								<a href="javascript:void(0);" data-buttonaction='delete' data-buttonid="<?php echo $id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 								<?php endif; ?> 	
 								</div>
 								
@@ -291,10 +295,12 @@ $mbadmin->get_header(array("title" => $page_title, "title_action" => $action));
 											if ($name)
 												echo "<span class='name'>$name</span> "; 
 										}	
+										
 										?>
 									</div>
-								
-								<?php endif; 
+										
+								<?php 
+									endif; 
 								?>
 						</span>
 						<span class="col col_name"><a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $id ?>"><?php echo $button->getName() ?></a>
@@ -304,7 +310,9 @@ $mbadmin->get_header(array("title" => $page_title, "title_action" => $action));
 						<span class="col col_shortcode">									[maxbutton id="<?php echo $id ?>"]<br />
 									[maxbutton name="<?php echo $button->getName() ?>"]</span>
 						</div> 
-					<?php endforeach; // buttons ?>	 
+					<?php endforeach; 
+					
+					// buttons ?>	 
 		
 
 				</div> <!-- button-list --> 

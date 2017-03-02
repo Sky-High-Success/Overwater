@@ -3,8 +3,8 @@ Contributors: nextendweb
 Tags: google, register, login, social connect, social, google connect
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 3.0
-Tested up to: 4.2.2
-Stable tag: 1.6.0
+Tested up to: 4.7.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,9 @@ After you activated the plugin, the plugin will autmatically
 2. Our Social Connect plugins in the profile page for account linking
 
 == Changelog ==
+
+= 1.6.1 =
+* Fix: Missing check which resulted a notice - made by Alberto
 
 = 1.6.0 =
 * Fix: Redirect urls are well encoded - made by JRB

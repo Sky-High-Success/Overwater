@@ -1,5 +1,5 @@
 		{if:label} 	<label for='%%id%%'>%%label%%</label> {/if:label} 
-		<div class="input number %%name%%" {if:conditional}data-show="%%conditional%%"{/if:conditional}>
+		<div class="input number %%name%%" {if:conditional}data-show="%%conditional%%"{/if:conditional} >
 		{if:before_input} %%before_input%% {/if:before_input}
 			<input type="number"
 				id="%%id%%"

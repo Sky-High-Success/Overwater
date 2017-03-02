@@ -82,11 +82,12 @@ $button = MB()->getClass("button");
 <input type="hidden" name="block_nonce" value="<?php echo $block_nonce ?>"> 
 <input type="hidden" name="tab" value="<?php echo $tab ?>" /> 	
 <input type="hidden" name="collection_type" value="<?php echo $collection_type ?>" > 
-</form>
 
 <div class="form-actions">				
 	<input type="submit" data-form='collection_edit' name="submit" value="<?php _e('Save All', 'maxbuttons') ?>" class="button-primary ">
 </div>
+</form>
+
 <?php 
 
 $admin->get_footer(); 

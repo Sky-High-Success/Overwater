@@ -2,9 +2,10 @@
 defined('ABSPATH') or die('No direct access permitted');
  
 
-$page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : '';
+$mainclass = isset($_REQUEST["page"]) ? $_REQUEST["page"] : '';
 $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : $action; 
-$mainclass = $page . '-' . $action; 
+if ($action !== '')
+	$mainclass .= '-' . $action; 
 ?>
 
 <div id="maxbuttons" class="<?php echo $mainclass ?>" <?php if ($tabs_active) echo "data-view='tabs'" ?>>

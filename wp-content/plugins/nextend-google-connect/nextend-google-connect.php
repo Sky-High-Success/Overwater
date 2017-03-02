@@ -4,7 +4,7 @@
 Plugin Name: Nextend Google Connect
 Plugin URI: http://nextendweb.com/
 Description: Google connect
-Version: 1.6.0
+Version: 1.6.1
 Author: Roland Soos, Jamie Bainbridge
 License: GPL2
 */
@@ -113,7 +113,7 @@ add_action('login_init', 'new_google_login');
 
 function new_google_login() {
 
-  if ($_REQUEST['loginGoogle'] == '1') {
+  if (isset($_REQUEST['loginGoogle']) && $_REQUEST['loginGoogle'] == '1') {
     new_google_login_action();
   }
 }

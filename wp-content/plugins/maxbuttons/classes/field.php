@@ -62,6 +62,12 @@ class maxField
 	
 	}
  
+ 	/** Output field interface
+ 	* 
+ 	*	@param $start_tpl Prepend a template before this field ( e.g. row defition ) 
+ 	* 	@param $end_tpl   Append a template after this field
+ 	*/
+ 	
 	public function output($start_tpl = '', $end_tpl = '') 
 	{
 		if ($this->esc_function) 

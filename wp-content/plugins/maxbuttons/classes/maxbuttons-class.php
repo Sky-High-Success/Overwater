@@ -53,6 +53,7 @@ class maxButtonsPlugin
 		{		
 			add_action('admin_enqueue_scripts', array($this,'add_admin_styles'));
 			add_action('admin_enqueue_scripts', array($this,'add_admin_scripts'));	
+			add_action('admin_enqueue_scripts', array('maxUtils', 'fixFAConflict'),999);
 					
 			add_action('admin_init', array($this,'register_settings' ));
 	
@@ -82,6 +83,7 @@ class maxButtonsPlugin
 					
 		// front scripts
 		add_action('wp_enqueue_scripts', array($this, 'front_scripts'));
+		add_action('wp_enqueue_scripts', array('maxUtils', 'fixFAConflict'),999);
 		
 		$this->setMainClasses(); // struct for override functionality
  		
@@ -178,12 +180,14 @@ class maxButtonsPlugin
  	}
  	
  	
+ 	/** WP Settings framework. Registers settings used on maxbuttons-settings.php page */
  	public function register_settings()
  	{
  		register_setting( 'maxbuttons_settings', 'maxbuttons_user_level' );
  		register_setting( 'maxbuttons_settings', 'maxbuttons_noshowtinymce' );
  		register_setting( 'maxbuttons_settings', 'maxbuttons_minify' ); 
  		register_setting( 'maxbuttons_settings', 'maxbuttons_hidedescription' ); 
+ 		register_setting( 'maxbuttons_settings', 'maxbuttons_forcefa') ;
 	}
 	
 	protected function checkbox_option($options) 
@@ -313,7 +317,8 @@ class maxButtonsPlugin
 			if (! isset($_GET['fl_builder'])) // exception for beaver builder
 			return;
  		}
- 		
+			
+				 		
  		$fa_url = apply_filters("mb_fa_url", $this->plugin_url . 'assets/libraries/font-awesome/css/font-awesome.min.css'); 
 		if ($fa_url != false && $fa_url != '')
 		{				
@@ -340,7 +345,7 @@ class maxButtonsPlugin
 		$js_url = trailingslashit($this->plugin_url . 'js'); 
 		if (! $this->debug_mode)	
 			$js_url .= 'min/'; 
-		
+	
 		
 		wp_enqueue_script('jquery-ui-draggable');
  
@@ -349,8 +354,8 @@ class maxButtonsPlugin
 		wp_enqueue_script('maxbutton-admin', $js_url . 'maxbuttons-admin.js', array('jquery', 'jquery-ui-draggable', 'maxbuttons-tabs','maxbuttons-modal', 'wp-color-picker', 'underscore'),$version, true); 
 		wp_enqueue_script('maxbutton-js-init', $js_url . 'init.js', array('maxbutton-admin','maxcollections','maxbuttons-modal'),$version, true);
 		wp_enqueue_script('maxbuttons-tabs', $js_url . 'maxtabs.js', array('jquery'),$version, true); 
-
-
+		wp_enqueue_script('maxbuttons-responsive', $js_url . 'responsive.js', array('maxbutton-admin'), $version, true ); 
+	
 		wp_register_script('maxcollections', $js_url . 'maxcollections.js', 
 				array('jquery', 'maxbutton-admin', 'jquery-ui-sortable'),$version, true );	
 						
@@ -425,6 +430,10 @@ class maxButtonsPlugin
 		'windowtitle' => __("Select a MaxButton","maxbuttons"), 
 		'icon' => $this->plugin_url . 'images/mb-peach-32.png', 
 		'ajax_url' => admin_url( 'admin-ajax.php' ), 
+		'short_url_label' => __('Button URL', 'maxbuttons'),  
+		'short_text_label' => __('Button Text', 'maxbuttons'),
+		'short_options_explain' => __('If you want to change the URL or Text of the Button, enter the appropiate field. If you want to use the button values, just click Add to editor', 'maxbuttons'),
+		'short_add_button' => __('Add to Editor', 'maxbuttons'), 
 		); 
 		
 		wp_localize_script('mb-media-button','mbtrans', $translations); 	
@@ -447,7 +456,7 @@ class maxButtonsPlugin
 			$title = __('Add Button', 'maxbuttons');
 			$icon = $this->plugin_url . 'images/mb-peach-icon.png';
 			$img = '<span class="wp-media-buttons-icon" style="background-image: url(' . $icon . '); width: 16px; height: 16px; margin-top: 1px;"></span>';
-			$output = '<a href="javascript:void(0);" class="button maxbutton_media_button" data-callback="window.maxMedia.buttonToEditor" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>'; 
+			$output = '<a href="javascript:void(0);" class="button maxbutton_media_button" data-callback="window.maxMedia.showShortcodeOptions" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>'; 
 
 		echo $output;
 	}
@@ -457,7 +466,7 @@ class maxButtonsPlugin
 	*/
 	public function front_scripts() 
 	{
-	
+					
 		$fa_url = apply_filters("mb_fa_url", $this->plugin_url . 'assets/libraries/font-awesome/css/font-awesome.min.css'); 
 		if ($fa_url != false && $fa_url != '')
 		{

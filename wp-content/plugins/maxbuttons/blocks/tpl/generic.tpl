@@ -1,4 +1,4 @@
-{if:label} 	<div class="label">%%label%%</div> {/if:label}
+{if:label} 	<label for='%%id%%'>%%label%%</label> {/if:label}
 		<div class="input %%name%%">
  			%%content%%
 		</div>

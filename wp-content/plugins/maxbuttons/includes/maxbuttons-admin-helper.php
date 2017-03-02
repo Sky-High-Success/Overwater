@@ -23,6 +23,8 @@ class maxAdmin
 	{
 		$version = self::getAdVersion(); 
 		$url = self::getCheckoutURL(); 
+		
+
 	?> 
 			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com/products/?ref=mbfree" target="_blank"><img src="<?php echo MB()->get_plugin_url() ?>images/max-foundry.png" alt="Max Foundry" title="Max Foundry" /></a> 
@@ -30,7 +32,8 @@ class maxAdmin
 
  			<?php $twitlink = 'https://twitter.com/intent/user?original_referer=http%3A%2F%2Flocal.max%2Fwp-admin%2Fadmin.php%3Fpage%3Dmaxbuttons-controller&amp;ref_src=twsrc%5Etfw&amp;region=count_link&amp;screen_name=maxfoundry&amp;tw_p=followbutton'; 
  			?>
-	 
+<?php
+	 	return; ?> 
 			<!--
 			<div class="twitter-follow">
 

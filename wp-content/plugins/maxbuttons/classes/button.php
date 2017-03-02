@@ -194,7 +194,7 @@ class maxButton
 		unset($this->data);
 		unset($this->button_css);
 		$this->id = 0; // clear id
-		$this->button_css = '';
+		$this->button_css = array('normal' => array() ,':hover' => array() ,':visited' => array(), "responsive" => array()); 
 		$this->button_js = array(); 
 		$this->data = array();
 		$this->data = $this->save(array(),false);
@@ -345,7 +345,7 @@ class maxButton
 		{ 
 			/* Internal filter, please don't use */ 
 			$css = apply_filters('mb-css-blocks', $css, $mode);
-			
+			 
 			/* Filter the raw CSS array before compile
 			
 			This filters passes an array with all CSS element before compile time. This should be CSS elements that can be understood by the CSS parser. 
@@ -356,7 +356,7 @@ class maxButton
  			$css = apply_filters('mb/button/rawcss', $css, $mode); 
 
 			$this->button_css = $css;
-		 
+
 			$css = $this->getCSSParser()->parse($this->button_css);
 			$css = apply_filters('mb/button/compiledcss', $css, $mode); // the final result. 
 						
@@ -847,6 +847,12 @@ class maxButton
 			$this->data["basic"]["new_window"] = 1;  
 			$overrides = true;
 		}
+		elseif ($window != '' && $window == 'same') 
+		{
+			$this->data["basic"]["new_window"] = 0;  
+			$overrides = true;		
+		}
+		
 		if ($nofollow != '' && $nofollow == 'true') 
 		{
 			$this->data["basic"]["nofollow"] = 1; 

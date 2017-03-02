@@ -40,7 +40,7 @@ class maxBlocks
 	
 	public static function getValue($fieldname) 
 	{
- 
+
 		if (isset(self::$data[$fieldname])) 
 			return self::$data[$fieldname]; 
 		if (isset(self::$fields[$fieldname])) 

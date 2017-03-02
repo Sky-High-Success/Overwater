@@ -55,49 +55,83 @@ $admin->get_header(array("title" => $page_title, "title_action" => $action) );
 		<form id="new-button-form" action="<?php echo admin_url('admin.php?page=maxbuttons-controller&action=button&noheader=true'); ?>" method="post">
 			<input type="hidden" name="button_id" value="<?php echo $button_id ?>"> 
 			<?php wp_nonce_field("button-edit","maxbuttons_button") ?>
+			<?php wp_nonce_field("button-copy","copy_nonce"); ?> 
+			<?php wp_nonce_field("button-delete","delete_nonce"); ?> 
+			<?php wp_nonce_field('button-trash', 'trash_nonce'); ?> 
 			
 			<div class="form-actions">				
 				<a class="button-primary button button-save" href='javascript:void(0);'><?php _e('Save', 'maxbuttons') ?></a>
 				<?php if ($button_id > 0): ?> 
 				<a id="button-copy" class="maxmodal button" data-modal='copy-button' href="javascript:void(0)"><?php _e('Copy', 'maxbuttons') ?></a>
-				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $button_id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
+				<a id="button-trash" class="maxmodal button" data-modal = 'trash-button' href="javascript:void(0);"><?php _e('Move to Trash', 'maxbuttons') ?></a>
 				<a class="button maxmodal" href="javascript:void(0);" data-modal='delete-button'><?php _e("Delete","maxbuttons"); ?> </a>
 				<?php endif; // button_id > 0 ?> 
 				
 				<?php do_action('mb/editor/form-actions', $button); ?> 
 			</div>
 
+			<!-- delete modal -->
 			<div class="maxmodal-data" id="delete-button">
 				<span class='title'><?php _e("Removing button","maxbuttons"); ?></span>
 				<span class="content"><p><?php _e("You are about to permanently remove this button. Are you sure?", "maxbuttons"); ?></p></span>
 					<div class='controls'>
-						<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>" 							class="button-primary big"><?php _e("Yes","maxbuttons"); ?></a>
-						&nbsp;&nbsp;
+						<button type="button" class='button-primary' data-buttonaction='delete' data-buttonid='<?php echo $button_id ?>'>
+						<?php _e('Yes','maxbuttons'); ?></button>
+ 
 						<a class="modal_close button-primary"><?php _e("No", "maxbuttons"); ?></a>
 						
 					</div>
 			</div>
-			
-			<div class='maxmodal-data' id='copy-button'> 
-				<span class='title'><?php _e("Copy this button","maxbuttons"); ?></span>
-				<span class="content"><p><?php _e("Do you want to copy this button to a new button?","maxbuttons"); ?></p>
-						<p><?php _e('Did you know you can use shortcodes for text and links?', 'maxbuttons'); ?></p>
 
+			<!-- trash modal -->
+			<div class="maxmodal-data" id="trash-button">
+				<span class='title'><?php _e("Trash button","maxbuttons"); ?></span>
+				<span class="content"><p><?php _e("The button will be moved to trash. It can be recovered from the trash bin later. Continue?", "maxbuttons"); ?></p></span>
+					<div class='controls'>
+						<button type="button" class='button-primary' data-buttonaction='trash' data-buttonid='<?php echo $button_id ?>'>
+						<?php _e('Yes','maxbuttons'); ?></button>
+ 
+						<a class="modal_close button-primary"><?php _e("No", "maxbuttons"); ?></a>
+						
+					</div>
+			</div>
+						
+			<!-- copy modal -->
+			<div class='maxmodal-data' id='copy-button' data-load='window.maxFoundry.maxadmin.checkCopyModal'> 
+				<span class='title'><?php _e("Copy this button","maxbuttons"); ?></span>
+				<span class="content">
+					
+						<div class='copy-warning'> 
+						<h3><?php _e('Probably you don\'t want to copy your button!', 'maxbuttons'); ?></h3>
+						<p><?php _e( sprintf("Changing %sText%s and %sURL%s can be done with the same button. %s This will save you time in the near future", "<b>","</b>","<b>","</b>","<br>"),'maxbuttons'); ?> </p>
+				
 						<p class="example">
+						
 						<strong><?php _e("Add the same button with different link","maxbuttons");  ?></strong><br>
 							&nbsp; [maxbutton id="<?php echo $button_id ?>" url="http://yoururl"]
 						</p>
 						 
 						<p class="example"><strong><?php _e("Use the same button but change the text","maxbuttons"); ?> </strong><br />
 							&nbsp; [maxbutton id="<?php echo $button_id ?>" text="yourtext"]
-						</p>
+						</p>						
+
+						<p class="example"><strong><?php _e("Both","maxbuttons"); ?> </strong><br />
+							&nbsp; [maxbutton id="<?php echo $button_id ?>" text="yourtext" url="http://yoururl"]
+						</p>		
+												
+						</div>
+
 						
+						<div class='mb-message mb-notice copy-notice hidden'><p><?php _e('Your button has not been saved. Any changes will be lost!','maxbuttons'); ?></p>
+						</div>
+				<p><?php _e("Do you want to copy this button to a new button?","maxbuttons"); ?></p>
 				</span>
-				<span class="controls"><a class='button-primary modal_close' href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $button_id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
+				<span class="controls">
+				<button type="button" class='button-primary' data-buttonaction='copy' data-buttonid='<?php echo $button_id ?>'>
+				<?php _e('Copy','maxbuttons'); ?></button>
+
 				<a class='button modal_close'><?php _e("Cancel",'maxbuttons'); ?></a>
 				</span>
-				
-			
 			</div>
 			
 			<?php

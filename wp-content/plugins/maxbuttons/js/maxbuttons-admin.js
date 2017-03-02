@@ -36,7 +36,9 @@ maxAdmin.prototype.init = function () {
 		}); 
 
  		$(document).on('submit', 'form.mb_ajax_save', $.proxy(this.formAjaxSave, this)); 
-		$(document).on('click', '#maxbuttons [data-form]', $.proxy(this.buttonSubmit, this)); // remove save buttons ( outside form )
+
+		// copy / delete / trash action buttons via ajax 		
+		$(document).on('click', '[data-buttonaction]', $.proxy(this.button_action, this )); 
 		
 		// conditionals 
 		$(document).on('reInitConditionals', $.proxy(this.initConditionials, this));
@@ -63,8 +65,11 @@ maxAdmin.prototype.init = function () {
 		});  
 		
 		$('.color-field').wpColorPicker(
-			{
+			{	
+				width: 300,
+
 				change: $.proxy( _.throttle(function(event, ui) {
+						event.preventDefault();
 						var color = ui.color.toString();
 						this.update_color(event,ui, color);  
 				}, 200), this), 
@@ -85,8 +90,15 @@ maxAdmin.prototype.init = function () {
  		
  		$('select').on('change', $.proxy(this.update_preview, this)); 
 
-
 		$(window).on('beforeunload', $.proxy(function () { if (this.form_updated) return maxcol_wp.leave_page; }, this));
+		$(document).on('keyup', 'input', function (e) {
+
+			if (e.keyCode && e.keyCode == 13) 
+			{
+				$(":input")[$(":input").index(document.activeElement) + 1].focus();
+				return false;
+			}
+		});
 		
 		$(".button-save").click( $.proxy(function() {	
 			this.saveIndicator(false); // prevent alert when saving.		
@@ -96,6 +108,7 @@ maxAdmin.prototype.init = function () {
 		
 		// Expand shortcode tabs for more examples. 
 		$('.shortcode-expand').on('click', this.toggleShortcode); 
+
 		
 }; // INIT
 
@@ -160,6 +173,55 @@ maxAdmin.prototype.select_field = function(e)
 {
 	$(e.target).select(); 
 }	
+
+maxAdmin.prototype.button_action = function(e)
+{
+	e.preventDefault(); 
+	var action = $(e.target).data('buttonaction'); 
+	
+	this.form_updated = false; 
+
+	var button_id = $(e.target).data('buttonid'); 
+	var nonce = $('input[name="' + action + '_nonce"]').val(); 
+	
+	var url = mb_ajax.ajaxurl;
+	var data = 
+	{
+		action: 'mb_button_action',
+		button_action: action, 
+		button_id: button_id, 
+		nonce: nonce, 
+
+	};
+
+	$.post({
+		url: url, 
+		data: data, 
+		success: function (data) {
+			response = JSON.parse(data);
+			
+			if (typeof response.redirection != 'undefined') 
+			{
+				window.location = response.redirection;  
+			}
+		}, 
+		error: function () {
+			console.log('error in button action' + action);
+		},
+	});
+}
+
+/* Check the copy modal and display a warning if the button has been changes */ 
+maxAdmin.prototype.checkCopyModal = function(modal)
+{
+	if (this.form_updated)
+	{
+		modal.currentModal.find('.mb-message').show();
+		
+	}	
+	else
+		$(modal.currentModal).find('.mb-message').hide();
+}
 		
 maxAdmin.prototype.toggle_preview = function (e)
 {
@@ -203,9 +265,8 @@ maxAdmin.prototype.putCSS = function(data,value,state)
 }
 
 maxAdmin.prototype.update_color = function(event, ui, color)
-		{
+	{
 			event.preventDefault();
-
 			this.saveIndicator(true); 		
 
 			var target = $(event.target);
@@ -214,9 +275,10 @@ maxAdmin.prototype.update_color = function(event, ui, color)
 			if (color.indexOf('#') === -1)
 				color = '#' + color; 
 				
-			var id = target.attr('id');
+			var id = target.attr('id'); 
+			$('#' + id).val(color); // otherwise field value is running 1 click behind.
 
-			
+		
 			if(id.indexOf('box_shadow') !== -1)
 			{
 				this.updateBoxShadow(target); 
@@ -261,7 +323,6 @@ maxAdmin.prototype.copyColor = function (e)
 {
 	e.preventDefault();
 	e.stopPropagation(); // stop the color picker from closing itself.
- 
 	
 	var target = $(e.target); 
 	var bindto = $(e.target).parents('[data-bind]'); 
@@ -298,16 +359,18 @@ maxAdmin.prototype.copyColor = function (e)
 		else
 			copy = true;
 	}
-	
+
 	if ( copy )
 	{
 		$(bindId).val( $(fieldId).val() ); 
-		$(bindId).trigger('keyup');
+		$(bindId).trigger('change');
+		$(bindId).wpColorPicker('color', $(fieldId).val()); 
 	}
 	else
 	{
 		$(fieldId).val( $(bindId).val() ); 
-		$(fieldId).trigger('keyup');
+		$(fieldId).trigger('change');
+		$(fieldId).wpColorPicker('color', $(bindId).val());		
  	}
  	
 }
@@ -479,77 +542,12 @@ maxAdmin.prototype.toggleRadiusLock = function (event)
 
 maxAdmin.prototype.initResponsive = function()
 {
-	this.checkAutoQuery();	
-	$('input[name="auto_responsive"]').on('click', $.proxy(this.checkAutoQuery,this)); 
-	$('.add_media_query').on('click', $.proxy(this.addMediaQuery, this)); 
-	//$('.removebutton').on('click', ); 
-	$(document).on('click', '.removebutton', $.proxy(this.removeMediaQuery, this)); 
-	
-}	
-maxAdmin.prototype.checkAutoQuery = function()
-{
-	if ( $('input[name="auto_responsive"]').is(':checked') )
-	{
 
-		$('.media_queries_options').hide(); 
-	}
-	else 
-	{
-		$('.media_queries_options').show(); 
-		
-	}
+	window.maxFoundry.maxadmin.responsive = new mbResponsive($); 
+	window.maxFoundry.maxadmin.responsive.init(this); 
+
 }	
 
-maxAdmin.prototype.addMediaQuery = function() 
-{
-	this.saveIndicator(true); 
-	var new_option = $('.media_option_prot').children().clone();
- 
-	var new_query = $("#new_query").val(); 
-	var new_title = $("#new_query :selected").text(); 
-	var new_desc = $("#media_desc").children('#' + new_query).text();
- 
-	$(new_option).data('query', new_query); 
-	$(new_option).children('input[name="media_query[]"]').val(new_query);
-	$(new_option).children('.title').text(new_title); 
-	$(new_option).children('.description').text(new_desc);
-	
-	if (new_query !== 'custom') 
-		$(new_option).children('.custom').hide(); 
-
-	var new_index = $('input[name="next_media_index"]').val();
- 
-	$(new_option).find('select, input').each(function () { 
- 
-		name = $(this).attr('name'); 
-		id = $(this).attr('id');
-		if (typeof id !== 'undefined')
-			$(this).attr('id', id.replace('[]','[' + new_index + ']'));
-		$(this).attr('name', name.replace('[]','[' + new_index + ']'));
-	})
-	
-	 new_index = parseInt(new_index);
- 
-	$('input[name="next_media_index"]').val( (new_index+1) ); 
-
-	if (new_query !== 'custom')
-	{	
-		$('#new_query :selected').prop('disabled', true);
-		$('#new_query :selected').prop('selected', false);
-	}
-	$('.media_queries_options .new_query_space').append(new_option);
- 
-}
-
-maxAdmin.prototype.removeMediaQuery = function(e) 
-{
-	var target = e.target;
-
-	var query = $(target).parents('.media_query').data('query'); 
-	$(target).parents('.media_query').fadeOut(function() { $(this).remove() } ); 
-	
-	$('#new_query option[value="' + query + '"]').prop('disabled', false);
-}
 
 maxAdmin.prototype.do_paging = function(e)
 {
@@ -690,14 +688,17 @@ maxAdmin.prototype.formAjaxSave = function (e)
 	}).done($.proxy(this.saveDone, this));
 }
 
+/*
 maxAdmin.prototype.buttonSubmit = function (e)
 {	
+
 	e.preventDefault(); 
 	$('[data-form]').prop('disabled', true);
 	var formName =  $(e.target).data('form'); 
 	$('#' + formName).submit();
 
 } 
+*/
 
 maxAdmin.prototype.saveDone = function (res)
 {

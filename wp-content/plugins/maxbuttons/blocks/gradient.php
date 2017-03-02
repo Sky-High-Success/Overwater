@@ -25,7 +25,8 @@ class gradientBlock extends maxBlock
 													    "css" => "gradient-end-opacity", 
 													    "csspseudo" => "hover"),
 						'use_gradient' => array('default' =>  '0',
-											    'css' => 'gradient-use-gradient',  
+											    'css' => 'gradient-use-gradient',
+											    'csspseudo' => 'normal,hover',   
 							),
 	
 						); 
@@ -76,7 +77,7 @@ class gradientBlock extends maxBlock
 			//	$fspacer->output('start'); 
 			
 				$useg = new maxField('switch'); 
-				$useg->label = __('Use Gradients', 'maxinbound');
+				$useg->label = __('Use Gradients', 'maxbuttons');
 				$useg->name = 'use_gradient';
 				$useg->id = $useg->name;
 				$useg->value = '1'; 

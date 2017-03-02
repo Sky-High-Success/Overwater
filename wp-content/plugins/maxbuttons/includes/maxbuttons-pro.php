@@ -37,7 +37,7 @@ $admin->get_header(array("title" => $page_title, "title_action" => $buy_now_top,
       <div class="rating bordered">
         <img src="<?php echo $img_url ?>/stars.png" alt="stars" />
         <p>
-          300+ 5 Star Ratings
+          400+ 5 Star Ratings
         </p>
       </div>
       <p>

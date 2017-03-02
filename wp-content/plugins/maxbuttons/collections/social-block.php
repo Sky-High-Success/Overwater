@@ -125,6 +125,7 @@ class socialCollectionBlock extends collectionBlock
 					$count = $maxSN->getShareCount(array("url" => $share_url, 
 							"preview" => $this->is_preview,
 					));
+					
 					if ($count === false) // signal for remote check 
 					{
 						$this->social_data["onload"][$document_id] = array("network" => $network, "share_url" => esc_url($share_url), "count_threshold" => $count_threshold, "text" => $text, "text2" => $text2 );

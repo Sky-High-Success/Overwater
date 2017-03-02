@@ -12,6 +12,7 @@
 namespace Leafo\ScssPhp\Formatter;
 
 use Leafo\ScssPhp\Formatter;
+use Leafo\ScssPhp\Formatter\OutputBlock;
 
 /**
  * SCSS debug formatter
@@ -37,58 +38,78 @@ class Debug extends Formatter
     /**
      * {@inheritdoc}
      */
-    protected function blockLines($block)
+    protected function indentStr()
     {
+        return str_repeat('  ', $this->indentLevel);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function blockLines(OutputBlock $block)
+    {
+        $indent = $this->indentStr();
+
         if (empty($block->lines)) {
-            echo "block->lines: []\n";
+            echo "{$indent}block->lines: []\n";
 
             return;
         }
 
         foreach ($block->lines as $index => $line) {
-            echo "block->lines[{$index}]: $line\n";
+            echo "{$indent}block->lines[{$index}]: $line\n";
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function blockSelectors($block)
+    protected function blockSelectors(OutputBlock $block)
     {
+        $indent = $this->indentStr();
+
         if (empty($block->selectors)) {
-            echo "block->selectors: []\n";
+            echo "{$indent}block->selectors: []\n";
 
             return;
         }
 
         foreach ($block->selectors as $index => $selector) {
-            echo "block->selectors[{$index}]: $selector\n";
+            echo "{$indent}block->selectors[{$index}]: $selector\n";
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function blockChildren($block)
+    protected function blockChildren(OutputBlock $block)
     {
+        $indent = $this->indentStr();
+
         if (empty($block->children)) {
-            echo "block->children: []\n";
+            echo "{$indent}block->children: []\n";
 
             return;
         }
 
+        $this->indentLevel++;
+
         foreach ($block->children as $i => $child) {
             $this->block($child);
         }
+
+        $this->indentLevel--;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function block($block)
+    protected function block(OutputBlock $block)
     {
-        echo "block->type: {$block->type}\n" .
-             "block->depth: {$block->depth}\n";
+        $indent = $this->indentStr();
+
+        echo "{$indent}block->type: {$block->type}\n" .
+             "{$indent}block->depth: {$block->depth}\n";
 
         $this->blockSelectors($block);
         $this->blockLines($block);

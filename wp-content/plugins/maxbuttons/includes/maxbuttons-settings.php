@@ -1,6 +1,10 @@
 <?php
+namespace MaxButtons;
 defined('ABSPATH') or die('No direct access permitted');
 
+// settings for this page are registered in register_setting ( main class ) 
+
+$button = new \maxButton(); // To load maxfield templates
 
 if(isset($_POST['alter_charset'])) {
     
@@ -33,9 +37,9 @@ if (isset($_POST["remigrate"]))
  
 if (isset($_POST["replace"]) && check_admin_referer('mb_bulk_edit', 'bulk_edit')) 
 {
-	$search = $_POST["search"]; 
-	$replace = $_POST["replace"]; 
-	$field = $_POST["replace_field"]; 
+	$search = sanitize_text_field($_POST["search"]); 
+	$replace = sanitize_text_field($_POST["replace"]); 
+	$field = sanitize_text_field($_POST["replace_field"]); 
 
 	$button = new maxButton();
 	
@@ -59,8 +63,7 @@ if (isset($_POST["replace"]) && check_admin_referer('mb_bulk_edit', 'bulk_edit')
 				$value = $fields[$field]; 
 				$data[$block][$field] = str_replace($search, $replace, $value);
 				$button->update($data); 
-				//echo "UPDATE $field of $block with ($search) - $replace - ($value) <br>"; 
-				
+			
 				$data_found = true; 
 				continue;
 			}
@@ -116,34 +119,66 @@ $admin->get_header(array("tabs_active" => true, "title" => $page_title) );
  
                         <div class="clear"></div>
                     </div><!-- option-design --> 
-                     <?php 
-                     	$noshow = get_option('maxbuttons_noshowtinymce'); 
-                     	//$noshow = $max["noshow_tinymce"]; 
-                     ?>               
+ 
                      <div class="option-design">
-                        <label for='maxbuttons_noshowtinymce'><?php _e("Don't show add button in post editor", 'maxbuttons'); ?></label>         
-                       	<div class="input checkbox"><input type="checkbox" id='maxbuttons_noshowtinymce' name="maxbuttons_noshowtinymce" value="1" <?php checked($noshow,1); ?> /></div>
+                        <?php     
+					    $option_noshow = get_option('maxbuttons_noshowtinymce');
+				        
+				        $nomce = new maxField('switch'); 
+						$nomce->label = __('Hide "add button" in post editor toolbar', 'maxbuttons');
+						$nomce->name = 'maxbuttons_noshowtinymce';
+						$nomce->id = $nomce->name;
+						$nomce->value = '1'; 
+						$nomce->checked = checked($option_noshow, 1, false);  
+						$nomce->output ('start','end'); 
+						?>  
+                     
                      </div>
                      
                      <?php 
-                     	$minify = get_option("maxbuttons_minify", 1); 
-                     	$description_hide = get_option('maxbuttons_hidedescription',0); 
+                     	$option_minify = get_option("maxbuttons_minify", 1); 
+                     	$option_description_hide = get_option('maxbuttons_hidedescription',0); 
                      	
                      ?>
-                     <div class="option-design"> 
-                     	<label for="maxbuttons_minify"><?php _e("Minify CSS output of buttons","maxbuttons"); ?></label>
-                     	<div class="input checkbox">
-                     		<input type="checkbox" id='maxbuttons_minify' name="maxbuttons_minify" value="1" <?php checked($minify,1); ?>>
-                           <span class='note'><?php _e("You will have to clear your cache after changing this setting","maxbuttons"); ?></span>
-                     	</div>                            	
+                     <div class="option-design">                     
+                     	<?php 
+		                 	$minify = new maxField('switch'); 
+		                 	$minify->note =  __('Recommended, only turn off in case of issues. You will have to clear your cache after changing this setting', 'maxbuttons') ;
+							$minify->label = __('Minify Button CSS', 'maxbuttons');
+							$minify->name = 'maxbuttons_minify';
+							$minify->id = $minify->name;
+							$minify->value = '1'; 
+							$minify->checked = checked($option_minify, 1, false);  
+							$minify->output ('start','end');
+						?>                        	
                      </div>
                      
                     <div class="option-design">
-                     	<label for='maxbuttons_hidedescription'><?php _e("Hide description field","maxbuttons"); ?></label>
-                     	<div class='input checkbox'><input type='checkbox' id='maxbuttons_hidedescription' name='maxbuttons_hidedescription' value='1' <?php checked($description_hide, 1); ?> > 
-                     	</div>
- 
+                         <?php 
+		                 	$desc = new maxField('switch'); 
+							$desc->label = __('Hide description field', 'maxbuttons');
+							$desc->name = 'maxbuttons_hidedescription';
+							$desc->id = $desc->name;
+							$desc->value = '1'; 
+							$desc->checked = checked($option_description_hide, 1, false);  
+							$desc->output ('start','end');
+						?> 
                      </div>
+                     
+                     <div class='option-design'>
+                     <?php 
+                     	$option_forcefa = get_option('maxbuttons_forcefa'); 
+                     	
+                     	$fa = new maxField('switch'); 
+                 		$fa->label = __('FontAwesome conflict mode', 'maxbuttons'); 
+                 		$fa->note = __('If other plugins are conflicting with FontAwesome, tries to force plugin version.'); 
+                 		$fa->name = 'maxbuttons_forcefa'; 
+                 		$fa->id = $fa->name; 
+                 		$fa->value = '1'; 
+                 		$fa->checked = checked($option_forcefa, 1, false); 
+                 		$fa->output('start','end'); 
+                 	?>
+                 	</div>
             
                      
              		<?php do_action("maxbuttons_settings_end"); ?>

@@ -9,6 +9,7 @@ var maxMedia = function() {
 	this.parent = '#poststuff'; // option parent flag as location to write button window. 
 	this.window_loaded = null; 
 	this.maxm = null;
+	this.closeOnCallback = true; 
 }
 
 /* Default events and callback */
@@ -37,8 +38,91 @@ maxMedia.prototype.setCallback = function (callback)
 		else
 			return false; 
 	}
- 
+
 	this.callback = callback;
+}
+
+maxMedia.prototype.showShortcodeOptions = function(button_id, target)
+{
+	this.closeOnCallback = false; 
+	
+	$currentModal = this.maxm.currentModal; 
+
+	var button = $('[data-button="' + button_id + '"]').find('.shortcode-container'); 
+
+	options = $('<div class="shortcode_options">');
+
+
+	$('<input>', 
+	{
+		'type' : 'hidden',
+		'id'   : 'mb_shortcode_id', 
+		'name' : 'button_id', 
+	}).val(button_id).appendTo(options);
+
+	$('<h3>').text('Shortcode Options').appendTo(options);
+	
+	$('<div class="button_example">').append(button).appendTo(options);
+	
+	$('<label>', { 
+		'for' : 'mb_shortcode_url',	
+	}).text(mbtrans.short_url_label).appendTo(options);
+	
+	
+	$('<input>', { 
+			'type' : 'text',
+			'id'   : 'mb_shortcode_url', 
+			'name' : 'shortcode_url', 
+			'placeholder' : 'http://',
+	}).on('change, keyup', 
+		function (e) {
+			var url = $(e.target).val(); 
+			$('.button_example').find('.maxbutton').prop('href', url); 	
+	}).appendTo(options);
+	
+
+	$('<label>', { 
+		'for' : 'mb_shortcode_text',	
+	}).text(mbtrans.short_text_label).appendTo(options);
+
+	
+	$('<input>', { 
+			'type' : 'text', 
+			'name' : 'shortcode_text', 
+			'id'   : 'mb_shortcode_text',
+	}).on('change, keyup', 
+		function (e) {
+			var text = $(e.target).val(); 
+			$('.button_example').find('.mb-text').text(text); 	
+	}).appendTo(options); 
+
+	$('<p>').text(mbtrans.short_options_explain).appendTo(options); 
+	
+	$('<input>', { 
+		'type' : 'button', 
+		'name' : 'add_shortcode',
+		'class' : 'button-primary',
+		'value' : mbtrans.short_add_button, 
+
+	}).on('click', $.proxy(this.addShortcodeOptions, this)).appendTo(options); 
+	
+	
+
+	this.maxm.setContent( options );
+	this.maxm.show(); 
+}
+
+maxMedia.prototype.addShortcodeOptions = function(e)
+{
+	e.preventDefault(); 
+
+	var url = $('#mb_shortcode_url').val(); 
+	var text = $('#mb_shortcode_text').val(); 
+	var button_id = $('#mb_shortcode_id').val(); 
+	
+	this.buttonToEditor(button_id, url, text); 
+	
+	
 }
 
 maxMedia.prototype.clickAddButton = function (e) 
@@ -73,7 +157,6 @@ maxMedia.prototype.clickAddButton = function (e)
 		$('.controls .insert').data('button', button); 
 		this.maxm.currentModal.find('.controls .insert').removeClass('disabled'); 
 	},this)); 
-	
 		
 	$(document).on('click','.pagination span, .pagination-links a', function (e)  // eventception
 	{
@@ -85,7 +168,7 @@ maxMedia.prototype.clickAddButton = function (e)
 		if (page <= 1) page = 1; 
 		
 		self.loadPostEditScreen(page); 
-	}) ;
+	});
 	$(document).on('change', '.input-paging', function (e)
 	{
 		e.preventDefault(); 
@@ -100,7 +183,8 @@ maxMedia.prototype.clickAddButton = function (e)
 // Callback is the add function on button select
 maxMedia.prototype.loadPostEditScreen = function(page)
 {
-	if (typeof page == 'undefined') page = 0; 
+	if (typeof page == 'undefined') 
+		page = 0; 
 	
 	var data = { action: 'getAjaxButtons', 
 				paged : page, 
@@ -126,7 +210,7 @@ maxMedia.prototype.loadPostEditScreen = function(page)
 }
 maxMedia.prototype.showPostEditScreen = function ()
 {
-	
+
 	this.maxm.parent = this.parent; 
 	this.maxm.newModal('media-buttons'); 
  
@@ -142,6 +226,7 @@ maxMedia.prototype.showPostEditScreen = function ()
 
 maxMedia.prototype.putResults = function(res)
 {
+
 	this.showPostEditScreen();
 	 $('.media-buttons .loading').css('visibility', 'hidden'); 
 	
@@ -156,9 +241,8 @@ maxMedia.prototype.putResults = function(res)
 	
 	// events 
 	$(document).on('click', ".maxbutton-preview", function(e) { e.preventDefault(); }); // prevent button clicks
-	
-			
-	$(document).trigger('mb_media_put_results', res); 
+
+	$(document).trigger('mb_media_put_results', [res, this.maxm] ); 
 }
 
 maxMedia.prototype.resize = function(e)
@@ -182,13 +266,24 @@ maxMedia.prototype.insertAction = function(e)
 		
 		if (typeof this.callback == 'function')
 			this.callback(button_id, $(e.target) ); 
-		this.maxm.close();
+			
+		if (this.closeOnCallback)
+			this.maxm.close();
 }
 
-maxMedia.prototype.buttonToEditor = function(button_id)
+maxMedia.prototype.buttonToEditor = function(button_id, url, text)
 {
+	var shortcode = '[maxbutton id="' + button_id + '"'; 
+	
+	if (typeof url !== 'undefined' && url.length > 1)
+		shortcode += ' url="' + url + '"'; 
+	
+	if (typeof text !== 'undefined' && text.length > 1)
+		shortcode += ' text="' + text + '"';
 
-	window.send_to_editor('[maxbutton id="' + button_id + '"]');
+	shortcode += ' ] '; 
+	window.send_to_editor(shortcode);
+	this.maxm.close();
 }
 
 maxMedia.prototype.getEditor = function () 
@@ -202,8 +297,7 @@ maxMedia.prototype.getEditor = function ()
 	editor.append( $('<h2>', { 'style' : h2style } ).text(mbtrans.insert) )
 		.append( $('<p>').text(mbtrans.select) ) 
 		.append( $('<div>', { id: 'mb_media_buttons' }).append( '<div class="loading"></div>'  )
-				
-	
+
 			   );
 
 	return editor;
