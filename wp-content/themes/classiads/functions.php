@@ -27,7 +27,8 @@
 
 global $delegate_urls;
 
-$delegate_urls = array('http://luxuryislandresorts.com.au','http://tahitiholiday.com.au');
+$delegate_urls = array('http://tahitiholiday.com.au');
+//$delegate_urls = array('http://luxuryislandresorts.com.au','http://tahitiholiday.com.au');
 
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin' );
 
